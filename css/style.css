@@ -567,3 +567,18 @@ body.is-ready .footer {
     animation: none !important;
   }
 }
+/* SAFETY: si le JS ne charge pas, on affiche quand même */
+body{ opacity: 1; transform: none; }
+
+/* Reveal uniquement quand JS ajoute la classe */
+body.js-anim {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+body.js-anim.is-ready{
+  opacity: 1;
+  transform: translateY(0);
+}
+
