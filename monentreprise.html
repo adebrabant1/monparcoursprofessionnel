@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- ======================================================
-       META / SEO
-       ====================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon entreprise – Arthur DEBRABANT</title>
   <meta name="description" content="Présentation de mon entreprise d'accueil – BTS SIO SISR" />
 
-  <!-- ======================================================
-       CSS GLOBAL (même thème que l’accueil)
-       IMPORTANT : chez toi c'est bien css/style.css
-       ====================================================== -->
+  <!-- CSS (chez toi c'est bien css/style.css) -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-  <!-- =========================
-     Loader overlay (global)
-     ========================= -->
-<div class="page-loader" aria-hidden="true">
-  <div class="page-loader__panel">
-    <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
-    <div class="page-loader__spinner"></div>
-    <div class="page-loader__bar"><div></div></div>
-    <div class="page-loader__text">Chargement...</div>
+
+  <!-- Loader overlay (global) -->
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__panel">
+      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
+      <div class="page-loader__spinner"></div>
+      <div class="page-loader__bar"><div></div></div>
+      <div class="page-loader__text">Chargement...</div>
+    </div>
   </div>
-</div>
 
-
-  <!-- ======================================================
-       HERO (identique aux autres pages)
-       ====================================================== -->
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
-
       <h1 class="hero__title">Mon entreprise</h1>
-
       <p class="hero__subtitle">
         Présentation de la structure d’accueil, de l’environnement IT et de mon rôle en alternance
       </p>
@@ -50,28 +37,17 @@
     </div>
   </header>
 
-  <!-- ======================================================
-       CONTENU PRINCIPAL
-       ====================================================== -->
   <main id="contenu" class="container">
 
-    <!-- ======================================================
-         SECTION 1 : Présentation de l’entreprise
-         ====================================================== -->
     <section class="content-card">
       <h2>Présentation de l’entreprise</h2>
       <p>
         Mon alternance se déroule au sein de <strong>[Nom de l’entreprise]</strong>.
         L’entreprise évolue dans le secteur <strong>[secteur d’activité]</strong> et compte environ
         <strong>[taille/nb de salariés]</strong>. Elle dispose d’un environnement informatique structuré
-        permettant de garantir la continuité de service et la sécurité des données.
+        garantissant la continuité de service et la sécurité des données.
       </p>
 
-      <!-- ✅ PLACEHOLDER LOGO / PHOTO SITE
-           1) Ajoute l'image dans : images/entreprise/
-           2) Décommente le bloc
-           Exemple : images/entreprise/logo.png ou images/entreprise/batiment.jpg
-      -->
       <!--
       <div class="media">
         <img src="images/entreprise/logo.png" alt="Logo de l'entreprise" loading="lazy" />
@@ -80,20 +56,13 @@
       -->
     </section>
 
-    <!-- ======================================================
-         SECTION 2 : Service Informatique / Organisation
-         ====================================================== -->
     <section class="content-card">
-      <h2>Organisation & service informatique</h2>
+      <h2>Service informatique & organisation</h2>
       <p>
-        Le service informatique est composé de <strong>[nb personnes]</strong> et assure :
-        le support utilisateurs, l’administration des serveurs, la gestion réseau, la cybersécurité
-        et le maintien en conditions opérationnelles du SI.
+        Le service informatique assure le support utilisateurs, l’administration des serveurs,
+        la gestion du réseau, ainsi que la mise en place de bonnes pratiques de sécurité.
       </p>
 
-      <!-- ✅ PLACEHOLDER ORGANIGRAMME (image)
-           Exemple : images/entreprise/organigramme.png
-      -->
       <!--
       <div class="media">
         <img src="images/entreprise/organigramme.png" alt="Organigramme du service informatique" loading="lazy" />
@@ -102,28 +71,18 @@
       -->
     </section>
 
-    <!-- ======================================================
-         SECTION 3 : Environnement technique / SI
-         ====================================================== -->
     <section class="content-card">
       <h2>Environnement technique</h2>
-
-      <p>
-        L’environnement informatique comprend notamment :
-      </p>
+      <p>Exemples d’éléments composant l’environnement informatique :</p>
 
       <ul class="mission-list">
-        <li>Postes utilisateurs : <strong>[Windows 10/11, etc.]</strong></li>
+        <li>Postes : <strong>[Windows 10/11, etc.]</strong></li>
         <li>Serveurs : <strong>[Windows Server / Linux / NAS / Virtualisation]</strong></li>
-        <li>Réseau : <strong>[Switch / VLAN / Wi-Fi / Firewall]</strong></li>
-        <li>Services : <strong>[AD, DNS, DHCP, Office 365, sauvegardes...]</strong></li>
-        <li>Sécurité : <strong>[antivirus, MFA, règles firewall, supervision...]</strong></li>
+        <li>Réseau : <strong>[Switch, VLAN, Wi-Fi, Firewall]</strong></li>
+        <li>Services : <strong>[AD, DNS, DHCP, M365, sauvegardes…]</strong></li>
+        <li>Sécurité : <strong>[MFA, antivirus, supervision, règles firewall…]</strong></li>
       </ul>
 
-      <!-- ✅ PLACEHOLDER PHOTO TECHNIQUE (baie réseau / salle serveur)
-           ⚠️ Evite les infos sensibles visibles (IP, noms de machines...)
-           Exemple : images/entreprise/baie-reseau.jpg
-      -->
       <!--
       <div class="media">
         <img src="images/entreprise/baie-reseau.jpg" alt="Baie réseau / infrastructure" loading="lazy" />
@@ -132,19 +91,12 @@
       -->
     </section>
 
-    <!-- ======================================================
-         SECTION 4 : Schéma réseau (SUPER PRO pour BTS)
-         ====================================================== -->
     <section class="content-card">
       <h2>Schéma réseau</h2>
       <p>
-        Cette section présente un schéma simplifié du réseau / de l’infrastructure,
-        permettant de comprendre l’organisation des équipements et des services.
+        Schéma simplifié de l’infrastructure pour comprendre l’organisation des équipements et des services.
       </p>
 
-      <!-- ✅ PLACEHOLDER SCHÉMA RÉSEAU (image)
-           Exemple : images/entreprise/schema-reseau.png
-      -->
       <!--
       <div class="media">
         <img src="images/entreprise/schema-reseau.png" alt="Schéma réseau simplifié" loading="lazy" />
@@ -152,9 +104,6 @@
       </div>
       -->
 
-      <!-- ✅ OPTION : AJOUTER UN LIEN VERS UN PDF (si tu fais un schéma en PDF)
-           Exemple : docs/schema-reseau.pdf
-      -->
       <!--
       <p style="margin-top:14px;">
         <a class="btn btn--primary" href="docs/schema-reseau.pdf" target="_blank" rel="noopener">
@@ -164,15 +113,11 @@
       -->
     </section>
 
-    <!-- ======================================================
-         SECTION 5 : Mon rôle en alternance
-         ====================================================== -->
     <section class="content-card">
       <h2>Mon rôle en alternance</h2>
       <p>
-        Au sein de l’entreprise, je participe à différentes activités :
-        support utilisateurs, interventions techniques, documentation et participation à
-        l’amélioration continue du SI. Je développe progressivement mon autonomie
+        Je participe à différentes activités : support utilisateurs, interventions techniques,
+        documentation et amélioration continue du SI. Cette expérience renforce mon autonomie
         et ma rigueur professionnelle.
       </p>
 
@@ -184,35 +129,13 @@
       </ul>
     </section>
 
-    <!-- ======================================================
-         SECTION 6 : Documents (optionnel)
-         ====================================================== -->
-    <section class="content-card">
-      <h2>Documents</h2>
-      <p>
-        Vous pouvez retrouver ici des documents associés (procédures, rapports, annexes).
-      </p>
-
-      <!-- ✅ PLACEHOLDER PDF
-           1) Ajoute ton fichier dans docs/
-           2) Décommente le bouton
-      -->
-      <!--
-      <a class="btn btn--primary" href="docs/presentation-entreprise.pdf" target="_blank" rel="noopener">
-        📄 Télécharger une présentation (PDF)
-      </a>
-      -->
-    </section>
-
   </main>
 
-  <!-- ======================================================
-       FOOTER
-       ====================================================== -->
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
-<script src="js/app.js"></script>
 
+  <!-- JS (animations + loader) -->
+  <script src="js/app.js"></script>
 </body>
 </html>
