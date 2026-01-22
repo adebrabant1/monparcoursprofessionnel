@@ -367,67 +367,6 @@ body{
   border: 1px solid var(--border);
 }
 
-/* ======================================================
-   PAGE : À PROPOS DE MOI
-   ====================================================== */
-
-/* Sections "À propos" */
-.about-section {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 22px;
-
-  padding: 28px 30px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.03)
-  );
-
-  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
-  color: var(--text);
-}
-
-/* Titres des sections */
-.about-section h2 {
-  margin-bottom: 14px;
-  font-size: 1.35rem;
-  font-weight: 700;
-}
-
-/* Paragraphes */
-.about-section p {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-/* Listes de compétences */
-.about-section ul {
-  margin-top: 12px;
-  padding-left: 20px;
-}
-
-.about-section li {
-  margin-bottom: 8px;
-  color: var(--muted);
-}
-
-/* Mise en valeur mots-clés */
-.about-section strong {
-  color: var(--text);
-  font-weight: 700;
-}
-
-/* Bouton CV */
-.about-section .btn {
-  margin-top: 14px;
-  display: inline-block;
-}
-
 
 
 
