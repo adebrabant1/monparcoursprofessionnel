@@ -329,5 +329,43 @@ body{
 .mission-item p{
   color: var(--muted);
 }
+/* ===== MEDIA (IMAGES) ===== */
+.media{
+  margin-top: 14px;
+}
+
+.media img{
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+}
+
+.media__caption{
+  margin-top: 8px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ===== GALLERY (OPTIONNEL) ===== */
+.gallery{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.gallery img{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
 
 
