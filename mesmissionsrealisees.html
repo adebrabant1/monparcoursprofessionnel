@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ======================================================
+       META / SEO
+       - charset + responsive
+       - titre + description (utile pour GitHub Pages)
+       ====================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mes missions réalisées – Arthur DEBRABANT</title>
   <meta name="description" content="Missions réalisées en alternance – BTS SIO SISR" />
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ======================================================
+       IMPORTANT : Lien vers le CSS global (même thème que l’accueil)
+       Vérifie que style.css est bien à la RACINE du repo.
+       ====================================================== -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
+  <!-- ======================================================
+       HEADER / HERO (même structure que la page d'accueil)
+       ====================================================== -->
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
@@ -20,15 +33,26 @@
         Interventions, projets, outils utilisés et résultats obtenus en entreprise
       </p>
 
+      <!-- Boutons d'action -->
       <div class="hero__actions">
+        <!-- Retour à l'accueil -->
         <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
+
+        <!-- Scroll vers la liste des missions -->
         <a class="btn btn--primary" href="#liste">Voir la liste</a>
       </div>
     </div>
   </header>
 
+  <!-- ======================================================
+       CONTENU PRINCIPAL
+       - "container" garde tout centré et responsive
+       ====================================================== -->
   <main class="container">
 
+    <!-- ======================================================
+         SECTION 1 : Présentation générale
+         ====================================================== -->
     <section class="content-card">
       <h2>Présentation générale</h2>
       <p>
@@ -36,34 +60,114 @@
         liées à l’administration systèmes et réseaux. Ces missions m’ont permis de développer mes compétences
         techniques, mon autonomie et ma communication professionnelle.
       </p>
+
+      <!-- ======================================================
+           PLACEHOLDER PHOTO (OPTIONNEL)
+           ➜ Quand tu auras une photo (ex: toi au poste, logo entreprise, etc.)
+           1) Mets l'image dans un dossier images/ (recommandé)
+           2) Décommente le bloc ci-dessous (enlève <!-- et -->)
+           3) Remplace le nom du fichier
+
+           Exemple :
+           images/missions/support-incident.jpg
+           ====================================================== -->
+
+      <!--
+      <div class="media">
+        <img
+          src="images/missions/exemple-photo.jpg"
+          alt="Illustration de la mission (ex: support informatique)"
+          loading="lazy"
+        />
+        <p class="media__caption">Légende : intervention support (exemple).</p>
+      </div>
+      -->
     </section>
 
+    <!-- ======================================================
+         SECTION 2 : Exemples de missions
+         ====================================================== -->
     <section id="liste" class="content-card">
       <h2>Exemples de missions réalisées</h2>
 
+      <!-- ======================================================
+           Grille de cartes (mission-grid)
+           Tu peux dupliquer un <article class="mission-item"> pour ajouter une mission
+           ====================================================== -->
       <div class="mission-grid">
+
         <article class="mission-item">
           <h3>Support & dépannage</h3>
           <p>Diagnostic, résolution d’incidents, assistance utilisateurs (N1/N2).</p>
+
+          <!-- Placeholder photo mission (optionnel) -->
+          <!--
+          <div class="media">
+            <img src="images/missions/support.jpg" alt="Mission support" loading="lazy" />
+            <p class="media__caption">Ex : ticketing / dépannage poste.</p>
+          </div>
+          -->
         </article>
 
         <article class="mission-item">
           <h3>Active Directory</h3>
           <p>Création de comptes, gestion des droits, groupes, organisation.</p>
+
+          <!-- Placeholder photo mission (optionnel) -->
+          <!--
+          <div class="media">
+            <img src="images/missions/active-directory.png" alt="Gestion Active Directory" loading="lazy" />
+            <p class="media__caption">Ex : gestion des comptes et groupes.</p>
+          </div>
+          -->
         </article>
 
         <article class="mission-item">
           <h3>Réseau & serveurs</h3>
           <p>Participation à la gestion réseau, services, maintenance et suivi.</p>
+
+          <!-- Placeholder photo mission (optionnel) -->
+          <!--
+          <div class="media">
+            <img src="images/missions/reseau.jpg" alt="Réseau et serveurs" loading="lazy" />
+            <p class="media__caption">Ex : baie réseau / supervision.</p>
+          </div>
+          -->
         </article>
 
         <article class="mission-item">
           <h3>Documentation</h3>
           <p>Rédaction de procédures et comptes rendus techniques (méthodique).</p>
+
+          <!-- Placeholder photo mission (optionnel) -->
+          <!--
+          <div class="media">
+            <img src="images/missions/documentation.png" alt="Documentation technique" loading="lazy" />
+            <p class="media__caption">Ex : procédure interne / compte rendu.</p>
+          </div>
+          -->
         </article>
+
       </div>
+
+      <!-- ======================================================
+           PLACEHOLDER : AJOUT D'UNE GALERIE (PLUS TARD)
+           - Tu peux faire une galerie de plusieurs photos
+           - Tu décommentes le bloc et tu ajoutes tes <img>
+           ====================================================== -->
+      <!--
+      <h2 style="margin-top:18px;">Galerie</h2>
+      <div class="gallery">
+        <img src="images/missions/photo1.jpg" alt="Photo mission 1" loading="lazy" />
+        <img src="images/missions/photo2.jpg" alt="Photo mission 2" loading="lazy" />
+        <img src="images/missions/photo3.jpg" alt="Photo mission 3" loading="lazy" />
+      </div>
+      -->
     </section>
 
+    <!-- ======================================================
+         SECTION 3 : Compétences mobilisées
+         ====================================================== -->
     <section class="content-card">
       <h2>Compétences mobilisées</h2>
       <ul class="mission-list">
@@ -73,10 +177,28 @@
         <li>Méthodologie (procédures, rigueur)</li>
         <li>Communication (support, échanges pro)</li>
       </ul>
+
+      <!-- ======================================================
+           PLACEHOLDER : ajouter un PDF (ex: compte rendu)
+           1) Met ton fichier dans docs/
+           2) Décommente et adapte le lien
+
+           Exemple : docs/compte-rendu-mission.pdf
+           ====================================================== -->
+      <!--
+      <p style="margin-top:14px;">
+        <a class="btn btn--primary" href="docs/compte-rendu-mission.pdf" target="_blank" rel="noopener">
+          📄 Télécharger un compte rendu (PDF)
+        </a>
+      </p>
+      -->
     </section>
 
   </main>
 
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
