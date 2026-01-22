@@ -1,58 +1,169 @@
-<div style="background: radial-gradient(ellipse at top left, #1a0033 0%, #0a0a0a 80%), linear-gradient(120deg, #0ff 0%, #0a0a0a 100%);min-height:100vh;font-family: 'Share Tech Mono', 'Fira Mono', monospace;color: #39ff14;padding: 40px">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ======================================================
+       META / SEO
+       ====================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos de moi – Arthur DEBRABANT</title>
+  <meta name="description" content="Présentation personnelle – BTS SIO SISR – Arthur DEBRABANT" />
 
-  <h1 style="text-align:center;font-size:2em;letter-spacing:3px;margin-bottom: 10px">
-    <span style="background:rgba(10,0,30,0.85);padding:10px 30px;border-radius:12px;border:3px solid #39ff14;box-shadow:0 0 30px #39ff14, 0 0 20px #00fff7">
-      <span style="display:inline-flex;align-items:center">
-        <span style="font-size:1.2em;margin-right:18px;vertical-align:middle;color:#00fff7">
-          🖥️
-          <span style="font-family:monospace;background:#111;color:#39ff14;padding:2px 8px;border-radius:6px;border:1px solid #00fff7;margin-left:8px">
-            root@cyberpunk
-          </span>
-        </span>
-        <span style="color:#00fff7;margin-left:18px">
-          Arthur DEBRABANT UFASIO2
-        </span>
-      </span>
-    </span>
-  </h1>
+  <!-- ======================================================
+       CSS GLOBAL (même fichier que l’accueil)
+       ====================================================== -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <p style="text-align:center;font-size:1.1em;font-family:'Share Tech Mono', monospace;letter-spacing:1px;margin-bottom:50px">
-    <span style="background:rgba(10,0,30,0.7);padding:4px 16px;border-radius:8px;color: #00fff7">[Mode : <span style="color:#39ff14">HACKER</span> / <span style="color:#ff00cc">CYBERPUNK</span>]</span>
-  </p>
+<body>
 
-  <div style="max-width:800px;margin:auto;padding:20px;text-align:left;font-size:1.1em;line-height:1.8;color:#00fff7;background:rgba(0,0,0,0.2);border-left:4px solid #39ff14">
-    <!-- Contenu personnalisé ici -->
-    <h2>À propos de moi</h2>
-    <p>Je suis Arthur Debrabant, étudiant à l’UFASIO2, passionné par le monde du hacking éthique, la cybersécurité et l’univers cyberpunk...</p>
-    <!-- Ajoute plus de contenu ici -->
-  </div>
+  <!-- ======================================================
+       HERO (identique aux autres pages)
+       ====================================================== -->
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__badge">BTS SIO • SISR</p>
 
-</div>
-  <!-- Bouton retour -->
-  <div style="margin-top:40px;text-align:center">
-    <a href="index.html" style="background:#0a0a0a;color:#00fff7;padding:12px 24px;border-radius:8px;border:2px solid #39ff14;text-decoration:none;font-size:1.1em;box-shadow:0 0 15px #39ff14">
-      ⬅️ Retour à l'accueil
-    </a>
-  </div>
-</div>
+      <h1 class="hero__title">À propos de moi</h1>
 
-<!-- Animation typewriter -->
+      <p class="hero__subtitle">
+        Présentation personnelle, parcours et objectifs professionnels
+      </p>
 
-  .typewriter {
-    display: inline-block;
-    overflow: hidden;
-    border-right: .15em solid #00fff7;
-    white-space: nowrap;
-    animation: typing 4s steps(50, end), blink-caret .75s step-end infinite;
-  }
+      <div class="hero__actions">
+        <!-- Bouton retour -->
+        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
 
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
+        <!-- Scroll vers le contenu -->
+        <a class="btn btn--primary" href="#profil">Découvrir</a>
+      </div>
+    </div>
+  </header>
 
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #00fff7; }
-  }
+  <!-- ======================================================
+       CONTENU PRINCIPAL
+       ====================================================== -->
+  <main class="container">
 
+    <!-- ======================================================
+         SECTION 1 : Profil
+         ====================================================== -->
+    <section id="profil" class="content-card">
+      <h2>Profil</h2>
+      <p>
+        Je m’appelle <strong>Arthur DEBRABANT</strong>, étudiant en
+        <strong>BTS SIO option SISR</strong>. Passionné par l’informatique,
+        les systèmes, les réseaux et la cybersécurité, je m’oriente vers
+        un métier d’administrateur systèmes et réseaux.
+      </p>
+
+      <!-- ======================================================
+           PLACEHOLDER PHOTO PROFIL
+           ➜ Photo professionnelle recommandée (sobre)
+           Exemple : images/profil/arthur.jpg
+           ====================================================== -->
+      <!--
+      <div class="media">
+        <img src="images/profil/arthur.jpg" alt="Photo de profil Arthur Debrabant" loading="lazy" />
+        <p class="media__caption">Photo professionnelle</p>
+      </div>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 2 : Parcours
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Parcours</h2>
+      <p>
+        Après un intérêt marqué pour les technologies numériques,
+        j’ai choisi de suivre un BTS SIO afin d’acquérir des compétences
+        solides en administration systèmes et réseaux, tout en bénéficiant
+        d’une expérience professionnelle concrète grâce à l’alternance.
+      </p>
+
+      <!-- ======================================================
+           PLACEHOLDER CHRONOLOGIE (OPTIONNEL)
+           Tu peux remplacer par une timeline plus tard
+           ====================================================== -->
+      <!--
+      <ul class="mission-list">
+        <li>2024 – Entrée en BTS SIO SISR</li>
+        <li>2024 – Début de l’alternance</li>
+        <li>2026 – Obtention du BTS (objectif)</li>
+      </ul>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 3 : Compétences
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Compétences</h2>
+
+      <ul class="mission-list">
+        <li>Administration systèmes (Windows, Linux)</li>
+        <li>Réseaux (adressage IP, services, diagnostic)</li>
+        <li>Sécurité informatique (bonnes pratiques, gestion des accès)</li>
+        <li>Virtualisation et environnements de test</li>
+        <li>Support utilisateurs et communication professionnelle</li>
+      </ul>
+
+      <!-- ======================================================
+           PLACEHOLDER ILLUSTRATION COMPÉTENCES
+           Exemple : schéma réseau, capture VM, etc.
+           ====================================================== -->
+      <!--
+      <div class="media">
+        <img src="images/competences/schema-reseau.png" alt="Schéma réseau" loading="lazy" />
+        <p class="media__caption">Exemple de compétences techniques</p>
+      </div>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 4 : Objectifs
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Objectifs professionnels</h2>
+      <p>
+        Mon objectif est de poursuivre dans le domaine de l’administration
+        systèmes et réseaux, en renforçant mes compétences techniques et
+        en évoluant vers des responsabilités plus avancées, notamment
+        dans la gestion d’infrastructures informatiques et la cybersécurité.
+      </p>
+    </section>
+
+    <!-- ======================================================
+         SECTION 5 : CV (OPTIONNEL)
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Curriculum Vitae</h2>
+      <p>
+        Vous pouvez consulter ou télécharger mon CV pour plus de détails
+        sur mon parcours et mes compétences.
+      </p>
+
+      <!-- ======================================================
+           PLACEHOLDER CV PDF
+           1) Met ton CV dans docs/
+           2) Décommente le lien
+           ====================================================== -->
+      <!--
+      <a class="btn btn--primary" href="docs/cv-arthur-debrabant.pdf" target="_blank" rel="noopener">
+        📄 Télécharger mon CV
+      </a>
+      -->
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+  <footer class="footer">
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
