@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Portfolio – Arthur Debrabant</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio BTS SIO SISR – Arthur DEBRABANT UFASIO2" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge">BTS SIO • SISR</div>
+      <h1>Arthur DEBRABANT <span class="muted">UFASIO2</span></h1>
+      <p class="subtitle">Portfolio professionnel – alternance & projets</p>
 
-  <header class="header">
-    <h1>Arthur Debrabant</h1>
-    <p class="subtitle">BTS SIO SISR – Portfolio professionnel</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mesmissionsréalisées.html">Accéder aux missions</a>
+        <a class="btn btn-ghost" href="àproposdemoi.html">À propos</a>
+      </div>
+    </div>
   </header>
 
   <main class="container">
+    <section class="grid">
 
-    <a href="aproposdemoi.html" class="card">
-      <div class="icon">👤</div>
-      <h2>À propos de moi</h2>
-      <p>Présentation personnelle et parcours</p>
-    </a>
+      <!-- Bloc 1 : À propos de moi -->
+      <a class="card card-a" href="àproposdemoi.html" aria-label="À propos de moi">
+        <div class="card-top">
+          <div class="icon">👤</div>
+          <div class="chip">Rubrique 1</div>
+        </div>
+        <h2>1. À propos de moi</h2>
+        <p>Profil, parcours, objectifs et compétences clés.</p>
+        <div class="card-cta">Ouvrir →</div>
+      </a>
 
-    <a href="monentreprise.html" class="card">
-      <div class="icon">🏢</div>
-      <h2>Mon entreprise</h2>
-      <p>Structure d’accueil et environnement professionnel</p>
-    </a>
+      <!-- Bloc 2 : Mon entreprise -->
+      <a class="card card-b" href="monentreprise.html" aria-label="Mon entreprise">
+        <div class="card-top">
+          <div class="icon">🏢</div>
+          <div class="chip">Rubrique 2</div>
+        </div>
+        <h2>2. Mon entreprise</h2>
+        <p>Présentation, contexte, organisation et environnement IT.</p>
+        <div class="card-cta">Ouvrir →</div>
+      </a>
 
-    <a href="mesmissionsrealisees.html" class="card">
-      <div class="icon">🛠️</div>
-      <h2>Mes missions réalisées</h2>
-      <p>Travaux et projets effectués en entreprise</p>
-    </a>
+      <!-- Bloc 3 : Mes missions réalisées -->
+      <a class="card card-c" href="mesmissionsréalisées.html" aria-label="Mes missions réalisées">
+        <div class="card-top">
+          <div class="icon">🛠️</div>
+          <div class="chip">Rubrique 3</div>
+        </div>
+        <h2>3. Mes missions réalisées</h2>
+        <p>Interventions, projets, outils utilisés et résultats.</p>
+        <div class="card-cta">Ouvrir →</div>
+      </a>
 
+    </section>
+
+    <section class="note">
+      <span class="dot"></span>
+      <p><strong>À venir :</strong> documents, comptes rendus, schémas réseau, annexes techniques.</p>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>© 2026 – Arthur Debrabant</p>
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
-
 </body>
 </html>
