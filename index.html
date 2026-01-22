@@ -2,22 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
   <meta name="description" content="Portfolio BTS SIO SISR – Arthur DEBRABANT UFASIO2" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <header class="hero">
-    <div class="hero-inner">
-      <div class="badge">BTS SIO • SISR</div>
-      <h1>Arthur DEBRABANT <span class="muted">UFASIO2</span></h1>
-      <p class="subtitle">Portfolio professionnel – alternance & projets</p>
+    <div class="hero__inner">
+      <p class="hero__badge">BTS SIO • SISR</p>
+      <h1 class="hero__title">Arthur DEBRABANT <span>UFASIO2</span></h1>
+      <p class="hero__subtitle">Portfolio professionnel – alternance, projets et compétences</p>
 
-      <div class="actions">
-        <a class="btn btn-primary" href="mesmissionsréalisées.html">Accéder aux missions</a>
-        <a class="btn btn-ghost" href="àproposdemoi.html">À propos</a>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="mesmissionsréalisées.html">Voir mes missions</a>
+        <a class="btn btn--ghost" href="àproposdemoi.html">Me découvrir</a>
       </div>
     </div>
   </header>
@@ -25,44 +25,44 @@
   <main class="container">
     <section class="grid">
 
-      <!-- Bloc 1 : À propos de moi -->
-      <a class="card card-a" href="àproposdemoi.html" aria-label="À propos de moi">
-        <div class="card-top">
-          <div class="icon">👤</div>
-          <div class="chip">Rubrique 1</div>
+      <!-- 1. À propos de moi -->
+      <a class="card" href="àproposdemoi.html">
+        <div class="card__top">
+          <div class="card__icon">👤</div>
+          <div class="card__tag">Rubrique 1</div>
         </div>
-        <h2>1. À propos de moi</h2>
-        <p>Profil, parcours, objectifs et compétences clés.</p>
-        <div class="card-cta">Ouvrir →</div>
+        <h2 class="card__title">1. À propos de moi</h2>
+        <p class="card__text">Profil, parcours, objectifs et compétences clés.</p>
+        <div class="card__cta">Accéder →</div>
       </a>
 
-      <!-- Bloc 2 : Mon entreprise -->
-      <a class="card card-b" href="monentreprise.html" aria-label="Mon entreprise">
-        <div class="card-top">
-          <div class="icon">🏢</div>
-          <div class="chip">Rubrique 2</div>
+      <!-- 2. Mon entreprise -->
+      <a class="card" href="monentreprise.html">
+        <div class="card__top">
+          <div class="card__icon">🏢</div>
+          <div class="card__tag">Rubrique 2</div>
         </div>
-        <h2>2. Mon entreprise</h2>
-        <p>Présentation, contexte, organisation et environnement IT.</p>
-        <div class="card-cta">Ouvrir →</div>
+        <h2 class="card__title">2. Mon entreprise</h2>
+        <p class="card__text">Présentation, organisation et environnement informatique.</p>
+        <div class="card__cta">Accéder →</div>
       </a>
 
-      <!-- Bloc 3 : Mes missions réalisées -->
-      <a class="card card-c" href="mesmissionsréalisées.html" aria-label="Mes missions réalisées">
-        <div class="card-top">
-          <div class="icon">🛠️</div>
-          <div class="chip">Rubrique 3</div>
+      <!-- 3. Mes missions réalisées -->
+      <a class="card" href="mesmissionsréalisées.html">
+        <div class="card__top">
+          <div class="card__icon">🛠️</div>
+          <div class="card__tag">Rubrique 3</div>
         </div>
-        <h2>3. Mes missions réalisées</h2>
-        <p>Interventions, projets, outils utilisés et résultats.</p>
-        <div class="card-cta">Ouvrir →</div>
+        <h2 class="card__title">3. Mes missions réalisées</h2>
+        <p class="card__text">Interventions, projets, outils utilisés et résultats.</p>
+        <div class="card__cta">Accéder →</div>
       </a>
 
     </section>
 
-    <section class="note">
-      <span class="dot"></span>
-      <p><strong>À venir :</strong> documents, comptes rendus, schémas réseau, annexes techniques.</p>
+    <section class="info">
+      <div class="info__dot"></div>
+      <p><strong>À venir :</strong> schémas réseau, comptes rendus, documents techniques, annexes.</p>
     </section>
   </main>
 
