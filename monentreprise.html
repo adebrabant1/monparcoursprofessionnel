@@ -1,57 +1,205 @@
-<div style="background: radial-gradient(ellipse at top left, #1a0033 0%, #0a0a0a 80%), linear-gradient(120deg, #0ff 0%, #0a0a0a 100%);min-height:100vh;font-family: 'Share Tech Mono', 'Fira Mono', monospace;color: #39ff14;padding: 40px">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ======================================================
+       META / SEO
+       ====================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon entreprise – Arthur DEBRABANT</title>
+  <meta name="description" content="Présentation de mon entreprise d'accueil – BTS SIO SISR" />
 
-  <h1 style="text-align:center;font-size:2em;letter-spacing:3px;margin-bottom: 10px">
-    <span style="background:rgba(10,0,30,0.85);padding:10px 30px;border-radius:12px;border:3px solid #39ff14;box-shadow:0 0 30px #39ff14, 0 0 20px #00fff7">
-      <span style="display:inline-flex;align-items:center">
-        <span style="font-size:1.2em;margin-right:18px;vertical-align:middle;color:#00fff7">
-          🖥️
-          <span style="font-family:monospace;background:#111;color:#39ff14;padding:2px 8px;border-radius:6px;border:1px solid #00fff7;margin-left:8px">
-            root@cyberpunk
-          </span>
-        </span>
-        <span style="color:#00fff7;margin-left:18px">
-          Arthur DEBRABANT UFASIO2
-        </span>
-      </span>
-    </span>
-  </h1>
+  <!-- ======================================================
+       CSS GLOBAL (même thème que l’accueil)
+       IMPORTANT : chez toi c'est bien css/style.css
+       ====================================================== -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-  <p style="text-align:center;font-size:1.1em;font-family:'Share Tech Mono', monospace;letter-spacing:1px;margin-bottom:50px">
-    <span style="background:rgba(10,0,30,0.7);padding:4px 16px;border-radius:8px;color: #00fff7">[Mode : <span style="color:#39ff14">HACKER</span> / <span style="color:#ff00cc">CYBERPUNK</span>]</span>
-  </p>
+<body>
 
-  <div style="max-width:800px;margin:auto;padding:20px;text-align:left;font-size:1.1em;line-height:1.8;color:#00fff7;background:rgba(0,0,0,0.2);border-left:4px solid #39ff14">
-    <!-- Contenu personnalisé ici -->
-    <h2>À propos de moi</h2>
-    <p>Je suis Arthur Debrabant, étudiant à l’UFASIO2, passionné par le monde du hacking éthique, la cybersécurité et l’univers cyberpunk...</p>
-    <!-- Ajoute plus de contenu ici -->
-  </div>
+  <!-- ======================================================
+       HERO (identique aux autres pages)
+       ====================================================== -->
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__badge">BTS SIO • SISR</p>
 
-</div>
-<!-- Bouton retour -->
-  <div style="margin-top:40px;text-align:center">
-    <a href="index.html" style="background:#0a0a0a;color:#00fff7;padding:12px 24px;border-radius:8px;border:2px solid #39ff14;text-decoration:none;font-size:1.1em;box-shadow:0 0 15px #39ff14">
-      ⬅️ Retour à l'accueil
-    </a>
-  </div>
-</div>
+      <h1 class="hero__title">Mon entreprise</h1>
 
-<!-- Animation typewriter -->
+      <p class="hero__subtitle">
+        Présentation de la structure d’accueil, de l’environnement IT et de mon rôle en alternance
+      </p>
 
-  .typewriter {
-    display: inline-block;
-    overflow: hidden;
-    border-right: .15em solid #00fff7;
-    white-space: nowrap;
-    animation: typing 4s steps(50, end), blink-caret .75s step-end infinite;
-  }
+      <div class="hero__actions">
+        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
+        <a class="btn btn--primary" href="#contenu">Découvrir</a>
+      </div>
+    </div>
+  </header>
 
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
+  <!-- ======================================================
+       CONTENU PRINCIPAL
+       ====================================================== -->
+  <main id="contenu" class="container">
 
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #00fff7; }
-  }
+    <!-- ======================================================
+         SECTION 1 : Présentation de l’entreprise
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Présentation de l’entreprise</h2>
+      <p>
+        Mon alternance se déroule au sein de <strong>[Nom de l’entreprise]</strong>.
+        L’entreprise évolue dans le secteur <strong>[secteur d’activité]</strong> et compte environ
+        <strong>[taille/nb de salariés]</strong>. Elle dispose d’un environnement informatique structuré
+        permettant de garantir la continuité de service et la sécurité des données.
+      </p>
+
+      <!-- ✅ PLACEHOLDER LOGO / PHOTO SITE
+           1) Ajoute l'image dans : images/entreprise/
+           2) Décommente le bloc
+           Exemple : images/entreprise/logo.png ou images/entreprise/batiment.jpg
+      -->
+      <!--
+      <div class="media">
+        <img src="images/entreprise/logo.png" alt="Logo de l'entreprise" loading="lazy" />
+        <p class="media__caption">Logo / identité de l’entreprise</p>
+      </div>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 2 : Service Informatique / Organisation
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Organisation & service informatique</h2>
+      <p>
+        Le service informatique est composé de <strong>[nb personnes]</strong> et assure :
+        le support utilisateurs, l’administration des serveurs, la gestion réseau, la cybersécurité
+        et le maintien en conditions opérationnelles du SI.
+      </p>
+
+      <!-- ✅ PLACEHOLDER ORGANIGRAMME (image)
+           Exemple : images/entreprise/organigramme.png
+      -->
+      <!--
+      <div class="media">
+        <img src="images/entreprise/organigramme.png" alt="Organigramme du service informatique" loading="lazy" />
+        <p class="media__caption">Organigramme (exemple)</p>
+      </div>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 3 : Environnement technique / SI
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Environnement technique</h2>
+
+      <p>
+        L’environnement informatique comprend notamment :
+      </p>
+
+      <ul class="mission-list">
+        <li>Postes utilisateurs : <strong>[Windows 10/11, etc.]</strong></li>
+        <li>Serveurs : <strong>[Windows Server / Linux / NAS / Virtualisation]</strong></li>
+        <li>Réseau : <strong>[Switch / VLAN / Wi-Fi / Firewall]</strong></li>
+        <li>Services : <strong>[AD, DNS, DHCP, Office 365, sauvegardes...]</strong></li>
+        <li>Sécurité : <strong>[antivirus, MFA, règles firewall, supervision...]</strong></li>
+      </ul>
+
+      <!-- ✅ PLACEHOLDER PHOTO TECHNIQUE (baie réseau / salle serveur)
+           ⚠️ Evite les infos sensibles visibles (IP, noms de machines...)
+           Exemple : images/entreprise/baie-reseau.jpg
+      -->
+      <!--
+      <div class="media">
+        <img src="images/entreprise/baie-reseau.jpg" alt="Baie réseau / infrastructure" loading="lazy" />
+        <p class="media__caption">Infrastructure (exemple)</p>
+      </div>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 4 : Schéma réseau (SUPER PRO pour BTS)
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Schéma réseau</h2>
+      <p>
+        Cette section présente un schéma simplifié du réseau / de l’infrastructure,
+        permettant de comprendre l’organisation des équipements et des services.
+      </p>
+
+      <!-- ✅ PLACEHOLDER SCHÉMA RÉSEAU (image)
+           Exemple : images/entreprise/schema-reseau.png
+      -->
+      <!--
+      <div class="media">
+        <img src="images/entreprise/schema-reseau.png" alt="Schéma réseau simplifié" loading="lazy" />
+        <p class="media__caption">Schéma réseau (simplifié)</p>
+      </div>
+      -->
+
+      <!-- ✅ OPTION : AJOUTER UN LIEN VERS UN PDF (si tu fais un schéma en PDF)
+           Exemple : docs/schema-reseau.pdf
+      -->
+      <!--
+      <p style="margin-top:14px;">
+        <a class="btn btn--primary" href="docs/schema-reseau.pdf" target="_blank" rel="noopener">
+          📄 Télécharger le schéma réseau (PDF)
+        </a>
+      </p>
+      -->
+    </section>
+
+    <!-- ======================================================
+         SECTION 5 : Mon rôle en alternance
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Mon rôle en alternance</h2>
+      <p>
+        Au sein de l’entreprise, je participe à différentes activités :
+        support utilisateurs, interventions techniques, documentation et participation à
+        l’amélioration continue du SI. Je développe progressivement mon autonomie
+        et ma rigueur professionnelle.
+      </p>
+
+      <ul class="mission-list">
+        <li>Support et assistance (N1/N2)</li>
+        <li>Gestion des comptes et droits (AD / outils internes)</li>
+        <li>Participation à l’administration systèmes et réseaux</li>
+        <li>Documentation : procédures, fiches, comptes rendus</li>
+      </ul>
+    </section>
+
+    <!-- ======================================================
+         SECTION 6 : Documents (optionnel)
+         ====================================================== -->
+    <section class="content-card">
+      <h2>Documents</h2>
+      <p>
+        Vous pouvez retrouver ici des documents associés (procédures, rapports, annexes).
+      </p>
+
+      <!-- ✅ PLACEHOLDER PDF
+           1) Ajoute ton fichier dans docs/
+           2) Décommente le bouton
+      -->
+      <!--
+      <a class="btn btn--primary" href="docs/presentation-entreprise.pdf" target="_blank" rel="noopener">
+        📄 Télécharger une présentation (PDF)
+      </a>
+      -->
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+  <footer class="footer">
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
