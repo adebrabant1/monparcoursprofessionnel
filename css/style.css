@@ -270,6 +270,8 @@ body{
 }
 /* ===== CONTENT PAGES Mission réalisé===== */
 
+/* ===== CONTENT PAGES ===== */
+
 .content-card{
   width: 100%;
   max-width: 800px;
@@ -304,4 +306,5 @@ body{
 .mission-list li{
   margin-bottom: 8px;
 }
+
 
