@@ -19,8 +19,8 @@ html {
   --card: rgba(255,255,255,0.06);
   --border: rgba(255,255,255,0.14);
 
-  --blue: #2b6bff;     /* accent pro */
-  --blue2:#00b7ff;     /* accent clair */
+  --blue: #2b6bff;
+  --blue2:#00b7ff;
   --shadow: 0 18px 45px rgba(0,0,0,0.35);
 }
 
@@ -48,8 +48,8 @@ body{
 
   display: flex;
   flex-direction: column;
-  align-items: center;   /* ✅ centre */
-  text-align: center;    /* ✅ centre */
+  align-items: center;
+  text-align: center;
 
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -69,7 +69,6 @@ body{
   font-size: 0.85rem;
 }
 
-/* Typo responsive et stable */
 .hero__title{
   margin-top: 14px;
   font-size: clamp(1.9rem, 3vw, 2.7rem);
@@ -92,7 +91,7 @@ body{
 .hero__actions{
   margin-top: 22px;
   display: flex;
-  justify-content: center; /* ✅ centre les boutons */
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
 }
@@ -127,10 +126,6 @@ body{
   max-width: 1050px;
   margin: 26px auto 0;
   padding: 0 18px 50px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* ✅ centre globalement */
 }
 
 /* ===== GRID ===== */
@@ -140,7 +135,7 @@ body{
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
 
-  justify-items: center; /* ✅ centre chaque carte */
+  justify-items: center;
 }
 
 /* ===== CARD ===== */
@@ -160,8 +155,9 @@ body{
   overflow: hidden;
 
   width: 100%;
-  max-width: 340px;   /* ✅ rendu cohérent */
-  min-height: 220px;  /* ✅ mêmes proportions */
+  max-width: 340px;
+  min-height: 220px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -176,4 +172,98 @@ body{
 }
 
 .card:hover{
-  transform: t
+  transform: translateY(-6px);
+  box-shadow: 0 24px 55px rgba(0,0,0,0.45);
+  border-color: rgba(43,107,255,0.45);
+}
+
+.card__top{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.card__icon{
+  font-size: 2.1rem;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+}
+
+.card__tag{
+  font-size: 0.78rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  padding: 7px 10px;
+  border-radius: 999px;
+}
+
+.card__title{
+  font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+  margin-top: 6px;
+}
+
+.card__text{
+  margin-top: 8px;
+  color: var(--muted);
+  min-height: 44px;
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+}
+
+.card__cta{
+  margin-top: 14px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: rgba(238,244,255,0.92);
+}
+
+/* ===== INFO BAR ===== */
+.info{
+  width: 100%;
+  max-width: 1050px;
+  margin: 22px auto 0;
+
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  color: var(--muted);
+
+  text-align: center;
+}
+
+.info__dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;
+  padding: 26px 18px 40px;
+  color: rgba(238,244,255,0.55);
+  font-size: 0.9rem;
+}
+
+/* ===== MOBILE CLEAN ===== */
+@media (max-width: 480px) {
+  .hero__inner { padding: 26px 20px; }
+
+  .hero__actions{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn{
+    width: 100%;
+    text-align: center;
+  }
+}
