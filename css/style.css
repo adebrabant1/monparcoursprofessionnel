@@ -67,31 +67,48 @@ body{
 .bg-it{ position: fixed; inset:0; z-index: 0; pointer-events:none; overflow:hidden; }
 .hero, .container, .footer{ position: relative; z-index: 2; }
 
-/* =========================
-   BACKGROUND IT ICONS
-   - spawn partout + propagation 360°
-   - Les éléments sont créés en JS dans .bg-it
-   ========================= */
+/* ======================================================
+   BACKGROUND IT ICONS – spawn partout + propagation 360°
+   FIX: évite les gros aplats blancs (☁️), rendu + propre
+   ====================================================== */
+
+.bg-it{
+  position: fixed;
+  inset: 0;
+  z-index: 0;            /* derrière le contenu (hero/container z-index:2) */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Une particule (icône IT) */
 .bg-it .it-particle{
   position: absolute;
   left: var(--sx);
-  top:  var(--sy);
+  top: var(--sy);
 
+  /* ✅ rendu stable (évite "bulles" / boxes emoji) */
+  display: grid;
+  place-items: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   font-size: var(--size);
+
+  /* ✅ pro / discret */
   opacity: 0;
-
-  transform: translate(-50%, -50%) scale(0.70);
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.55));
-
-  animation: it-drift var(--dur) linear forwards;
+  filter: grayscale(1) saturate(0) brightness(1.15)
+          drop-shadow(0 14px 30px rgba(0,0,0,0.55));
   will-change: transform, opacity;
+
+  transform: translate(-50%, -50%) scale(0.7);
+  animation: it-drift var(--dur) linear forwards;
 }
 
-/* Animation : apparaît → se déplace → grossit → disparaît */
+/* Animation : apparaît → se déplace (dx/dy) → grossit → disparaît */
 @keyframes it-drift{
   0%{
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.62);
+    transform: translate(-50%, -50%) scale(0.60);
   }
   12%{
     opacity: var(--op);
@@ -102,18 +119,20 @@ body{
   100%{
     opacity: 0;
     transform:
-      translate(
-        calc(-50% + var(--dx)),
-        calc(-50% + var(--dy))
-      )
-      scale(1.55);
+      translate(-50%, -50%)
+      translate(var(--dx), var(--dy))
+      scale(1.45);
   }
 }
 
-/* En light, les particules plus discrètes */
-body.theme--light .bg-it .it-particle{
-  filter: drop-shadow(0 10px 24px rgba(11,18,32,0.18));
-  opacity: 0.18;
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce){
+  .bg-it .it-particle{
+    animation: none !important;
+    opacity: 0.10 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    filter: none !important;
+  }
 }
 
 /* =========================
