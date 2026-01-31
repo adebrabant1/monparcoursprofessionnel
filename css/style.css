@@ -514,3 +514,58 @@ body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
     animation: none !important;
   }
 }
+/* ======================================================
+   BACKGROUND IT ICONS – PRO / SAFE / FIXED
+   ====================================================== */
+
+.bg-it{
+  position: fixed;
+  inset: 0;
+  z-index: -1;               /* toujours derrière */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Icône IT */
+.bg-it span{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  font-size: clamp(22px, 3vw, 36px);
+  opacity: 0.22;
+
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: it-float 18s linear infinite;
+
+  filter: blur(0.2px);
+}
+
+/* Animation : centre → extérieur */
+@keyframes it-float{
+  0%{
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  10%{
+    opacity: 0.25;
+  }
+  100%{
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        calc(-50% + var(--y))
+      )
+      scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce){
+  .bg-it span{
+    animation: none;
+    opacity: 0.12;
+  }
+}
+
