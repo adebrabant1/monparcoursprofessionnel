@@ -9,10 +9,7 @@
 </head>
 
 <body>
-
-  <!-- =========================
-       Loader overlay (global)
-       ========================= -->
+  <!-- Loader overlay (global) -->
   <div class="page-loader" aria-hidden="true">
     <div class="page-loader__panel">
       <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
@@ -22,23 +19,18 @@
     </div>
   </div>
 
-  <!-- =========================
-       HERO
-       ========================= -->
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
 
-      <!-- ✅ Toggle thème (badge à droite) -->
+      <!-- ✅ Toggle (comme accueil) -->
       <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
         <span class="theme-toggle__icon">🌙</span>
         <span class="theme-toggle__text">Sombre</span>
       </button>
 
       <h1 class="hero__title">Mes missions réalisées</h1>
-      <p class="hero__subtitle">
-        Interventions, projets, outils utilisés et résultats obtenus en entreprise
-      </p>
+      <p class="hero__subtitle">Interventions, projets, outils utilisés et résultats obtenus en entreprise</p>
 
       <div class="hero__actions">
         <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
@@ -47,9 +39,6 @@
     </div>
   </header>
 
-  <!-- =========================
-       CONTENT
-       ========================= -->
   <main class="container">
 
     <section class="content-card">
@@ -59,93 +48,86 @@
         liées à l’administration systèmes et réseaux. Ces missions m’ont permis de développer mes compétences
         techniques, mon autonomie et ma communication professionnelle.
       </p>
-
-      <!-- ✅ PHOTO (optionnel)
-      <div class="media">
-        <img src="images/missions/support-incident.jpg" alt="Illustration mission support" loading="lazy" />
-        <p class="media__caption">Exemple : intervention support / incident.</p>
-      </div>
-      -->
     </section>
 
     <section id="liste" class="content-card">
       <h2>Exemples de missions réalisées</h2>
 
-      <!-- ✅ Missions cliquables => POPUP -->
       <div class="mission-grid">
 
+        <!-- 1) Support -->
         <article class="mission-item"
-          data-modal
+          data-modal="1"
           data-modal-title="Support & dépannage"
-          data-modal-content="
-            <p><strong>Objectif :</strong> assistance utilisateurs (N1/N2), diagnostic et résolution.</p>
-            <p><strong>À compléter :</strong> outils, procédure, preuves (captures), résultat.</p>
-            <ul class='mission-list'>
-              <li>Contexte : ...</li>
-              <li>Actions : ...</li>
-              <li>Résultat : ...</li>
+          data-modal-content='
+            <p><strong>Objectif :</strong> assurer la continuité de service et aider les utilisateurs (N1/N2).</p>
+            <ul>
+              <li>Diagnostic (pannes, lenteurs, erreurs applicatives)</li>
+              <li>Résolution (drivers, sessions, profils, logiciels)</li>
+              <li>Escalade si besoin + suivi du ticket</li>
+              <li>Compte rendu / procédure (à ajouter)</li>
             </ul>
-          ">
+            <p><em>À compléter :</em> captures, outils utilisés, temps, résultat.</p>
+          '>
           <h3>Support & dépannage</h3>
           <p>Diagnostic, résolution d’incidents, assistance utilisateurs (N1/N2).</p>
         </article>
 
+        <!-- 2) AD -->
         <article class="mission-item"
-          data-modal
+          data-modal="1"
           data-modal-title="Active Directory"
-          data-modal-content="
-            <p><strong>À venir :</strong> création de comptes, OU, groupes, droits, GPO, dépannage.</p>
-            <p><strong>Exemples :</strong></p>
-            <ul class='mission-list'>
-              <li>Création utilisateur + affectation groupes</li>
-              <li>Gestion des droits sur partage</li>
-              <li>Politique GPO (mot de passe / session / verrouillage)</li>
+          data-modal-content='
+            <p><strong>Objectif :</strong> gérer les identités, les droits et l’organisation (OU, groupes).</p>
+            <ul>
+              <li>Création / désactivation comptes</li>
+              <li>Groupes de sécurité + droits partages</li>
+              <li>Organisation en OU</li>
+              <li>GPO (à venir) : déploiement / restrictions</li>
             </ul>
-            <p><em>Tu pourras remplacer ce texte par tes vrais comptes-rendus.</em></p>
-          ">
+            <p><em>À compléter :</em> procédure interne + captures.</p>
+          '>
           <h3>Active Directory</h3>
           <p>Création de comptes, gestion des droits, groupes, organisation.</p>
         </article>
 
+        <!-- 3) Réseau -->
         <article class="mission-item"
-          data-modal
+          data-modal="1"
           data-modal-title="Réseau & serveurs"
-          data-modal-content="
-            <p><strong>À compléter :</strong> VLAN, Wi-Fi, switch, firewall, services, maintenance.</p>
-            <ul class='mission-list'>
-              <li>Contexte : ...</li>
-              <li>Actions : ...</li>
-              <li>Résultat : ...</li>
+          data-modal-content='
+            <p><strong>Objectif :</strong> participer à l’exploitation et au maintien des services réseau.</p>
+            <ul>
+              <li>Diagnostic réseau (IP, DNS, DHCP, accès)</li>
+              <li>Vérifications équipements (switch/AP)</li>
+              <li>Suivi services (AD/DNS/DHCP, etc.)</li>
+              <li>Actions correctives + tests</li>
             </ul>
-          ">
+            <p><em>À compléter :</em> schéma réseau + captures.</p>
+          '>
           <h3>Réseau & serveurs</h3>
           <p>Participation à la gestion réseau, services, maintenance et suivi.</p>
         </article>
 
+        <!-- 4) Doc -->
         <article class="mission-item"
-          data-modal
+          data-modal="1"
           data-modal-title="Documentation"
-          data-modal-content="
-            <p><strong>À venir :</strong> procédures, fiches réflexes, compte-rendus, inventaire.</p>
-            <ul class='mission-list'>
-              <li>Procédure : ...</li>
-              <li>Outil : ...</li>
-              <li>Impact : ...</li>
+          data-modal-content='
+            <p><strong>Objectif :</strong> formaliser les procédures pour standardiser et gagner du temps.</p>
+            <ul>
+              <li>Rédaction de procédures (pas à pas)</li>
+              <li>Checklists + bonnes pratiques</li>
+              <li>Compte rendu d’intervention</li>
+              <li>Mises à jour / versions</li>
             </ul>
-          ">
+            <p><em>À compléter :</em> lien vers docs / annexes.</p>
+          '>
           <h3>Documentation</h3>
           <p>Rédaction de procédures et comptes rendus techniques (méthodique).</p>
         </article>
 
       </div>
-
-      <!-- ✅ GALERIE (optionnel)
-      <div class="gallery">
-        <img src="images/missions/photo1.jpg" alt="Photo mission 1" loading="lazy" />
-        <img src="images/missions/photo2.jpg" alt="Photo mission 2" loading="lazy" />
-        <img src="images/missions/photo3.jpg" alt="Photo mission 3" loading="lazy" />
-      </div>
-      -->
     </section>
 
     <section class="content-card">
@@ -165,7 +147,6 @@
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
 
-  <!-- JS (animations + loader + theme + modal) -->
   <script src="js/app.js"></script>
 </body>
 </html>
