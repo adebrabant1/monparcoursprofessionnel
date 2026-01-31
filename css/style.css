@@ -883,3 +883,105 @@ body.theme--light .theme-wash{
     transform: none !important;
   }
 }
+/* ======================================================
+   THEME SWITCH ANIMATION (whole page)
+   ====================================================== */
+body{
+  transition: background 520ms ease, color 520ms ease;
+}
+
+.hero__inner,
+.card,
+.content-card,
+.mission-item,
+.info,
+.footer,
+.btn{
+  transition: background 520ms ease, color 520ms ease, border-color 520ms ease, box-shadow 520ms ease;
+}
+
+/* voile d’animation lors du switch */
+body.theme-animating::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(900px 520px at 50% 35%, rgba(255,255,255,0.10), transparent 60%);
+  opacity: 0;
+  animation: themeFlash 600ms ease;
+}
+
+@keyframes themeFlash{
+  0%{ opacity: 0; }
+  35%{ opacity: 1; }
+  100%{ opacity: 0; }
+}
+
+/* ======================================================
+   MODAL (popup) — pro
+   ====================================================== */
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+}
+
+.modal.is-open{ display: block; }
+
+.modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+}
+
+.modal__panel{
+  position: relative;
+  width: min(820px, calc(100vw - 28px));
+  margin: 8vh auto 0;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transform: translateY(10px);
+  animation: modalIn 220ms ease forwards;
+}
+
+@keyframes modalIn{
+  to{ transform: translateY(0); }
+}
+
+.modal__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 10px;
+}
+
+.modal__title{
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.modal__close{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.modal__body{
+  padding: 0 16px 16px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+body.modal-open{
+  overflow: hidden;
+}
