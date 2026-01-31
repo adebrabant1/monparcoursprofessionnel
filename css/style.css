@@ -600,3 +600,124 @@ body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
     opacity: 0.12 !important;
   }
 }
+/* ======================================================
+   FIX LAYERING (background behind, content above)
+   ====================================================== */
+.bg-it{ z-index: 0; }
+.hero, .container, .footer{ position: relative; z-index: 2; }
+
+/* ======================================================
+   THEME TOGGLE — même style que badge, à droite
+   ====================================================== */
+.hero__inner{ position: relative; }
+
+.theme-toggle.hero__badge{
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  margin: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: transform .15s ease, background .15s ease;
+}
+
+.theme-toggle.hero__badge:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.06);
+}
+
+.theme-toggle__icon{ font-size: 14px; line-height: 1; }
+.theme-toggle__text{ font-weight: 800; }
+
+@media (max-width: 480px){
+  .theme-toggle.hero__badge{ top: 14px; right: 14px; padding: 8px 10px; }
+  .theme-toggle__text{ display:none; }
+}
+
+/* ======================================================
+   LIGHT THEME (body.theme--light)
+   ====================================================== */
+body.theme--light{
+  --bg: #f4f7ff;
+  --bg2:#ffffff;
+
+  --text:#0b1220;
+  --muted: rgba(11,18,32,0.65);
+
+  --card: rgba(11,18,32,0.04);
+  --border: rgba(11,18,32,0.12);
+
+  --shadow: 0 18px 45px rgba(11,18,32,0.14);
+
+  background:
+    radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.18), transparent 60%),
+    radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.12), transparent 60%),
+    linear-gradient(160deg, var(--bg), var(--bg2));
+}
+
+/* ======================================================
+   BACKGROUND IT PARTICLES — FIX "GROS BLANC"
+   (verrouille le rendu emoji, taille, line-height, etc.)
+   ====================================================== */
+.bg-it{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-it .it-particle{
+  position: absolute;
+  left: var(--sx);
+  top: var(--sy);
+
+  display: grid;
+  place-items: center;
+
+  /* ✅ empêche les formes énormes */
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+
+  font-size: var(--size);
+  opacity: 0;
+
+  transform: translate(-50%, -50%) scale(0.7);
+
+  /* look pro */
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.50));
+  will-change: transform, opacity;
+
+  animation: it-drift var(--dur) linear forwards;
+}
+
+@keyframes it-drift{
+  0%{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.60);
+  }
+  12%{ opacity: var(--op); }
+  75%{ opacity: calc(var(--op) - 0.08); }
+  100%{
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      translate(var(--dx), var(--dy))
+      scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .bg-it .it-particle{
+    animation: none !important;
+    opacity: 0.10 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    filter: none !important;
+  }
+}
