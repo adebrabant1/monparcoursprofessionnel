@@ -1,7 +1,9 @@
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Reveal (propre)
+  /* ===============================
+     REVEAL
+     =============================== */
   document.body.classList.add("js-anim");
 
   const safety = setTimeout(() => {
@@ -9,6 +11,11 @@
   }, 900);
 
   window.addEventListener("DOMContentLoaded", () => {
+    // Auto-stagger si besoin
+    document.querySelectorAll(".card").forEach((card, i) => {
+      if (!card.dataset.stagger) card.dataset.stagger = String(i + 1);
+    });
+
     document.body.classList.add("is-ready");
     clearTimeout(safety);
   });
@@ -18,33 +25,27 @@
      =============================== */
   if (!reduceMotion) {
     const container = document.querySelector(".bg-it");
+
     if (container) {
+      // ✅ IMPORTANT : on retire les emojis qui font des "grosses bulles" sur certains PC
       const ICONS = [
-  "☁︎",            // ✅ cloud en texte (pas emoji couleur → pas de boule blanche)
-  "🖥︎",           // pc (souvent ok)
-  "🗄︎",           // server/storage
-  "🖧",            // network
-  "📡", "🛰", "🌐",
-  "🔐", "🛠", "🧪",
-  "📶", "🛜",
-  "🧱", "📦",
-  "🗂︎", "🧰",
-  "⌁", "⟠"         // petits symboles tech discrets (optionnels mais pro)
-];
+        "🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰",
+        "📶","🛜","📦","🗂️","🧩","🔧","⚙️",
+        "☁︎" // cloud en version texte (évite l’aplat blanc)
+      ];
 
+      const MAX_ICONS = 46;
+      const SPAWN_EVERY = 650;
+      const DURATION = 24000;
 
-      // Réglages (tu peux tweak si tu veux)
-      const MAX_ICONS = 42;       // max simultanés
-      const SPAWN_EVERY = 650;    // ms (plus bas = + d’icônes)
-      const DURATION = 26000;     // ms (plus long = + longtemps)
-      const MIN_DIST = 700;       // propagation min
-      const MAX_DIST = 1500;      // propagation max
+      const MIN_DIST = 650;
+      const MAX_DIST = 1400;
 
       function rand(min, max) { return Math.random() * (max - min) + min; }
       function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
       function spawnIcon() {
-        // Si trop d’icônes, on en enlève une ancienne
+        // Si trop d’icônes, on nettoie
         while (container.children.length > MAX_ICONS) {
           container.removeChild(container.firstElementChild);
         }
@@ -53,21 +54,20 @@
         el.className = "it-particle";
         el.textContent = pick(ICONS);
 
-        // ✅ Spawn PARTOUT (0% -> 100%)
+        // Spawn partout
         const sx = rand(0, 100);
         const sy = rand(0, 100);
 
-        // ✅ Direction 360°
+        // Direction 360°
         const angle = rand(0, Math.PI * 2);
         const dist = rand(MIN_DIST, MAX_DIST);
         const dx = Math.cos(angle) * dist;
         const dy = Math.sin(angle) * dist;
 
-        // Visibilité / taille
-        const size = rand(24, 48);
-        const op = rand(0.24, 0.42);
+        // Taille / opacité
+        const size = rand(22, 46);
+        const op = rand(0.14, 0.32);
 
-        // Applique les variables CSS
         el.style.setProperty("--sx", sx.toFixed(2) + "%");
         el.style.setProperty("--sy", sy.toFixed(2) + "%");
         el.style.setProperty("--dx", dx.toFixed(0) + "px");
@@ -78,40 +78,72 @@
 
         container.appendChild(el);
 
-        // Auto-clean après fin anim
+        // Auto-clean
         setTimeout(() => {
           if (el && el.parentNode === container) container.removeChild(el);
         }, DURATION + 200);
       }
 
-      // Petit burst au démarrage (ça se voit direct)
-      for (let i = 0; i < 14; i++) spawnIcon();
+      // Burst démarrage (visible direct)
+      for (let i = 0; i < 16; i++) spawnIcon();
 
-      // Puis génération continue
+      // Continu
       setInterval(spawnIcon, SPAWN_EVERY);
-      console.log("bg-it found:", !!document.querySelector(".bg-it"));
-
     }
   }
-/* ===============================
-   THEME TOGGLE (dark/light) — FIXED
-   =============================== */
-(function themeToggleFix(){
-  const STORAGE_KEY = "portfolio-theme"; // "dark" | "light"
 
-  function applyTheme(theme){
-    if (theme === "light") document.body.classList.add("theme--light");
-    else document.body.classList.remove("theme--light");
-    localStorage.setItem(STORAGE_KEY, theme);
-    syncToggleUI();
-  }
+  /* ===============================
+     LOADER overlay (si tu l’utilises)
+     =============================== */
+  const overlay = document.querySelector(".page-loader");
+  const loaderText = document.querySelector(".page-loader__text");
+
+  function setLoaderText(text){ if (loaderText) loaderText.textContent = text; }
+  function showLoader(){ if (overlay) overlay.classList.add("is-active"); }
+  function hideLoader(){ if (overlay) overlay.classList.remove("is-active"); }
+
+  window.addEventListener("pageshow", () => hideLoader());
+
+  document.addEventListener("click", (e) => {
+    // ✅ NE JAMAIS intercepter le bouton theme
+    if (e.target.closest(".theme-toggle")) return;
+
+    const a = e.target.closest("a");
+    if (!a) return;
+
+    const href = a.getAttribute("href");
+    if (!href) return;
+
+    const isExternal = /^https?:\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
+    const isAnchor = href.startsWith("#");
+    const newTab = a.target && a.target !== "";
+    const isDownload = a.hasAttribute("download");
+    if (isExternal || isAnchor || newTab || isDownload) return;
+
+    if (reduceMotion) return;
+
+    if (href.includes("index.html")) setLoaderText("Retour à l’accueil...");
+    else setLoaderText("Préparation de l’expérience…");
+
+    e.preventDefault();
+    showLoader();
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 650);
+  });
+
+  /* ===============================
+     THEME TOGGLE (dark/light) — WORKING
+     =============================== */
+  const STORAGE_KEY = "portfolio-theme";
 
   function syncToggleUI(){
     const btn = document.querySelector(".theme-toggle");
     if (!btn) return;
 
     const isLight = document.body.classList.contains("theme--light");
-    btn.setAttribute("aria-pressed", String(!isLight)); // pressed = dark
+    btn.setAttribute("aria-pressed", String(!isLight));
 
     const icon = btn.querySelector(".theme-toggle__icon");
     const text = btn.querySelector(".theme-toggle__text");
@@ -120,21 +152,29 @@
     if (text) text.textContent = isLight ? "Clair" : "Sombre";
   }
 
-  // Init theme (saved or default dark)
-  document.addEventListener("DOMContentLoaded", () => {
+  function applyTheme(theme){
+    if (theme === "light") document.body.classList.add("theme--light");
+    else document.body.classList.remove("theme--light");
+
+    localStorage.setItem(STORAGE_KEY, theme);
+    syncToggleUI();
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "light") document.body.classList.add("theme--light");
     syncToggleUI();
 
-    // ✅ Bind click (capture = true pour éviter conflits)
     const btn = document.querySelector(".theme-toggle");
     if (btn){
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        e.stopPropagation(); // évite que ton listener global fasse chier
+        e.stopPropagation();
+
         const isLight = document.body.classList.contains("theme--light");
         applyTheme(isLight ? "dark" : "light");
-      }, true);
+      });
     }
   });
+
 })();
