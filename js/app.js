@@ -173,7 +173,7 @@
   });
 
  /* ===============================
-   MODAL (pop-up) — slider + anim
+   MODAL (pop-up) — slider WOW
    data-modal : déclencheur
    =============================== */
 function ensureModal() {
@@ -188,7 +188,7 @@ function ensureModal() {
 
     <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal__header">
-        <h3 class="modal__title" id="modalTitle">Détail</h3>
+        <h3 class="modal__title" id="modalTitle">Détails</h3>
         <button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>
       </div>
 
@@ -201,6 +201,7 @@ function ensureModal() {
 
       <div class="modal__footer">
         <span class="modal__counter">1 / 1</span>
+        <div class="modal__dots" aria-hidden="true"></div>
       </div>
     </div>
   `;
@@ -229,17 +230,43 @@ function buildSlides(modal) {
   });
 }
 
-function updateSlider(modal) {
+function buildDots(modal){
+  const dots = modal.querySelector(".modal__dots");
+  if (!dots) return;
+  dots.innerHTML = "";
+
+  modalState.items.forEach((_, i) => {
+    const d = document.createElement("span");
+    d.className = "modal__dot" + (i === modalState.index ? " is-active" : "");
+    d.addEventListener("click", () => {
+      modalState.index = i;
+      updateSlider(modal, true);
+    });
+    dots.appendChild(d);
+  });
+}
+
+function snap(modal){
+  modal.classList.add("is-snapping");
+  window.setTimeout(() => modal.classList.remove("is-snapping"), 160);
+}
+
+function updateSlider(modal, doSnap = false) {
   const track = modal.querySelector(".modal__track");
   const prev = modal.querySelector(".modal__nav--prev");
   const next = modal.querySelector(".modal__nav--next");
   const counter = modal.querySelector(".modal__counter");
+  const dots = modal.querySelectorAll(".modal__dot");
 
   track.style.transform = `translateX(-${modalState.index * 100}%)`;
 
   if (counter) counter.textContent = `${modalState.index + 1} / ${modalState.items.length}`;
   if (prev) prev.disabled = modalState.index <= 0;
   if (next) next.disabled = modalState.index >= modalState.items.length - 1;
+
+  dots.forEach((d, i) => d.classList.toggle("is-active", i === modalState.index));
+
+  if (doSnap) snap(modal);
 }
 
 function openModalAt(startIndex = 0) {
@@ -253,7 +280,9 @@ function openModalAt(startIndex = 0) {
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
 
-  updateSlider(modal);
+  buildDots(modal);
+  updateSlider(modal, false);
+  snap(modal);
 }
 
 function closeModal() {
@@ -272,7 +301,7 @@ function go(delta) {
   if (nextIndex < 0 || nextIndex > modalState.items.length - 1) return;
 
   modalState.index = nextIndex;
-  updateSlider(modal);
+  updateSlider(modal, true);
 }
 
 document.addEventListener("click", (e) => {
@@ -289,7 +318,7 @@ document.addEventListener("click", (e) => {
 
   e.preventDefault();
 
-  // On construit la liste de toutes les missions de la grille (même page)
+  // Liste de toutes les missions cliquables sur la page
   const all = [...document.querySelectorAll("[data-modal]")];
 
   modalState.items = all.map((el) => ({
@@ -315,7 +344,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") return go(+1);
 });
 
-/* Swipe mobile (track) */
+/* Swipe mobile */
 document.addEventListener("pointerdown", (e) => {
   const modal = document.querySelector(".modal");
   if (!modal || !modal.classList.contains("is-open")) return;
@@ -335,11 +364,10 @@ document.addEventListener("pointerup", (e) => {
   const dx = e.clientX - modalState.startX;
   modalState.startX = null;
 
-  // seuil swipe
   if (Math.abs(dx) < 45) return;
 
-  if (dx > 0) go(-1);  // swipe right => previous
-  else go(+1);         // swipe left => next
+  if (dx > 0) go(-1);
+  else go(+1);
 });
 
 
