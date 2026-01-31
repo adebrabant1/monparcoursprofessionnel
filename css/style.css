@@ -839,3 +839,47 @@ body.theme--light .bg-it .it-particle{
   filter: drop-shadow(0 10px 26px rgba(11,18,32,0.12));
   opacity: 0.14;
 }
+/* ======================================================
+   FULL PAGE THEME ANIMATION (wash overlay)
+   ====================================================== */
+
+.theme-wash{
+  position: fixed;
+  inset: 0;
+  z-index: 9998; /* juste sous ton loader (9999) */
+  pointer-events: none;
+
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 520ms ease, transform 520ms ease;
+
+  /* Look premium */
+  background:
+    radial-gradient(900px 520px at 20% 15%, rgba(43,107,255,0.22), transparent 60%),
+    radial-gradient(900px 520px at 85% 20%, rgba(0,183,255,0.18), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.16));
+  backdrop-filter: blur(10px);
+}
+
+/* quand on toggle -> l'overlay apparaît */
+body.theme-wash-on .theme-wash{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Variante mode clair : wash plus lumineux */
+body.theme--light .theme-wash{
+  background:
+    radial-gradient(900px 520px at 20% 15%, rgba(43,107,255,0.14), transparent 60%),
+    radial-gradient(900px 520px at 85% 20%, rgba(0,183,255,0.10), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.25));
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce){
+  .theme-wash{
+    transition: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+  }
+}
