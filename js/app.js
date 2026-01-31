@@ -82,5 +82,37 @@
       setInterval(spawnIcon, SPAWN_EVERY);
     }
   }
+/* ===============================
+   THEME TOGGLE (dark / light) + persistence
+   =============================== */
+(function setupThemeToggle(){
+  const btn = document.querySelector(".theme-toggle");
+  const STORAGE_KEY = "portfolio-theme"; // "dark" | "light"
 
+  // Apply saved theme
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === "light") document.body.classList.add("theme--light");
+
+  function syncUI(){
+    const isLight = document.body.classList.contains("theme--light");
+    if (!btn) return;
+
+    btn.setAttribute("aria-pressed", String(!isLight)); // pressed = dark
+    const icon = btn.querySelector(".theme-toggle__icon");
+    const text = btn.querySelector(".theme-toggle__text");
+
+    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+    if (text) text.textContent = isLight ? "Clair" : "Sombre";
+  }
+
+  if (btn){
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("theme--light");
+      const isLight = document.body.classList.contains("theme--light");
+      localStorage.setItem(STORAGE_KEY, isLight ? "light" : "dark");
+      syncUI();
+    });
+  }
+
+  syncUI();
 })();
