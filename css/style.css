@@ -662,3 +662,54 @@ body.theme--light .bg-it .it-particle{
     display: none; /* icône only, plus clean */
   }
 }
+/* ======================================================
+   THEME TOGGLE (badge style, right)
+   ====================================================== */
+
+.hero__inner{
+  position: relative; /* important pour placer le bouton */
+}
+
+/* Le toggle reprend .hero__badge (déjà présent) */
+.theme-toggle.hero__badge{
+  position: absolute;
+  top: 22px;          /* ajuste si besoin */
+  right: 22px;        /* ✅ à droite */
+  margin: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  user-select: none;
+
+  /* optionnel : petit effet */
+  transition: transform .15s ease, background .15s ease;
+}
+
+.theme-toggle.hero__badge:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.06);
+}
+
+.theme-toggle__icon{
+  font-size: 14px;
+  line-height: 1;
+}
+
+.theme-toggle__text{
+  font-weight: 800;
+}
+
+/* Mobile : badge à droite mais compact */
+@media (max-width: 480px){
+  .theme-toggle.hero__badge{
+    top: 14px;
+    right: 14px;
+    padding: 8px 10px;
+  }
+  .theme-toggle__text{
+    display: none; /* icône seulement */
+  }
+}
