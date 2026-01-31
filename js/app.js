@@ -27,7 +27,7 @@
     const container = document.querySelector(".bg-it");
 
     if (container) {
-      // ✅ IMPORTANT : on retire les emojis qui font des "grosses bulles" sur certains PC
+      // ✅ IMPORTANT : emojis qui bug parfois = remplacés/filtrés
       const ICONS = [
         "🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰",
         "📶","🛜","📦","🗂️","🧩","🔧","⚙️",
@@ -45,7 +45,6 @@
       function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
       function spawnIcon() {
-        // Si trop d’icônes, on nettoie
         while (container.children.length > MAX_ICONS) {
           container.removeChild(container.firstElementChild);
         }
@@ -78,22 +77,18 @@
 
         container.appendChild(el);
 
-        // Auto-clean
         setTimeout(() => {
           if (el && el.parentNode === container) container.removeChild(el);
         }, DURATION + 200);
       }
 
-      // Burst démarrage (visible direct)
       for (let i = 0; i < 16; i++) spawnIcon();
-
-      // Continu
       setInterval(spawnIcon, SPAWN_EVERY);
     }
   }
 
   /* ===============================
-     LOADER overlay (si tu l’utilises)
+     LOADER overlay (navigation)
      =============================== */
   const overlay = document.querySelector(".page-loader");
   const loaderText = document.querySelector(".page-loader__text");
@@ -133,58 +128,62 @@
     }, 650);
   });
 
- /* ===============================
-   THEME TOGGLE (dark/light) — ANIMATED
-   =============================== */
-const STORAGE_KEY = "portfolio-theme";
+  /* ===============================
+     THEME TOGGLE (dark/light) — FULL PAGE WASH ✅
+     =============================== */
+  const STORAGE_KEY = "portfolio-theme";
 
-function syncToggleUI(){
-  const btn = document.querySelector(".theme-toggle");
-  if (!btn) return;
+  function syncToggleUI(){
+    const btn = document.querySelector(".theme-toggle");
+    if (!btn) return;
 
-  const isLight = document.body.classList.contains("theme--light");
-  btn.setAttribute("aria-pressed", String(!isLight));
+    const isLight = document.body.classList.contains("theme--light");
+    btn.setAttribute("aria-pressed", String(!isLight));
 
-  const icon = btn.querySelector(".theme-toggle__icon");
-  const text = btn.querySelector(".theme-toggle__text");
+    const icon = btn.querySelector(".theme-toggle__icon");
+    const text = btn.querySelector(".theme-toggle__text");
 
-  if (icon) icon.textContent = isLight ? "☀️" : "🌙";
-  if (text) text.textContent = isLight ? "Clair" : "Sombre";
-}
-
-function applyTheme(theme){
-  // ✅ déclenche la transition douce
-  document.body.classList.add("theme-animating");
-
-  if (theme === "light") document.body.classList.add("theme--light");
-  else document.body.classList.remove("theme--light");
-
-  localStorage.setItem(STORAGE_KEY, theme);
-  syncToggleUI();
-
-  // enlève la classe après la transition
-  window.setTimeout(() => {
-    document.body.classList.remove("theme-animating");
-  }, 550);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  // init thème
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === "light") document.body.classList.add("theme--light");
-  syncToggleUI();
-
-  // bind bouton
-  const btn = document.querySelector(".theme-toggle");
-  if (btn){
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const isLight = document.body.classList.contains("theme--light");
-      applyTheme(isLight ? "dark" : "light");
-    });
+    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+    if (text) text.textContent = isLight ? "Clair" : "Sombre";
   }
-});
+
+  function applyTheme(theme){
+    // ✅ Animation pleine page (overlay .theme-wash)
+    document.body.classList.add("theme-wash-on");
+    document.body.classList.add("theme-animating");
+
+    // petit délai pour que l’overlay apparaisse AVANT le switch
+    window.setTimeout(() => {
+      if (theme === "light") document.body.classList.add("theme--light");
+      else document.body.classList.remove("theme--light");
+
+      localStorage.setItem(STORAGE_KEY, theme);
+      syncToggleUI();
+    }, 120);
+
+    // on retire l’overlay après l’anim
+    window.setTimeout(() => {
+      document.body.classList.remove("theme-wash-on");
+      document.body.classList.remove("theme-animating");
+    }, 650);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // init thème
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "light") document.body.classList.add("theme--light");
+    syncToggleUI();
+
+    // bind bouton
+    const btn = document.querySelector(".theme-toggle");
+    if (btn){
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isLight = document.body.classList.contains("theme--light");
+        applyTheme(isLight ? "dark" : "light");
+      }, true);
+    }
+  });
 
 })();
