@@ -1,30 +1,57 @@
-/* ===== Portfolio pro - Arthur DEBRABANT ===== */
+/* ======================================================
+   Portfolio pro — Arthur DEBRABANT
+   Clean + Pro + Sexy (Sombre/Clair + IT icons + Loader)
+   ====================================================== */
 
-/* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+/* =========================
+   RESET
+   ========================= */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ font-size:16px; -webkit-text-size-adjust:100%; }
 
+/* =========================
+   THEME (default = dark)
+   ========================= */
 :root{
-  --bg: #0b1220;
-  --bg2:#0e1a33;
+  --bg:  #0b1220;
+  --bg2: #0e1a33;
 
-  --text:#eef4ff;
+  --text: #eef4ff;
   --muted: rgba(238,244,255,0.72);
 
   --card: rgba(255,255,255,0.06);
   --border: rgba(255,255,255,0.14);
 
-  --blue: #2b6bff;
-  --blue2:#00b7ff;
+  --blue:  #2b6bff;
+  --blue2: #00b7ff;
+
   --shadow: 0 18px 45px rgba(0,0,0,0.35);
 }
 
+/* Light mode (quand JS ajoute class="theme--light" au body) */
+body.theme--light{
+  --bg:  #f4f7ff;
+  --bg2: #ffffff;
+
+  --text:#0b1220;
+  --muted: rgba(11,18,32,0.65);
+
+  --card: rgba(11,18,32,0.04);
+  --border: rgba(11,18,32,0.12);
+
+  --shadow: 0 18px 45px rgba(11,18,32,0.14);
+}
+
+/* =========================
+   BASE
+   ========================= */
 body{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
 
+  /* Fond stable (dark + light utilisent les variables) */
   background:
     radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.28), transparent 60%),
     radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.20), transparent 60%),
@@ -32,75 +59,66 @@ body{
 }
 
 /* =========================
-   Layering: content always above background
+   LAYERING (important)
+   - bg-it = behind
+   - content = above
+   - loader = top
    ========================= */
-.hero, .container, .footer { position: relative; z-index: 2; }
+.bg-it{ position: fixed; inset:0; z-index: 0; pointer-events:none; overflow:hidden; }
+.hero, .container, .footer{ position: relative; z-index: 2; }
 
-/* ======================================================
-   BACKGROUND IT – center spawn → spread (PRO)
-   ====================================================== */
-
-.bg-it{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Icônes IT */
-.bg-it__icon{
+/* =========================
+   BACKGROUND IT ICONS
+   - spawn partout + propagation 360°
+   - Les éléments sont créés en JS dans .bg-it
+   ========================= */
+.bg-it .it-particle{
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: var(--sx);
+  top:  var(--sy);
 
-  width: 34px;
-  height: 34px;
-
-  color: rgba(238,244,255,0.18);
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.45));
-
-  transform: translate(-50%, -50%) scale(0.6);
+  font-size: var(--size);
   opacity: 0;
 
-  animation: itSpread 16s linear infinite;
+  transform: translate(-50%, -50%) scale(0.70);
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.55));
+
+  animation: it-drift var(--dur) linear forwards;
   will-change: transform, opacity;
 }
 
-/* Variantes (directions + timing) */
-.bg-it__icon--cloud   { animation-delay: 0s;  --dx: -220px; --dy: -160px; }
-.bg-it__icon--pc      { animation-delay: 3s;  --dx: 260px;  --dy: -140px; }
-.bg-it__icon--server  { animation-delay: 6s;  --dx: -260px; --dy: 180px; }
-.bg-it__icon--network { animation-delay: 9s;  --dx: 220px;  --dy: 220px; }
-.bg-it__icon--router  { animation-delay: 12s; --dx: 0px;    --dy: -260px; }
-
-/* Animation principale */
-@keyframes itSpread{
+/* Animation : apparaît → se déplace → grossit → disparaît */
+@keyframes it-drift{
   0%{
-    transform: translate(-50%, -50%) scale(0.55);
     opacity: 0;
+    transform: translate(-50%, -50%) scale(0.62);
   }
-  15%{
-    opacity: 0.25;
+  12%{
+    opacity: var(--op);
   }
-  60%{
-    opacity: 0.22;
+  70%{
+    opacity: calc(var(--op) - 0.06);
   }
   100%{
+    opacity: 0;
     transform:
       translate(
         calc(-50% + var(--dx)),
         calc(-50% + var(--dy))
       )
-      scale(1.25);
-    opacity: 0;
+      scale(1.55);
   }
 }
 
+/* En light, les particules plus discrètes */
+body.theme--light .bg-it .it-particle{
+  filter: drop-shadow(0 10px 24px rgba(11,18,32,0.18));
+  opacity: 0.18;
+}
 
-/* ======================================================
-   HERO (centré, propre)
-   ====================================================== */
+/* =========================
+   HERO
+   ========================= */
 .hero{
   padding: clamp(36px, 6vw, 70px) 18px 30px;
 }
@@ -118,7 +136,7 @@ body{
   box-shadow: var(--shadow);
   overflow: hidden;
 
-  /* ✅ CENTRAGE COMPLET DU CONTENU */
+  /* ✅ centrage du bloc */
   text-align: center;
   display: grid;
   gap: 10px;
@@ -154,9 +172,11 @@ body{
   background: rgba(255,255,255,0.04);
   color: var(--muted);
   font-size: 0.85rem;
-  justify-self: start; /* badge à gauche dans le panel (pro) */
+
+  justify-self: start; /* badge à gauche (pro) */
 }
 
+/* Titre */
 .hero__title{
   margin-top: 8px;
   font-size: clamp(2.1rem, 4.2vw, 3.1rem);
@@ -177,9 +197,42 @@ body{
   font-size: clamp(0.98rem, 1.6vw, 1.08rem);
 }
 
-/* ======================================================
+/* =========================
+   THEME TOGGLE (badge-like, right)
+   ========================= */
+.theme-toggle.hero__badge{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  margin: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: transform .15s ease, background .15s ease;
+}
+
+.theme-toggle.hero__badge:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.06);
+}
+
+.theme-toggle__icon{
+  font-size: 14px;
+  line-height: 1;
+}
+
+.theme-toggle__text{
+  font-weight: 800;
+}
+
+/* =========================
    BUTTONS
-   ====================================================== */
+   ========================= */
 .hero__actions{
   margin-top: 10px;
   display: flex;
@@ -197,6 +250,7 @@ body{
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
   position: relative;
   overflow: hidden;
+  color: var(--text);
 }
 
 .btn:hover{
@@ -221,15 +275,14 @@ body{
 }
 
 .btn--ghost{
-  color: var(--text);
   background: rgba(255,255,255,0.05);
 }
 
 .btn:active{ transform: translateY(0px) scale(0.98); }
 
-/* ======================================================
-   CONTENT / GRID
-   ====================================================== */
+/* =========================
+   CONTENT / GRID / CARDS
+   ========================= */
 .container{
   max-width: 1050px;
   margin: 18px auto 0;
@@ -328,7 +381,9 @@ body{
   color: rgba(238,244,255,0.92);
 }
 
-/* INFO BAR */
+/* =========================
+   INFO BAR
+   ========================= */
 .info{
   width: 100%;
   max-width: 1050px;
@@ -354,7 +409,9 @@ body{
   background: linear-gradient(135deg, var(--blue), var(--blue2));
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+   ========================= */
 .footer{
   text-align:center;
   padding: 26px 18px 40px;
@@ -362,9 +419,9 @@ body{
   font-size: 0.9rem;
 }
 
-/* ======================================================
-   LOADER OVERLAY
-   ====================================================== */
+/* =========================
+   LOADER
+   ========================= */
 .page-loader{
   position: fixed;
   inset: 0;
@@ -443,10 +500,11 @@ body{
   100% { transform: translateX(220%); opacity: 0.35; }
 }
 
-/* ======================================================
-   REVEAL (propre)
-   ====================================================== */
-body{ opacity: 1; transform: none; } /* safe */
+/* =========================
+   REVEAL (safe + pro)
+   ========================= */
+body{ opacity: 1; transform: none; } /* safe si JS crash */
+
 body.js-anim .hero,
 body.js-anim .container,
 body.js-anim .footer{
@@ -470,11 +528,13 @@ body.js-anim.is-ready .footer{
   transition: 700ms cubic-bezier(.2,.8,.2,1) 260ms;
 }
 
+/* Shine hero */
 body.js-anim.is-ready .hero__inner::after{
   animation: heroShine 1.4s ease 0.25s 1;
 }
 @keyframes heroShine{ to { transform: translateX(120%); } }
 
+/* Stagger cards */
 body.js-anim .card{
   opacity: 0;
   transform: translateY(14px);
@@ -488,17 +548,21 @@ body.js-anim.is-ready .card[data-stagger="1"]{ transition-delay: 180ms; }
 body.js-anim.is-ready .card[data-stagger="2"]{ transition-delay: 280ms; }
 body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
 
-/* ======================================================
+/* =========================
    MOBILE
-   ====================================================== */
+   ========================= */
 @media (max-width: 480px) {
-  .hero__inner { padding: 24px 18px; }
-  .hero__badge { justify-self: center; } /* badge centré sur mobile */
+  .hero__inner{ padding: 24px 18px; }
+  .hero__badge{ justify-self: center; } /* badge centré sur mobile */
+  .theme-toggle.hero__badge{ top: 14px; right: 14px; }
+  .theme-toggle__text{ display:none; } /* icône only sur mobile */
   .hero__actions{ flex-direction: column; width: 100%; }
-  .btn{ width: 100%; text-align: center; }
+  .btn{ width: 100%; text-align:center; }
 }
 
-/* Reduced motion */
+/* =========================
+   REDUCED MOTION
+   ========================= */
 @media (prefers-reduced-motion: reduce){
   body.js-anim .hero,
   body.js-anim .container,
@@ -510,226 +574,10 @@ body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
   }
   .page-loader__spinner,
   .page-loader__bar > div,
-  .bg-it__icon{
-    animation: none !important;
-  }
-}
-
-/* ======================================================
-   BACKGROUND IT ICONS – spawn partout + propagation 360°
-   ====================================================== */
-
-.bg-it{
-  position: fixed;
-  inset: 0;
-  z-index: -1;            /* toujours derrière */
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Une particule (icône IT) */
-.bg-it .it-particle{
-  position: absolute;
-  left: var(--sx);
-  top: var(--sy);
-
-  font-size: var(--size);
-  opacity: 0;
-
-  transform: translate(-50%, -50%) scale(0.7);
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.55));
-
-  animation: it-drift var(--dur) linear forwards;
-  will-change: transform, opacity;
-}
-
-/* Animation : apparaît → se déplace (dx/dy) → grossit → disparaît */
-@keyframes it-drift{
-  0%{
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.60);
-  }
-  10%{
-    opacity: var(--op);
-  }
-  70%{
-    opacity: calc(var(--op) - 0.06);
-  }
-  100%{
-    opacity: 0;
-    transform:
-      translate(
-        calc(-50% + var(--dx)),
-        calc(-50% + var(--dy))
-      )
-      scale(1.45);
-  }
-}
-
-/* Accessibilité */
-@media (prefers-reduced-motion: reduce){
   .bg-it .it-particle{
     animation: none !important;
+  }
+  .bg-it .it-particle{
     opacity: 0.12 !important;
-    transform: translate(-50%, -50%) scale(1) !important;
   }
-}
-/* ======================================================
-   THEME TOGGLE + LIGHT MODE
-   ====================================================== */
-
-/* ✅ Light theme variables (quand body a .theme--light) */
-body.theme--light{
-  --bg: #f4f7ff;
-  --bg2:#ffffff;
-
-  --text:#0b1220;
-  --muted: rgba(11,18,32,0.65);
-
-  --card: rgba(11,18,32,0.04);
-  --border: rgba(11,18,32,0.12);
-
-  --shadow: 0 18px 45px rgba(11,18,32,0.14);
-
-  background:
-    radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.18), transparent 60%),
-    radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.12), transparent 60%),
-    linear-gradient(160deg, var(--bg), var(--bg2));
-}
-
-/* En light, les icônes de fond un peu plus discrètes */
-body.theme--light .bg-it .it-particle{
-  opacity: 0.18 !important;
-  filter: drop-shadow(0 10px 24px rgba(11,18,32,0.20));
-}
-
-/* Bouton toggle (style pro) */
-.theme-toggle{
-  position: absolute;
-  top: 14px;
-  right: 14px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-
-  cursor: pointer;
-  user-select: none;
-
-  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
-}
-
-.theme-toggle:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.22);
-}
-
-.theme-toggle__icon{
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: #fff;
-
-  font-size: 14px;
-}
-
-.theme-toggle__text{
-  font-weight: 850;
-  font-size: 0.92rem;
-  letter-spacing: 0.2px;
-}
-
-/* Mobile : le bouton ne gêne pas */
-@media (max-width: 480px){
-  .theme-toggle{
-    top: 12px;
-    right: 12px;
-    padding: 9px 11px;
-  }
-  .theme-toggle__text{
-    display: none; /* icône only, plus clean */
-  }
-}
-/* ======================================================
-   THEME TOGGLE (badge style, right)
-   ====================================================== */
-
-.hero__inner{
-  position: relative; /* important pour placer le bouton */
-}
-
-/* Le toggle reprend .hero__badge (déjà présent) */
-.theme-toggle.hero__badge{
-  position: absolute;
-  top: 22px;          /* ajuste si besoin */
-  right: 22px;        /* ✅ à droite */
-  margin: 0;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  cursor: pointer;
-  user-select: none;
-
-  /* optionnel : petit effet */
-  transition: transform .15s ease, background .15s ease;
-}
-
-.theme-toggle.hero__badge:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.06);
-}
-
-.theme-toggle__icon{
-  font-size: 14px;
-  line-height: 1;
-}
-
-.theme-toggle__text{
-  font-weight: 800;
-}
-
-/* Mobile : badge à droite mais compact */
-@media (max-width: 480px){
-  .theme-toggle.hero__badge{
-    top: 14px;
-    right: 14px;
-    padding: 8px 10px;
-  }
-  .theme-toggle__text{
-    display: none; /* icône seulement */
-  }
-}
-/* ======================================================
-   THEME CLAIR (toggle)
-   ====================================================== */
-body.theme--light{
-  --bg: #f4f7ff;
-  --bg2:#ffffff;
-
-  --text:#0b1220;
-  --muted: rgba(11,18,32,0.65);
-
-  --card: rgba(11,18,32,0.04);
-  --border: rgba(11,18,32,0.12);
-
-  --shadow: 0 18px 45px rgba(11,18,32,0.14);
-
-  background:
-    radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.18), transparent 60%),
-    radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.12), transparent 60%),
-    linear-gradient(160deg, var(--bg), var(--bg2));
 }
