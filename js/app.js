@@ -11,7 +11,7 @@
   }, 900);
 
   window.addEventListener("DOMContentLoaded", () => {
-    // Auto-stagger si besoin
+    // Auto-stagger (si besoin)
     document.querySelectorAll(".card").forEach((card, i) => {
       if (!card.dataset.stagger) card.dataset.stagger = String(i + 1);
     });
@@ -21,23 +21,71 @@
   });
 
   /* ===============================
-     BACKGROUND IT – spawn partout + 360°
+     THEME (dark/light) — global + animé + persist
+     =============================== */
+  const STORAGE_KEY = "portfolio-theme";
+
+  function syncToggleUI() {
+    const btn = document.querySelector(".theme-toggle");
+    if (!btn) return;
+
+    const isLight = document.body.classList.contains("theme--light");
+    btn.setAttribute("aria-pressed", String(!isLight));
+
+    const icon = btn.querySelector(".theme-toggle__icon");
+    const text = btn.querySelector(".theme-toggle__text");
+
+    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+    if (text) text.textContent = isLight ? "Clair" : "Sombre";
+  }
+
+  function applyTheme(theme) {
+    // animation douce
+    document.body.classList.add("theme-animating");
+
+    if (theme === "light") document.body.classList.add("theme--light");
+    else document.body.classList.remove("theme--light");
+
+    localStorage.setItem(STORAGE_KEY, theme);
+    syncToggleUI();
+
+    window.setTimeout(() => {
+      document.body.classList.remove("theme-animating");
+    }, 600);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // init theme sur TOUTES les pages
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "light") document.body.classList.add("theme--light");
+    syncToggleUI();
+
+    // bind click toggle
+    const btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isLight = document.body.classList.contains("theme--light");
+        applyTheme(isLight ? "dark" : "light");
+      });
+    }
+  });
+
+  /* ===============================
+     BACKGROUND IT (icônes) — UNIQUEMENT si .bg-it existe (donc accueil)
      =============================== */
   if (!reduceMotion) {
     const container = document.querySelector(".bg-it");
-
     if (container) {
-      // ✅ IMPORTANT : emojis qui bug parfois = remplacés/filtrés
       const ICONS = [
         "🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰",
-        "📶","🛜","📦","🗂️","🧩","🔧","⚙️",
-        "☁︎" // cloud en version texte (évite l’aplat blanc)
+        "📶","📦","🗂️","🧩","🔧","⚙️","☁︎"
       ];
 
       const MAX_ICONS = 46;
       const SPAWN_EVERY = 650;
       const DURATION = 24000;
-
       const MIN_DIST = 650;
       const MAX_DIST = 1400;
 
@@ -53,17 +101,14 @@
         el.className = "it-particle";
         el.textContent = pick(ICONS);
 
-        // Spawn partout
         const sx = rand(0, 100);
         const sy = rand(0, 100);
 
-        // Direction 360°
         const angle = rand(0, Math.PI * 2);
         const dist = rand(MIN_DIST, MAX_DIST);
         const dx = Math.cos(angle) * dist;
         const dy = Math.sin(angle) * dist;
 
-        // Taille / opacité
         const size = rand(22, 46);
         const op = rand(0.14, 0.32);
 
@@ -88,7 +133,7 @@
   }
 
   /* ===============================
-     LOADER overlay (navigation)
+     LOADER (navigation) — sans casser le toggle + sans casser les modals
      =============================== */
   const overlay = document.querySelector(".page-loader");
   const loaderText = document.querySelector(".page-loader__text");
@@ -100,8 +145,11 @@
   window.addEventListener("pageshow", () => hideLoader());
 
   document.addEventListener("click", (e) => {
-    // ✅ NE JAMAIS intercepter le bouton theme
+    // Ne jamais intercepter le toggle
     if (e.target.closest(".theme-toggle")) return;
+
+    // Ne jamais intercepter un déclencheur modal
+    if (e.target.closest("[data-modal]")) return;
 
     const a = e.target.closest("a");
     if (!a) return;
@@ -129,61 +177,61 @@
   });
 
   /* ===============================
-     THEME TOGGLE (dark/light) — FULL PAGE WASH ✅
+     MODAL (pop-up) — pour missions (si présent)
      =============================== */
-  const STORAGE_KEY = "portfolio-theme";
+  function ensureModal() {
+    let modal = document.querySelector(".modal");
+    if (modal) return modal;
 
-  function syncToggleUI(){
-    const btn = document.querySelector(".theme-toggle");
-    if (!btn) return;
-
-    const isLight = document.body.classList.contains("theme--light");
-    btn.setAttribute("aria-pressed", String(!isLight));
-
-    const icon = btn.querySelector(".theme-toggle__icon");
-    const text = btn.querySelector(".theme-toggle__text");
-
-    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
-    if (text) text.textContent = isLight ? "Clair" : "Sombre";
+    modal = document.createElement("div");
+    modal.className = "modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `
+      <div class="modal__backdrop" data-modal-close></div>
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal__header">
+          <h3 class="modal__title" id="modalTitle">Titre</h3>
+          <button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>
+        </div>
+        <div class="modal__body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    return modal;
   }
 
-  function applyTheme(theme){
-    // ✅ Animation pleine page (overlay .theme-wash)
-    document.body.classList.add("theme-wash-on");
-    document.body.classList.add("theme-animating");
-
-    // petit délai pour que l’overlay apparaisse AVANT le switch
-    window.setTimeout(() => {
-      if (theme === "light") document.body.classList.add("theme--light");
-      else document.body.classList.remove("theme--light");
-
-      localStorage.setItem(STORAGE_KEY, theme);
-      syncToggleUI();
-    }, 120);
-
-    // on retire l’overlay après l’anim
-    window.setTimeout(() => {
-      document.body.classList.remove("theme-wash-on");
-      document.body.classList.remove("theme-animating");
-    }, 650);
+  function openModal(title, html) {
+    const modal = ensureModal();
+    modal.querySelector(".modal__title").textContent = title || "Détail";
+    modal.querySelector(".modal__body").innerHTML = html || "<p>Contenu à venir.</p>";
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
   }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    // init thème
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "light") document.body.classList.add("theme--light");
-    syncToggleUI();
+  function closeModal() {
+    const modal = document.querySelector(".modal");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
 
-    // bind bouton
-    const btn = document.querySelector(".theme-toggle");
-    if (btn){
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const isLight = document.body.classList.contains("theme--light");
-        applyTheme(isLight ? "dark" : "light");
-      }, true);
-    }
+  document.addEventListener("click", (e) => {
+    const close = e.target.closest("[data-modal-close]");
+    if (close) return closeModal();
+
+    const trigger = e.target.closest("[data-modal]");
+    if (!trigger) return;
+
+    e.preventDefault();
+    const title = trigger.getAttribute("data-modal-title") || trigger.querySelector("h3")?.textContent || "Détail";
+    const content = trigger.getAttribute("data-modal-content") || "<p>Contenu à venir.</p>";
+    openModal(title, content);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
   });
 
 })();
