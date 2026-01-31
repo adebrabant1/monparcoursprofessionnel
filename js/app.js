@@ -1,69 +1,51 @@
 (function () {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Active animations only when JS is present
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.body.classList.add("js-anim");
 
-  const overlay = document.querySelector(".page-loader");
-  const loaderText = document.querySelector(".page-loader__text");
-
-  function setLoaderText(text) { if (loaderText) loaderText.textContent = text; }
-  function showLoader() { if (overlay) overlay.classList.add("is-active"); }
-  function hideLoader() { if (overlay) overlay.classList.remove("is-active"); }
-
-  // Safety fallback
+  /* ===============================
+     REVEAL SAFE
+     =============================== */
   const safety = setTimeout(() => {
     document.body.classList.add("is-ready");
-    hideLoader();
   }, 900);
 
   window.addEventListener("DOMContentLoaded", () => {
-    // Auto-stagger (if missing)
-    document.querySelectorAll(".card").forEach((card, i) => {
-      if (!card.dataset.stagger) card.dataset.stagger = String(i + 1);
-    });
-
-    hideLoader();
-
-    // Trigger reveal AFTER first paint (so transitions actually run)
-    requestAnimationFrame(() => {
-      document.body.classList.add("is-ready");
-    });
-
+    document.body.classList.add("is-ready");
     clearTimeout(safety);
-    if (reduceMotion) document.documentElement.style.scrollBehavior = "auto";
   });
 
-  // Back/forward cache
-  window.addEventListener("pageshow", () => hideLoader());
+  /* ===============================
+     BACKGROUND IT ICONS (FIX)
+     =============================== */
 
-  // Intercept internal navigation (loader transition)
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("a");
-    if (!a) return;
+  if (!reduceMotion) {
+    const container = document.querySelector(".bg-it");
+    if (container) {
 
-    const href = a.getAttribute("href");
-    if (!href) return;
+      const icons = [
+        "☁️", "🖥️", "🧠", "🗄️",
+        "📡", "🛜", "🧩", "🔐",
+        "🛠️", "🧪", "🌐"
+      ];
 
-    const isExternal = /^https?:\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
-    const isAnchor = href.startsWith("#");
-    const newTab = a.target && a.target !== "";
-    const isDownload = a.hasAttribute("download");
-    if (isExternal || isAnchor || newTab || isDownload) return;
+      const COUNT = 18;
 
-    if (reduceMotion) return;
+      for (let i = 0; i < COUNT; i++) {
+        const icon = document.createElement("span");
+        icon.textContent = icons[Math.floor(Math.random() * icons.length)];
 
-    if (href.includes("index.html")) setLoaderText("Retour à l’accueil...");
-    else if (href.includes("mesmissions")) setLoaderText("Chargement des missions…");
-    else if (href.includes("apropos")) setLoaderText("Chargement du profil…");
-    else if (href.includes("monentreprise")) setLoaderText("Chargement de l’entreprise…");
-    else setLoaderText("Préparation de l’expérience…");
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 600 + Math.random() * 600;
 
-    e.preventDefault();
-    showLoader();
+        icon.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+        icon.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
+        icon.style.animationDelay = `${Math.random() * 8}s`;
+        icon.style.fontSize = `${22 + Math.random() * 18}px`;
 
-    setTimeout(() => {
-      window.location.href = href;
-    }, 650);
-  });
+        container.appendChild(icon);
+      }
+    }
+  }
+
 })();
