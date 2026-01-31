@@ -80,6 +80,8 @@
 
       // Puis génération continue
       setInterval(spawnIcon, SPAWN_EVERY);
+      console.log("bg-it found:", !!document.querySelector(".bg-it"));
+
     }
   }
 /* ===============================
