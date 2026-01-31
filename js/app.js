@@ -83,21 +83,25 @@
     }
   }
 /* ===============================
-   THEME TOGGLE (dark / light) + persistence
+   THEME TOGGLE (dark/light) — FIXED
    =============================== */
-(function setupThemeToggle(){
-  const btn = document.querySelector(".theme-toggle");
+(function themeToggleFix(){
   const STORAGE_KEY = "portfolio-theme"; // "dark" | "light"
 
-  // Apply saved theme
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === "light") document.body.classList.add("theme--light");
+  function applyTheme(theme){
+    if (theme === "light") document.body.classList.add("theme--light");
+    else document.body.classList.remove("theme--light");
+    localStorage.setItem(STORAGE_KEY, theme);
+    syncToggleUI();
+  }
 
-  function syncUI(){
-    const isLight = document.body.classList.contains("theme--light");
+  function syncToggleUI(){
+    const btn = document.querySelector(".theme-toggle");
     if (!btn) return;
 
+    const isLight = document.body.classList.contains("theme--light");
     btn.setAttribute("aria-pressed", String(!isLight)); // pressed = dark
+
     const icon = btn.querySelector(".theme-toggle__icon");
     const text = btn.querySelector(".theme-toggle__text");
 
@@ -105,14 +109,21 @@
     if (text) text.textContent = isLight ? "Clair" : "Sombre";
   }
 
-  if (btn){
-    btn.addEventListener("click", () => {
-      document.body.classList.toggle("theme--light");
-      const isLight = document.body.classList.contains("theme--light");
-      localStorage.setItem(STORAGE_KEY, isLight ? "light" : "dark");
-      syncUI();
-    });
-  }
+  // Init theme (saved or default dark)
+  document.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "light") document.body.classList.add("theme--light");
+    syncToggleUI();
 
-  syncUI();
+    // ✅ Bind click (capture = true pour éviter conflits)
+    const btn = document.querySelector(".theme-toggle");
+    if (btn){
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // évite que ton listener global fasse chier
+        const isLight = document.body.classList.contains("theme--light");
+        applyTheme(isLight ? "dark" : "light");
+      }, true);
+    }
+  });
 })();
