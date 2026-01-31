@@ -20,9 +20,18 @@
     const container = document.querySelector(".bg-it");
     if (container) {
       const ICONS = [
-        "☁️","🖥️","🗄️","🛜","📡","🌐","🔐","🛠️","🧪","🧠",
-        "🧩","🧰","📶","🖧","🧱","📦","🛰️","🗂️"
-      ];
+  "☁︎",            // ✅ cloud en texte (pas emoji couleur → pas de boule blanche)
+  "🖥︎",           // pc (souvent ok)
+  "🗄︎",           // server/storage
+  "🖧",            // network
+  "📡", "🛰", "🌐",
+  "🔐", "🛠", "🧪",
+  "📶", "🛜",
+  "🧱", "📦",
+  "🗂︎", "🧰",
+  "⌁", "⟠"         // petits symboles tech discrets (optionnels mais pro)
+];
+
 
       // Réglages (tu peux tweak si tu veux)
       const MAX_ICONS = 42;       // max simultanés
