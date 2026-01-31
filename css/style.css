@@ -1,4 +1,3 @@
-
 /* ===== Portfolio pro - Arthur DEBRABANT ===== */
 
 /* RESET */
@@ -31,31 +30,58 @@ body{
   line-height: 1.6;
   min-height: 100vh;
 
+  /* Fond de base (stable sur toutes pages) */
   background:
     radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.30), transparent 60%),
     radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.22), transparent 60%),
     linear-gradient(160deg, var(--bg), var(--bg2));
 }
 
-/* ===== HERO ===== */
+/* ======================================================
+   HERO
+   ====================================================== */
 .hero{
   padding: 70px 18px 36px;
 }
 
+/* ✅ Panel (c’est ça qui donne le rendu pro) */
 .hero__inner{
-  position:relative;
+  position: relative;
+  max-width: 1050px;
+  margin: 0 auto;
+
+  padding: 34px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
 }
 
+/* Halo premium discret */
 .hero__inner::before{
   content:"";
   position:absolute;
   inset:-1px;
   border-radius:18px;
-  background: linear-gradient(135deg, rgba(43,107,255,.4), rgba(0,183,255,.2), transparent 60%);
+  background: linear-gradient(135deg, rgba(43,107,255,.40), rgba(0,183,255,.20), transparent 60%);
   opacity:.35;
   pointer-events:none;
 }
 
+/* Shine à l’arrivée (pro) */
+.hero__inner::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10), transparent 65%);
+  transform: translateX(-120%);
+  opacity: .7;
+  pointer-events: none;
+}
 
 .hero__badge{
   display: inline-block;
@@ -71,6 +97,7 @@ body{
   margin-top: 14px;
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   letter-spacing: 0.3px;
+  text-shadow: 0 6px 25px rgba(43,107,255,.25);
 }
 
 .hero__title span{
@@ -85,7 +112,9 @@ body{
   font-size: clamp(0.95rem, 1.6vw, 1.05rem);
 }
 
-/* ===== BUTTONS ===== */
+/* ======================================================
+   BUTTONS
+   ====================================================== */
 .hero__actions{
   margin-top: 22px;
   display: flex;
@@ -96,17 +125,32 @@ body{
 
 .btn{
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
   padding: 11px 14px;
   border-radius: 12px;
   border: 1px solid var(--border);
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover{
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(0,0,0,0.26);
 }
+
+/* Shine bouton */
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.22), transparent 60%);
+  transform: translateX(-110%);
+}
+.btn:hover::before{
+  animation: btnShine .9s ease;
+}
+@keyframes btnShine{ to { transform: translateX(110%); } }
 
 .btn--primary{
   color: white;
@@ -119,24 +163,30 @@ body{
   background: rgba(255,255,255,0.05);
 }
 
-/* ===== LAYOUT ===== */
+.btn:active{
+  transform: translateY(0px) scale(0.98);
+}
+
+/* ======================================================
+   LAYOUT
+   ====================================================== */
 .container{
   max-width: 1050px;
   margin: 26px auto 0;
   padding: 0 18px 50px;
 }
 
-/* ===== GRID ===== */
+/* ======================================================
+   GRID / CARDS
+   ====================================================== */
 .grid{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
-
   justify-items: center;
 }
 
-/* ===== CARD ===== */
 .card{
   text-decoration: none;
   color: var(--text);
@@ -148,7 +198,7 @@ body{
   background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
   box-shadow: 0 10px 25px rgba(0,0,0,0.22);
 
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   position: relative;
   overflow: hidden;
 
@@ -159,6 +209,8 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  backdrop-filter: blur(10px);
 }
 
 .card::before{
@@ -169,10 +221,22 @@ body{
   pointer-events:none;
 }
 
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background: radial-gradient(600px 200px at 20% 0%, rgba(255,255,255,.08), transparent 60%);
+  pointer-events:none;
+}
+
 .card:hover{
   transform: translateY(-6px);
-  box-shadow: 0 24px 55px rgba(0,0,0,0.45);
   border-color: rgba(43,107,255,0.45);
+  box-shadow:
+    0 26px 60px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(43,107,255,0.35),
+    0 0 40px rgba(43,107,255,0.14);
 }
 
 .card__top{
@@ -211,12 +275,14 @@ body{
 
 .card__cta{
   margin-top: 14px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
   color: rgba(238,244,255,0.92);
 }
 
-/* ===== INFO BAR ===== */
+/* ======================================================
+   INFO BAR
+   ====================================================== */
 .info{
   width: 100%;
   max-width: 1050px;
@@ -232,7 +298,6 @@ body{
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
   color: var(--muted);
-
   text-align: center;
 }
 
@@ -243,7 +308,9 @@ body{
   background: linear-gradient(135deg, var(--blue), var(--blue2));
 }
 
-/* ===== FOOTER ===== */
+/* ======================================================
+   FOOTER
+   ====================================================== */
 .footer{
   text-align:center;
   padding: 26px 18px 40px;
@@ -251,22 +318,9 @@ body{
   font-size: 0.9rem;
 }
 
-/* ===== MOBILE CLEAN ===== */
-@media (max-width: 480px) {
-  .hero__inner { padding: 26px 20px; }
-
-  .hero__actions{
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn{
-    width: 100%;
-    text-align: center;
-  }
-}
-/* ===== CONTENT PAGES Mission réalisé===== */
-
+/* ======================================================
+   CONTENT PAGES
+   ====================================================== */
 .content-card{
   width: 100%;
   max-width: 900px;
@@ -281,6 +335,9 @@ body{
 
   color: var(--text);
   text-align: left;
+
+  backdrop-filter: blur(10px);
+  position: relative;
 }
 
 .content-card h2{
@@ -303,7 +360,6 @@ body{
   margin-bottom: 8px;
 }
 
-/* Grille des missions (cards) */
 .mission-grid{
   margin-top: 14px;
   display: grid;
@@ -316,6 +372,16 @@ body{
   background: rgba(255,255,255,0.04);
   border-radius: 16px;
   padding: 16px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.mission-item:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.45),
+    0 0 0 1px rgba(43,107,255,.20);
 }
 
 .mission-item h3{
@@ -326,7 +392,8 @@ body{
 .mission-item p{
   color: var(--muted);
 }
-/* ===== MEDIA (IMAGES) ===== */
+
+/* MEDIA (IMAGES) */
 .media{
   margin-top: 14px;
 }
@@ -339,6 +406,12 @@ body{
   border-radius: 14px;
   border: 1px solid var(--border);
   box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.media img:hover{
+  transform: scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .media__caption{
@@ -348,7 +421,7 @@ body{
   font-size: 0.9rem;
 }
 
-/* ===== GALLERY (OPTIONNEL) ===== */
+/* GALLERY (OPTIONNEL) */
 .gallery{
   margin-top: 14px;
   display: grid;
@@ -364,12 +437,9 @@ body{
   border: 1px solid var(--border);
 }
 
-
 /* ======================================================
    PAGE : À PROPOS DE MOI
    ====================================================== */
-
-/* Sections "À propos" */
 .about-section {
   width: 100%;
   max-width: 900px;
@@ -379,31 +449,23 @@ body{
   border-radius: 18px;
   border: 1px solid var(--border);
 
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.03)
-  );
-
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
   box-shadow: 0 14px 35px rgba(0,0,0,0.35);
   color: var(--text);
 }
 
-/* Titres des sections */
 .about-section h2 {
   margin-bottom: 14px;
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* Paragraphes */
 .about-section p {
   color: var(--muted);
   line-height: 1.8;
   font-size: 1rem;
 }
 
-/* Listes de compétences */
 .about-section ul {
   margin-top: 12px;
   padding-left: 20px;
@@ -414,46 +476,14 @@ body{
   color: var(--muted);
 }
 
-/* Mise en valeur mots-clés */
 .about-section strong {
   color: var(--text);
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* Bouton CV */
 .about-section .btn {
   margin-top: 14px;
   display: inline-block;
-}
-
-/* ======================================================
-   PEPS: Reveal + Page Loader (global)
-   ====================================================== */
-
-/* Smooth reveal: elements appear top -> bottom */
-.hero,
-.container,
-.footer{
-  opacity:0;
-  transform: translateY(-20px);
-}
-
-body.is-ready .hero{
-  opacity:1;
-  transform:none;
-  transition:.8s cubic-bezier(.2,.8,.2,1);
-}
-
-body.is-ready .container{
-  opacity:1;
-  transform:none;
-  transition:.8s cubic-bezier(.2,.8,.2,1) .15s;
-}
-
-body.is-ready .footer{
-  opacity:1;
-  transform:none;
-  transition:.8s cubic-bezier(.2,.8,.2,1) .3s;
 }
 
 /* ======================================================
@@ -463,7 +493,6 @@ body.is-ready .footer{
   position: fixed;
   inset: 0;
   z-index: 9999;
-
   display: grid;
   place-items: center;
 
@@ -500,11 +529,10 @@ body.is-ready .footer{
 
 .page-loader__text{
   margin-top: 12px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
 }
 
-/* Spinner premium */
 .page-loader__spinner{
   width: 46px;
   height: 46px;
@@ -517,7 +545,6 @@ body.is-ready .footer{
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Small “loading bar” */
 .page-loader__bar{
   width: 100%;
   height: 10px;
@@ -542,218 +569,152 @@ body.is-ready .footer{
   100% { transform: translateX(220%); opacity: 0.35; }
 }
 
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce){
-  body, .hero, .container, .footer{
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-  .page-loader__spinner, .page-loader__bar > div{
-    animation: none !important;
-  }
-}
-/* SAFETY: si le JS ne charge pas, on affiche quand même */
+/* ======================================================
+   SAFETY + REVEAL (1 seul système propre)
+   ====================================================== */
+/* Par défaut, on affiche le site même si JS ne charge pas */
 body{ opacity: 1; transform: none; }
 
-/* Reveal uniquement quand JS ajoute la classe */
-body.js-anim {
+/* On anime seulement si JS a ajouté "js-anim" */
+body.js-anim .hero,
+body.js-anim .container,
+body.js-anim .footer{
   opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  transform: translateY(18px);
 }
 
-body.js-anim.is-ready{
-  opacity: 1;
-  transform: translateY(0);
-}
-/* ======================================================
-   PREMIUM LOOK – Sexy mais pro
-   ====================================================== */
-
-/* Glass effect on cards */
-.content-card,
-.card,
-.mission-item {
-  backdrop-filter: blur(10px);
-  position: relative;
+/* À l’arrivée */
+body.js-anim.is-ready .hero{
+  opacity:1;
+  transform:none;
+  transition: 700ms cubic-bezier(.2,.8,.2,1);
 }
 
-.content-card::after,
-.card::after,
-.mission-item::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius: inherit;
-  background: radial-gradient(600px 200px at 20% 0%, rgba(255,255,255,.08), transparent 60%);
-  pointer-events:none;
+body.js-anim.is-ready .container{
+  opacity:1;
+  transform:none;
+  transition: 700ms cubic-bezier(.2,.8,.2,1) 140ms;
 }
 
-/* Glow subtil au hover */
-.card:hover,
-.mission-item:hover,
-.content-card:hover {
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.45),
-    0 0 0 1px rgba(43,107,255,.35),
-    0 0 40px rgba(43,107,255,.15);
+body.js-anim.is-ready .footer{
+  opacity:1;
+  transform:none;
+  transition: 700ms cubic-bezier(.2,.8,.2,1) 260ms;
 }
 
-/* Boutons premium */
-.btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25), transparent 60%);
-  transform: translateX(-100%);
-}
-
-.btn:hover::before{
-  animation: btnShine .9s ease;
-}
-
-@keyframes btnShine{
-  to { transform: translateX(100%); }
-}
-
-/* Hero titre légèrement animé */
-.hero__title{
-  text-shadow: 0 6px 25px rgba(43,107,255,.25);
-}
-
-/* Images premium */
-.media img{
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-
-.media img:hover{
-  transform: scale(1.02);
-  box-shadow: 0 20px 50px rgba(0,0,0,.5);
-}
-
-/* Micro animation cartes */
-.card,
-.mission-item{
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.card:hover,
-.mission-item:hover{
-  transform: translateY(-6px);
-}
-/* ======================================================
-   HOME: Sexy + Pro animations (index)
-   ====================================================== */
-
-/* Ambient blobs (arrière-plan vivant, mais discret) */
-.ambient{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.ambient__blob{
-  position: absolute;
-  width: 720px;
-  height: 720px;
-  border-radius: 999px;
-  filter: blur(60px);
-  opacity: 0.22;
-  transform: translate3d(0,0,0);
-}
-
-.ambient__blob--1{
-  left: -240px;
-  top: -220px;
-  background: radial-gradient(circle at 30% 30%, rgba(43,107,255,0.85), transparent 60%);
-  animation: blobFloat1 10s ease-in-out infinite;
-}
-
-.ambient__blob--2{
-  right: -260px;
-  bottom: -260px;
-  background: radial-gradient(circle at 30% 30%, rgba(0,183,255,0.70), transparent 60%);
-  animation: blobFloat2 12s ease-in-out infinite;
-}
-
-@keyframes blobFloat1{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(70px, 40px) scale(1.05); }
-}
-@keyframes blobFloat2{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(-60px, -50px) scale(1.06); }
-}
-
-/* Pour que le contenu reste au-dessus de l’ambient */
-.hero, .container, .footer, .page-loader { position: relative; z-index: 1; }
-
-/* Hero: petit “shine” pro */
-.hero__inner{
-  overflow: hidden;
-}
-
-.hero__inner::after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius: 18px;
-  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10), transparent 65%);
-  transform: translateX(-120%);
-  opacity: .7;
-  pointer-events: none;
-}
-
-body.is-ready .hero__inner::after{
+/* Shine hero à l’arrivée */
+body.js-anim.is-ready .hero__inner::after{
   animation: heroShine 1.4s ease 0.25s 1;
 }
+@keyframes heroShine{ to { transform: translateX(120%); } }
 
-@keyframes heroShine{
-  to { transform: translateX(120%); }
-}
-
-/* Cards: reveal pro (stagger) */
-.card{
+/* Cards stagger */
+body.js-anim .card{
   opacity: 0;
   transform: translateY(14px);
 }
 
-body.is-ready .card{
+body.js-anim.is-ready .card{
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
   transition: opacity 650ms ease, transform 650ms ease;
 }
 
-/* Stagger via attribute */
-body.is-ready .card[data-stagger="1"]{ transition-delay: 120ms; }
-body.is-ready .card[data-stagger="2"]{ transition-delay: 220ms; }
-body.is-ready .card[data-stagger="3"]{ transition-delay: 320ms; }
+body.js-anim.is-ready .card[data-stagger="1"]{ transition-delay: 180ms; }
+body.js-anim.is-ready .card[data-stagger="2"]{ transition-delay: 280ms; }
+body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
 
-/* Micro hover premium (pro) */
-.card:hover{
-  box-shadow:
-    0 26px 60px rgba(0,0,0,0.45),
-    0 0 0 1px rgba(43,107,255,0.35),
-    0 0 40px rgba(43,107,255,0.14);
+/* ======================================================
+   HOME AMBIENT (background only, safe)
+   => seulement si tu mets "ambient--home" dans index.html
+   ====================================================== */
+.ambient--home{
+  position: fixed;
+  inset: 0;
+  z-index: -1;           /* ✅ toujours derrière */
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* Boutons: micro “press” */
-.btn:active{
-  transform: translateY(0px) scale(0.98);
+.ambient--home .ambient__blob{
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.18;
+  transform: translate3d(0,0,0);
+  will-change: transform;
+}
+
+.ambient--home .ambient__blob--1{
+  left: -260px;
+  top: -240px;
+  background: radial-gradient(circle at 30% 30%, rgba(43,107,255,0.90), transparent 60%);
+  animation: blobFloat1 12s ease-in-out infinite;
+}
+
+.ambient--home .ambient__blob--2{
+  right: -280px;
+  bottom: -280px;
+  background: radial-gradient(circle at 30% 30%, rgba(0,183,255,0.80), transparent 60%);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+
+@keyframes blobFloat1{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(70px, 50px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-70px, -55px) scale(1.06); }
+}
+
+/* Option grille légère (si tu l’ajoutes) */
+.ambient--home .ambient__grid{
+  position:absolute;
+  inset:-2px;
+  opacity: .08;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(600px 360px at 30% 20%, black 40%, transparent 75%);
+}
+
+/* ======================================================
+   MOBILE CLEAN
+   ====================================================== */
+@media (max-width: 480px) {
+  .hero__inner { padding: 26px 20px; }
+
+  .hero__actions{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn{
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .ambient__blob--1, .ambient__blob--2{ animation: none !important; }
-  .hero__inner::after{ animation: none !important; }
-  .card{ opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.js-anim .hero,
+  body.js-anim .container,
+  body.js-anim .footer,
+  body.js-anim .card{
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .page-loader__spinner,
+  .page-loader__bar > div{
+    animation: none !important;
+  }
+  .ambient--home .ambient__blob--1,
+  .ambient--home .ambient__blob--2{
+    animation: none !important;
+  }
 }
-
