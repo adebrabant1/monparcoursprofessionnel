@@ -45,7 +45,7 @@
 
       function spawnIcon() {
         // Si trop d’icônes, on en enlève une ancienne
-        if (container.children.length > MAX_ICONS) {
+        while (container.children.length > MAX_ICONS) {
           container.removeChild(container.firstElementChild);
         }
 
