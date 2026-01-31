@@ -647,4 +647,113 @@ body.js-anim.is-ready{
 .mission-item:hover{
   transform: translateY(-6px);
 }
+/* ======================================================
+   HOME: Sexy + Pro animations (index)
+   ====================================================== */
+
+/* Ambient blobs (arrière-plan vivant, mais discret) */
+.ambient{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient__blob{
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.22;
+  transform: translate3d(0,0,0);
+}
+
+.ambient__blob--1{
+  left: -240px;
+  top: -220px;
+  background: radial-gradient(circle at 30% 30%, rgba(43,107,255,0.85), transparent 60%);
+  animation: blobFloat1 10s ease-in-out infinite;
+}
+
+.ambient__blob--2{
+  right: -260px;
+  bottom: -260px;
+  background: radial-gradient(circle at 30% 30%, rgba(0,183,255,0.70), transparent 60%);
+  animation: blobFloat2 12s ease-in-out infinite;
+}
+
+@keyframes blobFloat1{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(70px, 40px) scale(1.05); }
+}
+@keyframes blobFloat2{
+  0%,100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(-60px, -50px) scale(1.06); }
+}
+
+/* Pour que le contenu reste au-dessus de l’ambient */
+.hero, .container, .footer, .page-loader { position: relative; z-index: 1; }
+
+/* Hero: petit “shine” pro */
+.hero__inner{
+  overflow: hidden;
+}
+
+.hero__inner::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10), transparent 65%);
+  transform: translateX(-120%);
+  opacity: .7;
+  pointer-events: none;
+}
+
+body.is-ready .hero__inner::after{
+  animation: heroShine 1.4s ease 0.25s 1;
+}
+
+@keyframes heroShine{
+  to { transform: translateX(120%); }
+}
+
+/* Cards: reveal pro (stagger) */
+.card{
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+body.is-ready .card{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+/* Stagger via attribute */
+body.is-ready .card[data-stagger="1"]{ transition-delay: 120ms; }
+body.is-ready .card[data-stagger="2"]{ transition-delay: 220ms; }
+body.is-ready .card[data-stagger="3"]{ transition-delay: 320ms; }
+
+/* Micro hover premium (pro) */
+.card:hover{
+  box-shadow:
+    0 26px 60px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(43,107,255,0.35),
+    0 0 40px rgba(43,107,255,0.14);
+}
+
+/* Boutons: micro “press” */
+.btn:active{
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .ambient__blob--1, .ambient__blob--2{ animation: none !important; }
+  .hero__inner::after{ animation: none !important; }
+  .card{ opacity: 1 !important; transform: none !important; transition: none !important; }
+}
 
