@@ -434,40 +434,29 @@ body{
    ====================================================== */
 
 /* Smooth reveal: elements appear top -> bottom */
-body {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 600ms ease, transform 600ms ease;
+.hero,
+.container,
+.footer{
+  opacity:0;
+  transform: translateY(-20px);
 }
 
-/* When ready */
-body.is-ready {
-  opacity: 1;
-  transform: translateY(0);
+body.is-ready .hero{
+  opacity:1;
+  transform:none;
+  transition:.8s cubic-bezier(.2,.8,.2,1);
 }
 
-/* Stagger reveal for main blocks */
-.hero, .container, .footer {
-  opacity: 0;
-  transform: translateY(-14px);
+body.is-ready .container{
+  opacity:1;
+  transform:none;
+  transition:.8s cubic-bezier(.2,.8,.2,1) .15s;
 }
 
-body.is-ready .hero {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 700ms ease, transform 700ms ease;
-}
-
-body.is-ready .container {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 700ms ease 120ms, transform 700ms ease 120ms;
-}
-
-body.is-ready .footer {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 700ms ease 220ms, transform 700ms ease 220ms;
+body.is-ready .footer{
+  opacity:1;
+  transform:none;
+  transition:.8s cubic-bezier(.2,.8,.2,1) .3s;
 }
 
 /* ======================================================
