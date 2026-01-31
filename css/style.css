@@ -30,11 +30,18 @@ body{
   line-height: 1.6;
   min-height: 100vh;
 
-  /* Fond de base (stable sur toutes pages) */
   background:
     radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.30), transparent 60%),
     radial-gradient(900px 520px at 85% 10%, rgba(0,183,255,0.22), transparent 60%),
     linear-gradient(160deg, var(--bg), var(--bg2));
+}
+
+/* =========================
+   SAFE LAYERING
+   ========================= */
+.hero, .container, .footer{
+  position: relative;
+  z-index: 1;
 }
 
 /* ======================================================
@@ -44,7 +51,6 @@ body{
   padding: 70px 18px 36px;
 }
 
-/* ✅ Panel (c’est ça qui donne le rendu pro) */
 .hero__inner{
   position: relative;
   max-width: 1050px;
@@ -56,11 +62,9 @@ body{
 
   background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
   box-shadow: var(--shadow);
-
   overflow: hidden;
 }
 
-/* Halo premium discret */
 .hero__inner::before{
   content:"";
   position:absolute;
@@ -71,7 +75,6 @@ body{
   pointer-events:none;
 }
 
-/* Shine à l’arrivée (pro) */
 .hero__inner::after{
   content:"";
   position:absolute;
@@ -139,7 +142,6 @@ body{
   box-shadow: 0 14px 30px rgba(0,0,0,0.26);
 }
 
-/* Shine bouton */
 .btn::before{
   content:"";
   position:absolute;
@@ -319,174 +321,6 @@ body{
 }
 
 /* ======================================================
-   CONTENT PAGES
-   ====================================================== */
-.content-card{
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 18px;
-
-  padding: 26px 28px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-
-  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
-
-  color: var(--text);
-  text-align: left;
-
-  backdrop-filter: blur(10px);
-  position: relative;
-}
-
-.content-card h2{
-  margin-bottom: 12px;
-  font-size: 1.25rem;
-}
-
-.content-card p{
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.mission-list{
-  margin-top: 10px;
-  padding-left: 20px;
-  color: var(--muted);
-}
-
-.mission-list li{
-  margin-bottom: 8px;
-}
-
-.mission-grid{
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-}
-
-.mission-item{
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.04);
-  border-radius: 16px;
-  padding: 16px;
-  backdrop-filter: blur(10px);
-  position: relative;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.mission-item:hover{
-  transform: translateY(-4px);
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.45),
-    0 0 0 1px rgba(43,107,255,.20);
-}
-
-.mission-item h3{
-  font-size: 1.02rem;
-  margin-bottom: 6px;
-}
-
-.mission-item p{
-  color: var(--muted);
-}
-
-/* MEDIA (IMAGES) */
-.media{
-  margin-top: 14px;
-}
-
-.media img{
-  width: 100%;
-  max-width: 900px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-
-.media img:hover{
-  transform: scale(1.02);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-.media__caption{
-  margin-top: 8px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* GALLERY (OPTIONNEL) */
-.gallery{
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-}
-
-.gallery img{
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-}
-
-/* ======================================================
-   PAGE : À PROPOS DE MOI
-   ====================================================== */
-.about-section {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 22px;
-
-  padding: 28px 30px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
-  color: var(--text);
-}
-
-.about-section h2 {
-  margin-bottom: 14px;
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
-.about-section p {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-.about-section ul {
-  margin-top: 12px;
-  padding-left: 20px;
-}
-
-.about-section li {
-  margin-bottom: 8px;
-  color: var(--muted);
-}
-
-.about-section strong {
-  color: var(--text);
-  font-weight: 800;
-}
-
-.about-section .btn {
-  margin-top: 14px;
-  display: inline-block;
-}
-
-/* ======================================================
    LOADER OVERLAY
    ====================================================== */
 .page-loader{
@@ -542,7 +376,6 @@ body{
   border-top-color: rgba(255,255,255,0.95);
   animation: spin 700ms linear infinite;
 }
-
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .page-loader__bar{
@@ -570,12 +403,14 @@ body{
 }
 
 /* ======================================================
-   SAFETY + REVEAL (1 seul système propre)
+   REVEAL (stable)
+   -> animation visible car déclenchée après 1 frame via JS
    ====================================================== */
-/* Par défaut, on affiche le site même si JS ne charge pas */
+
+/* Base safe : si JS ne charge pas, tout est visible */
 body{ opacity: 1; transform: none; }
 
-/* On anime seulement si JS a ajouté "js-anim" */
+/* Reveal seulement si JS est actif */
 body.js-anim .hero,
 body.js-anim .container,
 body.js-anim .footer{
@@ -583,7 +418,6 @@ body.js-anim .footer{
   transform: translateY(18px);
 }
 
-/* À l’arrivée */
 body.js-anim.is-ready .hero{
   opacity:1;
   transform:none;
@@ -625,13 +459,12 @@ body.js-anim.is-ready .card[data-stagger="2"]{ transition-delay: 280ms; }
 body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
 
 /* ======================================================
-   HOME AMBIENT (background only, safe)
-   => seulement si tu mets "ambient--home" dans index.html
+   HOME AMBIENT (background only)
    ====================================================== */
 .ambient--home{
   position: fixed;
   inset: 0;
-  z-index: -1;           /* ✅ toujours derrière */
+  z-index: -1; /* toujours derrière */
   pointer-events: none;
   overflow: hidden;
 }
@@ -670,7 +503,6 @@ body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
   50%{ transform: translate(-70px, -55px) scale(1.06); }
 }
 
-/* Option grille légère (si tu l’ajoutes) */
 .ambient--home .ambient__grid{
   position:absolute;
   inset:-2px;
@@ -699,7 +531,7 @@ body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
   }
 }
 
-/* Respect reduced motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   body.js-anim .hero,
   body.js-anim .container,
