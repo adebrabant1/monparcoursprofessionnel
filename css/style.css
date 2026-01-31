@@ -985,3 +985,138 @@ body.theme-animating::before{
 body.modal-open{
   overflow: hidden;
 }
+/* ======================================================
+   FIX RUBRIQUES + THEME TRANSITION (pro)
+   Colle ce bloc TOUT EN BAS du CSS
+   ====================================================== */
+
+/* Contenu des rubriques : spacing + lisibilité */
+.container{
+  padding-top: 26px; /* évite que le texte colle au hero */
+}
+
+/* Cards de contenu : plus net + mieux structuré */
+.content-card,
+.about-section{
+  width: 100%;
+  max-width: 1050px;         /* aligné avec ton hero */
+  margin: 0 auto 18px;
+
+  padding: clamp(18px, 2.4vw, 26px);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+
+  /* ✅ Le plus important : ça “isole” bien le texte */
+  overflow: hidden;
+}
+
+/* Titres / textes : hiérarchie visuelle */
+.content-card h2,
+.about-section h2{
+  margin-bottom: 10px;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.content-card p,
+.about-section p{
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* Liste */
+.mission-list{
+  margin-top: 12px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+.mission-list li{ margin-bottom: 8px; }
+
+/* Grille missions : plus clean */
+.mission-grid{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* Items missions : vrais “cards” cliquables */
+.mission-item{
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  cursor: pointer;
+}
+
+.mission-item:hover{
+  transform: translateY(-4px);
+  border-color: rgba(43,107,255,0.35);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(43,107,255,0.18);
+}
+
+.mission-item h3{
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  font-weight: 900;
+}
+.mission-item p{ color: var(--muted); }
+
+/* ======================================================
+   TRANSITION CLAIR/SOMBRE (animation)
+   IMPORTANT : on ne peut pas “animer” les variables,
+   donc on anime les propriétés qui les utilisent.
+   ====================================================== */
+
+/* Transition globale “pro” */
+body,
+.hero__inner,
+.content-card,
+.about-section,
+.card,
+.mission-item,
+.info,
+.footer,
+.btn{
+  transition:
+    background 520ms ease,
+    color 520ms ease,
+    border-color 520ms ease,
+    box-shadow 520ms ease,
+    filter 520ms ease,
+    opacity 520ms ease;
+}
+
+/* Option : petite sensation “soft” pendant le switch */
+body.theme-animating .hero__inner,
+body.theme-animating .content-card,
+body.theme-animating .mission-item,
+body.theme-animating .card{
+  transform: translateY(-1px);
+}
+
+/* UFASIO2 en clair : lisible (évite le blanc “cassé”) */
+body.theme--light .hero__title span{
+  color: rgba(11,18,32,0.42);
+  text-shadow: none;
+}
+
+/* Mobile : cards bien espacées */
+@media (max-width: 520px){
+  .content-card,
+  .about-section{
+    margin-bottom: 14px;
+  }
+}
