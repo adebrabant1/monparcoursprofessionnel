@@ -9,25 +9,36 @@
 </head>
 
 <body>
-  <div class="page-loader" aria-hidden="true">
-  <div class="page-loader__panel">
-    <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
-    <div class="page-loader__spinner"></div>
-    <div class="page-loader__bar"><div></div></div>
-    <div class="page-loader__text">Préparation de l’expérience…</div>
-  </div>
-</div>
 
+  <!-- =========================
+       Loader overlay (global)
+       ========================= -->
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__panel">
+      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
+      <div class="page-loader__spinner"></div>
+      <div class="page-loader__bar"><div></div></div>
+      <div class="page-loader__text">Préparation de l’expérience…</div>
+    </div>
+  </div>
+
+  <!-- =========================
+       HERO
+       ========================= -->
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
+
+      <!-- ✅ Toggle thème (badge à droite) -->
       <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
-  <span class="theme-toggle__icon">🌙</span>
-  <span class="theme-toggle__text">Sombre</span>
-</button>
+        <span class="theme-toggle__icon">🌙</span>
+        <span class="theme-toggle__text">Sombre</span>
+      </button>
 
       <h1 class="hero__title">Mes missions réalisées</h1>
-      <p class="hero__subtitle">Interventions, projets, outils utilisés et résultats obtenus en entreprise</p>
+      <p class="hero__subtitle">
+        Interventions, projets, outils utilisés et résultats obtenus en entreprise
+      </p>
 
       <div class="hero__actions">
         <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
@@ -36,6 +47,9 @@
     </div>
   </header>
 
+  <!-- =========================
+       CONTENT
+       ========================= -->
   <main class="container">
 
     <section class="content-card">
@@ -47,12 +61,6 @@
       </p>
 
       <!-- ✅ PHOTO (optionnel)
-           1) Ajoute ton image dans : images/missions/
-           2) Décommente le bloc ci-dessous
-           3) Remplace le src
-           Exemple : images/missions/support-incident.jpg
-      -->
-      <!--
       <div class="media">
         <img src="images/missions/support-incident.jpg" alt="Illustration mission support" loading="lazy" />
         <p class="media__caption">Exemple : intervention support / incident.</p>
@@ -63,26 +71,72 @@
     <section id="liste" class="content-card">
       <h2>Exemples de missions réalisées</h2>
 
+      <!-- ✅ Missions cliquables => POPUP -->
       <div class="mission-grid">
-        <article class="mission-item">
+
+        <article class="mission-item"
+          data-modal
+          data-modal-title="Support & dépannage"
+          data-modal-content="
+            <p><strong>Objectif :</strong> assistance utilisateurs (N1/N2), diagnostic et résolution.</p>
+            <p><strong>À compléter :</strong> outils, procédure, preuves (captures), résultat.</p>
+            <ul class='mission-list'>
+              <li>Contexte : ...</li>
+              <li>Actions : ...</li>
+              <li>Résultat : ...</li>
+            </ul>
+          ">
           <h3>Support & dépannage</h3>
           <p>Diagnostic, résolution d’incidents, assistance utilisateurs (N1/N2).</p>
         </article>
 
-        <article class="mission-item">
+        <article class="mission-item"
+          data-modal
+          data-modal-title="Active Directory"
+          data-modal-content="
+            <p><strong>À venir :</strong> création de comptes, OU, groupes, droits, GPO, dépannage.</p>
+            <p><strong>Exemples :</strong></p>
+            <ul class='mission-list'>
+              <li>Création utilisateur + affectation groupes</li>
+              <li>Gestion des droits sur partage</li>
+              <li>Politique GPO (mot de passe / session / verrouillage)</li>
+            </ul>
+            <p><em>Tu pourras remplacer ce texte par tes vrais comptes-rendus.</em></p>
+          ">
           <h3>Active Directory</h3>
           <p>Création de comptes, gestion des droits, groupes, organisation.</p>
         </article>
 
-        <article class="mission-item">
+        <article class="mission-item"
+          data-modal
+          data-modal-title="Réseau & serveurs"
+          data-modal-content="
+            <p><strong>À compléter :</strong> VLAN, Wi-Fi, switch, firewall, services, maintenance.</p>
+            <ul class='mission-list'>
+              <li>Contexte : ...</li>
+              <li>Actions : ...</li>
+              <li>Résultat : ...</li>
+            </ul>
+          ">
           <h3>Réseau & serveurs</h3>
           <p>Participation à la gestion réseau, services, maintenance et suivi.</p>
         </article>
 
-        <article class="mission-item">
+        <article class="mission-item"
+          data-modal
+          data-modal-title="Documentation"
+          data-modal-content="
+            <p><strong>À venir :</strong> procédures, fiches réflexes, compte-rendus, inventaire.</p>
+            <ul class='mission-list'>
+              <li>Procédure : ...</li>
+              <li>Outil : ...</li>
+              <li>Impact : ...</li>
+            </ul>
+          ">
           <h3>Documentation</h3>
           <p>Rédaction de procédures et comptes rendus techniques (méthodique).</p>
         </article>
+
       </div>
 
       <!-- ✅ GALERIE (optionnel)
@@ -110,7 +164,8 @@
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
-<script src="js/app.js"></script>
 
+  <!-- JS (animations + loader + theme + modal) -->
+  <script src="js/app.js"></script>
 </body>
 </html>
