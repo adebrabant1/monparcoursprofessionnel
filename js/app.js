@@ -172,70 +172,176 @@
     setTimeout(() => (window.location.href = href), 650);
   });
 
-  /* ===============================
-     MODAL (pop-up) — missions & autres
-     Utilisation:
-     <article class="mission-item" data-modal="1"
-       data-modal-title="Active Directory"
-       data-modal-content="<p>Ton contenu ici</p>">...</article>
-     =============================== */
-  function ensureModal() {
-    let modal = $(".modal");
-    if (modal) return modal;
+ /* ===============================
+   MODAL (pop-up) — slider + anim
+   data-modal : déclencheur
+   =============================== */
+function ensureModal() {
+  let modal = document.querySelector(".modal");
+  if (modal) return modal;
 
-    modal = document.createElement("div");
-    modal.className = "modal";
-    modal.setAttribute("aria-hidden", "true");
-    modal.innerHTML = `
-      <div class="modal__backdrop" data-modal-close></div>
-      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal__header">
-          <h3 class="modal__title" id="modalTitle">Détail</h3>
-          <button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>
-        </div>
-        <div class="modal__body"></div>
+  modal = document.createElement("div");
+  modal.className = "modal";
+  modal.setAttribute("aria-hidden", "true");
+  modal.innerHTML = `
+    <div class="modal__backdrop" data-modal-close></div>
+
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modalTitle">Détail</h3>
+        <button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>
       </div>
+
+      <div class="modal__viewport">
+        <button class="modal__nav modal__nav--prev" type="button" aria-label="Précédent">‹</button>
+        <button class="modal__nav modal__nav--next" type="button" aria-label="Suivant">›</button>
+
+        <div class="modal__track"></div>
+      </div>
+
+      <div class="modal__footer">
+        <span class="modal__counter">1 / 1</span>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  return modal;
+}
+
+let modalState = {
+  items: [],
+  index: 0,
+  startX: null,
+};
+
+function buildSlides(modal) {
+  const track = modal.querySelector(".modal__track");
+  track.innerHTML = "";
+
+  modalState.items.forEach((item) => {
+    const slide = document.createElement("div");
+    slide.className = "modal__slide";
+    slide.innerHTML = `
+      <h4>${item.title}</h4>
+      ${item.html}
     `;
-    document.body.appendChild(modal);
-    return modal;
-  }
-
-  function openModal(title, html) {
-    const modal = ensureModal();
-    $(".modal__title", modal).textContent = title || "Détail";
-    $(".modal__body", modal).innerHTML = html || "<p>Contenu à venir.</p>";
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  }
-
-  function closeModal() {
-    const modal = $(".modal");
-    if (!modal) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  }
-
-  document.addEventListener("click", (e) => {
-    if (e.target.closest("[data-modal-close]")) return closeModal();
-
-    const trigger = e.target.closest("[data-modal]");
-    if (!trigger) return;
-
-    e.preventDefault();
-
-    const title =
-      trigger.getAttribute("data-modal-title") ||
-      trigger.querySelector("h3")?.textContent ||
-      "Détail";
-
-    const content =
-      trigger.getAttribute("data-modal-content") ||
-      "<p>Contenu à venir.</p>";
-
-    openModal(title, content);
+    track.appendChild(slide);
   });
+}
+
+function updateSlider(modal) {
+  const track = modal.querySelector(".modal__track");
+  const prev = modal.querySelector(".modal__nav--prev");
+  const next = modal.querySelector(".modal__nav--next");
+  const counter = modal.querySelector(".modal__counter");
+
+  track.style.transform = `translateX(-${modalState.index * 100}%)`;
+
+  if (counter) counter.textContent = `${modalState.index + 1} / ${modalState.items.length}`;
+  if (prev) prev.disabled = modalState.index <= 0;
+  if (next) next.disabled = modalState.index >= modalState.items.length - 1;
+}
+
+function openModalAt(startIndex = 0) {
+  const modal = ensureModal();
+
+  buildSlides(modal);
+  modalState.index = Math.max(0, Math.min(startIndex, modalState.items.length - 1));
+
+  modal.querySelector(".modal__title").textContent = "Détails";
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+
+  updateSlider(modal);
+}
+
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  if (!modal) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+function go(delta) {
+  const modal = document.querySelector(".modal");
+  if (!modal || !modal.classList.contains("is-open")) return;
+
+  const nextIndex = modalState.index + delta;
+  if (nextIndex < 0 || nextIndex > modalState.items.length - 1) return;
+
+  modalState.index = nextIndex;
+  updateSlider(modal);
+}
+
+document.addEventListener("click", (e) => {
+  // close
+  if (e.target.closest("[data-modal-close]")) return closeModal();
+
+  // nav buttons
+  if (e.target.closest(".modal__nav--prev")) return go(-1);
+  if (e.target.closest(".modal__nav--next")) return go(+1);
+
+  // open trigger
+  const trigger = e.target.closest("[data-modal]");
+  if (!trigger) return;
+
+  e.preventDefault();
+
+  // On construit la liste de toutes les missions de la grille (même page)
+  const all = [...document.querySelectorAll("[data-modal]")];
+
+  modalState.items = all.map((el) => ({
+    title:
+      el.getAttribute("data-modal-title") ||
+      el.querySelector("h3")?.textContent ||
+      "Mission",
+    html:
+      el.getAttribute("data-modal-content") ||
+      "<p>Contenu à venir.</p>",
+  }));
+
+  const clickedIndex = Math.max(0, all.indexOf(trigger));
+  openModalAt(clickedIndex);
+});
+
+document.addEventListener("keydown", (e) => {
+  const modal = document.querySelector(".modal");
+  if (!modal || !modal.classList.contains("is-open")) return;
+
+  if (e.key === "Escape") return closeModal();
+  if (e.key === "ArrowLeft") return go(-1);
+  if (e.key === "ArrowRight") return go(+1);
+});
+
+/* Swipe mobile (track) */
+document.addEventListener("pointerdown", (e) => {
+  const modal = document.querySelector(".modal");
+  if (!modal || !modal.classList.contains("is-open")) return;
+
+  const viewport = modal.querySelector(".modal__viewport");
+  if (!viewport.contains(e.target)) return;
+
+  modalState.startX = e.clientX;
+});
+
+document.addEventListener("pointerup", (e) => {
+  const modal = document.querySelector(".modal");
+  if (!modal || !modal.classList.contains("is-open")) return;
+
+  if (modalState.startX === null) return;
+
+  const dx = e.clientX - modalState.startX;
+  modalState.startX = null;
+
+  // seuil swipe
+  if (Math.abs(dx) < 45) return;
+
+  if (dx > 0) go(-1);  // swipe right => previous
+  else go(+1);         // swipe left => next
+});
+
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
