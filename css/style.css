@@ -1368,3 +1368,84 @@ body.modal-open{
 .modal__nav:hover{
   background: rgba(255,255,255,0.12);
 }
+/* ===============================
+   MODAL – NAVIGATION ARROWS FIX
+   =============================== */
+
+.modal__viewport{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Zone de slides */
+.modal__track{
+  display: flex;
+  transition: transform 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* Slide */
+.modal__slide{
+  min-width: 100%;
+  padding: 24px 60px; /* ✅ espace pour éviter les flèches */
+}
+
+/* Flèches */
+.modal__nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  cursor: pointer;
+  z-index: 5;
+
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, transform .15s ease, opacity .2s ease;
+}
+
+.modal__nav:hover{
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.modal__nav:disabled{
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Positions */
+.modal__nav--prev{
+  left: -18px;   /* ✅ sort du texte */
+}
+
+.modal__nav--next{
+  right: -18px;  /* ✅ sort du texte */
+}
+
+/* Mobile : on rapproche un peu */
+@media (max-width: 480px){
+  .modal__slide{
+    padding: 20px 44px;
+  }
+
+  .modal__nav--prev{
+    left: -8px;
+  }
+
+  .modal__nav--next{
+    right: -8px;
+  }
+}
