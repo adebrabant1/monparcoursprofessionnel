@@ -1,36 +1,112 @@
-<!-- =========================
-     Background IT (center → spread)
-     ========================= -->
-<div class="bg-it" aria-hidden="true">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
+  <meta name="description" content="Portfolio BTS SIO SISR – Arthur DEBRABANT UFASIO2" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-  <!-- CLOUD -->
-  <span class="bg-it__icon bg-it__icon--cloud">
-    <svg viewBox="0 0 24 24"><path fill="currentColor"
-      d="M6 19a4 4 0 0 1-.4-8A6 6 0 0 1 17 8a5 5 0 0 1 1 10H6Z"/></svg>
-  </span>
+<body>
+  <!-- =========================
+       Loader overlay (global)
+       ========================= -->
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__panel">
+      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
+      <div class="page-loader__spinner"></div>
+      <div class="page-loader__bar"><div></div></div>
+      <div class="page-loader__text">Préparation de l’expérience…</div>
+    </div>
+  </div>
 
-  <!-- PC -->
-  <span class="bg-it__icon bg-it__icon--pc">
-    <svg viewBox="0 0 24 24"><path fill="currentColor"
-      d="M4 6h16v9H4V6Zm3 12h10v2H7v-2Z"/></svg>
-  </span>
+  <!-- =========================
+       Ambient glow (HOME ONLY)
+       ========================= -->
+  <div class="ambient ambient--home" aria-hidden="true">
+    <span class="ambient__blob ambient__blob--1"></span>
+    <span class="ambient__blob ambient__blob--2"></span>
+    <span class="ambient__grid"></span>
+  </div>
 
-  <!-- SERVER -->
-  <span class="bg-it__icon bg-it__icon--server">
-    <svg viewBox="0 0 24 24"><path fill="currentColor"
-      d="M3 4h18v5H3V4Zm0 6h18v5H3v-5Zm0 6h18v4H3v-4Z"/></svg>
-  </span>
+  <!-- =========================
+       HERO
+       ========================= -->
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__badge">BTS SIO • SISR</p>
 
-  <!-- NETWORK -->
-  <span class="bg-it__icon bg-it__icon--network">
-    <svg viewBox="0 0 24 24"><path fill="currentColor"
-      d="M12 2 2 7l10 5 10-5-10-5Zm0 7-10 5 10 5 10-5-10-5Z"/></svg>
-  </span>
+      <h1 class="hero__title">
+        Arthur DEBRABANT <span>UFASIO2</span>
+      </h1>
 
-  <!-- ROUTER -->
-  <span class="bg-it__icon bg-it__icon--router">
-    <svg viewBox="0 0 24 24"><path fill="currentColor"
-      d="M4 10h16v4H4v-4Zm2 6h2v2H6v-2Zm10 0h2v2h-2v-2Z"/></svg>
-  </span>
+      <p class="hero__subtitle">
+        Portfolio professionnel – alternance, projets et compétences
+      </p>
 
-</div>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="mesmissionsrealisees.html">Voir mes missions</a>
+        <a class="btn btn--ghost" href="aproposdemoi.html">Me découvrir</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       CONTENT
+       ========================= -->
+  <main class="container">
+    <section class="grid">
+
+      <a class="card" data-stagger="1" href="aproposdemoi.html">
+        <div class="card__top">
+          <div class="card__icon">👤</div>
+          <div class="card__tag">Rubrique 1</div>
+        </div>
+        <div>
+          <h2 class="card__title">1. À propos de moi</h2>
+          <p class="card__text">Profil, parcours, objectifs et compétences clés.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
+      <a class="card" data-stagger="2" href="monentreprise.html">
+        <div class="card__top">
+          <div class="card__icon">🏢</div>
+          <div class="card__tag">Rubrique 2</div>
+        </div>
+        <div>
+          <h2 class="card__title">2. Mon entreprise</h2>
+          <p class="card__text">Présentation, organisation et environnement informatique.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
+      <a class="card" data-stagger="3" href="mesmissionsrealisees.html">
+        <div class="card__top">
+          <div class="card__icon">🛠️</div>
+          <div class="card__tag">Rubrique 3</div>
+        </div>
+        <div>
+          <h2 class="card__title">3. Mes missions réalisées</h2>
+          <p class="card__text">Interventions, projets, outils utilisés et résultats.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
+    </section>
+
+    <section class="info">
+      <div class="info__dot"></div>
+      <p><strong>À venir :</strong> schémas réseau, comptes rendus, documents techniques, annexes.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
+  </footer>
+
+  <!-- JS (animations + loader) -->
+  <script src="js/app.js"></script>
+</body>
+</html>
