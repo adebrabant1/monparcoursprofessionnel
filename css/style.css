@@ -924,3 +924,135 @@ body.modal-open{ overflow: hidden; }
   height: 8px;
   border-radius: 999px;
   border: 1px solid var(--
+/* =========================
+   BOOT OVERLAY (PS5-like)
+   ========================= */
+:root{
+  --boot-bg: rgba(5, 8, 16, 0.92);
+  --boot-text: rgba(255,255,255,0.92);
+  --boot-text-soft: rgba(255,255,255,0.65);
+  --boot-glow: rgba(120, 170, 255, 0.35);
+}
+
+[data-theme="light"]{
+  --boot-bg: rgba(245, 247, 255, 0.92);
+  --boot-text: rgba(10, 14, 24, 0.92);
+  --boot-text-soft: rgba(10, 14, 24, 0.55);
+  --boot-glow: rgba(80, 130, 255, 0.28);
+}
+
+.boot-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: var(--boot-bg);
+  overflow: hidden;
+
+  /* état */
+  opacity: 1;
+  pointer-events: all;
+}
+
+.boot-canvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.boot-center{
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 18px;
+  place-items: center;
+  transform: translateY(6px);
+  animation: bootFloat 1800ms ease-in-out infinite;
+}
+
+@keyframes bootFloat{
+  0%,100%{ transform: translateY(6px); }
+  50%{ transform: translateY(-2px); }
+}
+
+.boot-mark{
+  display: flex;
+  gap: 10px;
+}
+
+.boot-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--boot-text);
+  opacity: 0.2;
+  transform: scale(0.9);
+  animation: bootPulse 1200ms ease-in-out infinite;
+}
+
+.boot-dot:nth-child(2){ animation-delay: 120ms; }
+.boot-dot:nth-child(3){ animation-delay: 240ms; }
+.boot-dot:nth-child(4){ animation-delay: 360ms; }
+
+@keyframes bootPulse{
+  0%{ opacity: 0.18; transform: scale(0.9); }
+  40%{ opacity: 0.95; transform: scale(1.15); }
+  100%{ opacity: 0.18; transform: scale(0.9); }
+}
+
+.boot-title{
+  text-align: center;
+  line-height: 1.05;
+  letter-spacing: 0.4px;
+  user-select: none;
+}
+
+.boot-title-line{
+  display: block;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  color: var(--boot-text);
+}
+
+.boot-title-sub{
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(12px, 1.6vw, 16px);
+  font-weight: 500;
+  color: var(--boot-text-soft);
+}
+
+.boot-glow{
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at 50% 45%, var(--boot-glow), transparent 60%);
+  filter: blur(20px);
+  opacity: 0.9;
+  transform: scale(1.1);
+  animation: bootGlow 2400ms ease-in-out infinite;
+}
+
+@keyframes bootGlow{
+  0%,100%{ opacity: 0.55; transform: scale(1.05); }
+  50%{ opacity: 1; transform: scale(1.15); }
+}
+
+/* Transition de sortie */
+.boot-overlay.is-hiding{
+  animation: bootOut 700ms cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes bootOut{
+  to{
+    opacity: 0;
+    transform: scale(1.02);
+    pointer-events: none;
+  }
+}
+
+.boot-overlay.is-gone{
+  display: none;
+}
