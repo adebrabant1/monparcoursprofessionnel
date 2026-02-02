@@ -1,4 +1,3 @@
-
 (function () {
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var STORAGE_KEY = "portfolio-theme";
@@ -80,13 +79,14 @@
   }, true);
 
   /* ===============================
-     BACKGROUND IT (icônes) — seulement si .bg-it existe
+     BACKGROUND IT (icônes) — seulement si .bg-it existe (accueil)
      =============================== */
   (function bgIT() {
     if (reduceMotion) return;
     var container = $(".bg-it");
     if (!container) return;
 
+    // Icônes "safe" (évite gros aplats blancs)
     var ICONS = ["🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰","📶","📦","🗂️","🧩","🔧","⚙️","☁︎"];
 
     var MAX_ICONS = 46;
@@ -107,9 +107,11 @@
       el.className = "it-particle";
       el.textContent = pick(ICONS);
 
+      // Spawn partout (0..100%)
       var sx = rand(0, 100);
       var sy = rand(0, 100);
 
+      // Direction 360°
       var angle = rand(0, Math.PI * 2);
       var dist = rand(MIN_DIST, MAX_DIST);
       var dx = Math.cos(angle) * dist;
@@ -133,6 +135,7 @@
       }, DURATION + 200);
     }
 
+    // burst start
     for (var i = 0; i < 16; i++) spawnIcon();
     setInterval(spawnIcon, SPAWN_EVERY);
   })();
@@ -150,7 +153,9 @@
   window.addEventListener("pageshow", function () { hideLoader(); });
 
   document.addEventListener("click", function (e) {
+    // Ne jamais intercepter toggle
     if (e.target.closest && e.target.closest(".theme-toggle")) return;
+    // Ne jamais intercepter un trigger modal
     if (e.target.closest && e.target.closest("[data-modal]")) return;
 
     var a = e.target.closest ? e.target.closest("a") : null;
@@ -300,6 +305,7 @@
     updateSlider(modal, true);
   }
 
+  // Open / Close / Nav
   document.addEventListener("click", function (e) {
     if (e.target.closest && e.target.closest("[data-modal-close]")) return closeModal();
     if (e.target.closest && e.target.closest(".modal__nav--prev")) return go(-1);
@@ -321,6 +327,7 @@
     openModalAt(idx >= 0 ? idx : 0);
   });
 
+  // Keyboard
   document.addEventListener("keydown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -330,6 +337,7 @@
     if (e.key === "ArrowRight") go(+1);
   });
 
+  // Swipe
   document.addEventListener("pointerdown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -354,4 +362,5 @@
     if (dx > 0) go(-1);
     else go(+1);
   });
+
 })();
