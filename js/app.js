@@ -362,5 +362,23 @@
     if (dx > 0) go(-1);
     else go(+1);
   });
+function playThemeOverlay(x = window.innerWidth / 2, y = window.innerHeight / 2) {
+  const old = document.getElementById("theme-overlay");
+  if (old) old.remove();
+
+  const overlay = document.createElement("div");
+  overlay.id = "theme-overlay";
+  overlay.style.setProperty("--x", `${x}px`);
+  overlay.style.setProperty("--y", `${y}px`);
+
+  document.body.appendChild(overlay);
+
+  requestAnimationFrame(() => overlay.classList.add("active"));
+
+  overlay.addEventListener("animationend", () => overlay.remove(), { once: true });
+
+  // Sécurité anti-bug : même si l'event ne se déclenche pas
+  setTimeout(() => overlay.remove(), 1200);
+}
 
 })();
