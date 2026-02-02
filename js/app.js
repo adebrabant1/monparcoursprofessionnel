@@ -362,5 +362,26 @@
     if (dx > 0) go(-1);
     else go(+1);
   });
+  document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if(!a) return;
+  const href = a.getAttribute("href");
+  if(!href || href.startsWith("#") || href.startsWith("http")) return;
+
+  e.preventDefault();
+
+  // show boot overlay
+  const overlay = document.getElementById("bootOverlay");
+  if(overlay){
+    overlay.classList.remove("is-gone","is-hiding");
+    overlay.style.opacity = "1";
+    overlay.style.pointerEvents = "all";
+  }
+
+  setTimeout(() => {
+    window.location.href = href;
+  }, 320);
+});
+
 
 })();
