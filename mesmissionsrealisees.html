@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mes missions réalisées – Arthur DEBRABANT</title>
   <meta name="description" content="Missions réalisées en alternance – BTS SIO SISR" />
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-  <div class="bg-it" aria-hidden="true"></div>
-
+  <!-- Loader overlay (global) -->
   <div class="page-loader" aria-hidden="true">
     <div class="page-loader__panel">
       <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
@@ -24,6 +23,7 @@
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
 
+      <!-- ✅ Toggle (comme accueil) -->
       <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
         <span class="theme-toggle__icon">🌙</span>
         <span class="theme-toggle__text">Sombre</span>
@@ -33,19 +33,20 @@
       <p class="hero__subtitle">Interventions, projets, outils utilisés et résultats obtenus en entreprise</p>
 
       <div class="hero__actions">
-        <a class="btn btn--ghost" href="/index.html">⬅ Retour à l’accueil</a>
+        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
         <a class="btn btn--primary" href="#liste">Voir la liste</a>
       </div>
     </div>
   </header>
 
   <main class="container">
+
     <section class="content-card">
       <h2>Présentation générale</h2>
       <p>
-        Dans le cadre de mon alternance en <strong>BTS SIO option SISR</strong>, je réalise des missions liées
-        à l’administration systèmes et réseaux. Ces missions renforcent mes compétences, mon autonomie et ma
-        communication professionnelle.
+        Dans le cadre de mon alternance en <strong>BTS SIO option SISR</strong>, j’ai réalisé plusieurs missions
+        liées à l’administration systèmes et réseaux. Ces missions m’ont permis de développer mes compétences
+        techniques, mon autonomie et ma communication professionnelle.
       </p>
     </section>
 
@@ -54,6 +55,7 @@
 
       <div class="mission-grid">
 
+        <!-- 1) Support -->
         <article class="mission-item"
           data-modal="1"
           data-modal-title="Support & dépannage"
@@ -63,59 +65,66 @@
               <li>Diagnostic (pannes, lenteurs, erreurs applicatives)</li>
               <li>Résolution (drivers, sessions, profils, logiciels)</li>
               <li>Escalade si besoin + suivi du ticket</li>
-              <li>Compte rendu / procédure</li>
+              <li>Compte rendu / procédure (à ajouter)</li>
             </ul>
+            <p><em>À compléter :</em> captures, outils utilisés, temps, résultat.</p>
           '>
           <h3>Support & dépannage</h3>
-          <p>Assistance utilisateurs, résolution d’incidents et suivi.</p>
+          <p>Diagnostic, résolution d’incidents, assistance utilisateurs (N1/N2).</p>
         </article>
 
+        <!-- 2) AD -->
         <article class="mission-item"
           data-modal="1"
           data-modal-title="Active Directory"
           data-modal-content='
-            <p><strong>Objectif :</strong> gérer identités, droits et organisation (OU, groupes).</p>
+            <p><strong>Objectif :</strong> gérer les identités, les droits et l’organisation (OU, groupes).</p>
             <ul>
-              <li>Création / désactivation de comptes</li>
+              <li>Création / désactivation comptes</li>
               <li>Groupes de sécurité + droits partages</li>
               <li>Organisation en OU</li>
-              <li>GPO (à compléter)</li>
+              <li>GPO (à venir) : déploiement / restrictions</li>
             </ul>
+            <p><em>À compléter :</em> procédure interne + captures.</p>
           '>
           <h3>Active Directory</h3>
-          <p>Comptes, groupes, droits et structuration.</p>
+          <p>Création de comptes, gestion des droits, groupes, organisation.</p>
         </article>
 
+        <!-- 3) Réseau -->
         <article class="mission-item"
           data-modal="1"
           data-modal-title="Réseau & serveurs"
           data-modal-content='
-            <p><strong>Objectif :</strong> participer au maintien des services réseau.</p>
+            <p><strong>Objectif :</strong> participer à l’exploitation et au maintien des services réseau.</p>
             <ul>
               <li>Diagnostic réseau (IP, DNS, DHCP, accès)</li>
-              <li>Vérification équipements (switch / Wi-Fi)</li>
+              <li>Vérifications équipements (switch/AP)</li>
               <li>Suivi services (AD/DNS/DHCP, etc.)</li>
               <li>Actions correctives + tests</li>
             </ul>
+            <p><em>À compléter :</em> schéma réseau + captures.</p>
           '>
           <h3>Réseau & serveurs</h3>
-          <p>Diagnostic, maintenance, suivi des services.</p>
+          <p>Participation à la gestion réseau, services, maintenance et suivi.</p>
         </article>
 
+        <!-- 4) Doc -->
         <article class="mission-item"
           data-modal="1"
           data-modal-title="Documentation"
           data-modal-content='
-            <p><strong>Objectif :</strong> formaliser les procédures et gagner du temps.</p>
+            <p><strong>Objectif :</strong> formaliser les procédures pour standardiser et gagner du temps.</p>
             <ul>
-              <li>Procédures pas à pas</li>
+              <li>Rédaction de procédures (pas à pas)</li>
               <li>Checklists + bonnes pratiques</li>
-              <li>Comptes rendus d’intervention</li>
-              <li>Mises à jour / versioning</li>
+              <li>Compte rendu d’intervention</li>
+              <li>Mises à jour / versions</li>
             </ul>
+            <p><em>À compléter :</em> lien vers docs / annexes.</p>
           '>
           <h3>Documentation</h3>
-          <p>Procédures, comptes rendus, amélioration continue.</p>
+          <p>Rédaction de procédures et comptes rendus techniques (méthodique).</p>
         </article>
 
       </div>
@@ -126,17 +135,18 @@
       <ul class="mission-list">
         <li>Administration systèmes (Windows / Linux)</li>
         <li>Réseaux (adressage, services, diagnostic)</li>
-        <li>Sécurité (bonnes pratiques, accès)</li>
+        <li>Sécurité (bonnes pratiques, gestion des accès)</li>
         <li>Méthodologie (procédures, rigueur)</li>
         <li>Communication (support, échanges pro)</li>
       </ul>
     </section>
+
   </main>
 
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
 
-  <script src="/js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
