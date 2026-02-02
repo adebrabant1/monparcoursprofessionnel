@@ -84,24 +84,7 @@ body.theme--light{
   z-index: 2;
 }
 
-/* =========================
-   THEME SWITCH (animation full page)
-   ========================= */
-body.theme-animating::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background: radial-gradient(900px 520px at 50% 35%, rgba(255,255,255,0.10), transparent 60%);
-  opacity: 0;
-  animation: themeFlash 600ms ease;
-}
-@keyframes themeFlash{
-  0%{ opacity: 0; }
-  35%{ opacity: 1; }
-  100%{ opacity: 0; }
-}
+
 
 /* Transition douce sur les composants (important : pas sur tout sinon reveal bug) */
 .hero__inner,
