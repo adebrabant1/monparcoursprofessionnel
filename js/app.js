@@ -1,15 +1,27 @@
 (function () {
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduceMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   var STORAGE_KEY = "portfolio-theme";
 
   /* ===============================
      HELPERS (compat)
      =============================== */
-  function $(sel, root) { return (root || document).querySelector(sel); }
-  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function $(sel, root) {
+    return (root || document).querySelector(sel);
+  }
+  function $all(sel, root) {
+    return Array.prototype.slice.call(
+      (root || document).querySelectorAll(sel)
+    );
+  }
   function onReady(fn) {
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
-    else fn();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
   }
 
   /* ===============================
@@ -23,7 +35,9 @@
   onReady(function () {
     // Auto-stagger (si besoin)
     $all(".card").forEach(function (card, i) {
-      if (!card.getAttribute("data-stagger")) card.setAttribute("data-stagger", String(i + 1));
+      if (!card.getAttribute("data-stagger")) {
+        card.setAttribute("data-stagger", String(i + 1));
+      }
     });
 
     document.body.classList.add("is-ready");
@@ -32,11 +46,13 @@
     // Theme init (toutes pages)
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "light") document.body.classList.add("theme--light");
+    else document.body.classList.remove("theme--light");
+
     syncToggleUI();
   });
 
   /* ===============================
-     THEME TOGGLE (dark/light) — anim + persist
+     THEME TOGGLE (dark/light) — SANS OVERLAY / SANS FLASH
      =============================== */
   function syncToggleUI() {
     var btn = $(".theme-toggle");
@@ -53,41 +69,56 @@
   }
 
   function applyTheme(theme) {
-    // animation douce sur toute la page
-    document.body.classList.add("theme-animating");
-
     if (theme === "light") document.body.classList.add("theme--light");
     else document.body.classList.remove("theme--light");
 
     localStorage.setItem(STORAGE_KEY, theme);
     syncToggleUI();
-
-    setTimeout(function () {
-      document.body.classList.remove("theme-animating");
-    }, 650);
   }
 
-  document.addEventListener("click", function (e) {
-    var toggle = e.target.closest ? e.target.closest(".theme-toggle") : null;
-    if (!toggle) return;
+  document.addEventListener(
+    "click",
+    function (e) {
+      var toggle = e.target.closest ? e.target.closest(".theme-toggle") : null;
+      if (!toggle) return;
 
-    e.preventDefault();
-    e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
 
-    var isLight = document.body.classList.contains("theme--light");
-    applyTheme(isLight ? "dark" : "light");
-  }, true);
+      var isLight = document.body.classList.contains("theme--light");
+      applyTheme(isLight ? "dark" : "light");
+    },
+    true
+  );
 
   /* ===============================
      BACKGROUND IT (icônes) — seulement si .bg-it existe (accueil)
      =============================== */
   (function bgIT() {
     if (reduceMotion) return;
+
     var container = $(".bg-it");
     if (!container) return;
 
-    // Icônes "safe" (évite gros aplats blancs)
-    var ICONS = ["🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰","📶","📦","🗂️","🧩","🔧","⚙️","☁︎"];
+    var ICONS = [
+      "🖥️",
+      "🗄️",
+      "🖧",
+      "📡",
+      "🛰️",
+      "🌐",
+      "🔐",
+      "🛠️",
+      "🧪",
+      "🧰",
+      "📶",
+      "📦",
+      "🗂️",
+      "🧩",
+      "🔧",
+      "⚙️",
+      "☁︎",
+    ];
 
     var MAX_ICONS = 46;
     var SPAWN_EVERY = 650;
@@ -95,8 +126,12 @@
     var MIN_DIST = 650;
     var MAX_DIST = 1400;
 
-    function rand(min, max) { return Math.random() * (max - min) + min; }
-    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    function pick(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
 
     function spawnIcon() {
       while (container.children.length > MAX_ICONS) {
@@ -107,11 +142,9 @@
       el.className = "it-particle";
       el.textContent = pick(ICONS);
 
-      // Spawn partout (0..100%)
       var sx = rand(0, 100);
       var sy = rand(0, 100);
 
-      // Direction 360°
       var angle = rand(0, Math.PI * 2);
       var dist = rand(MIN_DIST, MAX_DIST);
       var dx = Math.cos(angle) * dist;
@@ -135,7 +168,6 @@
       }, DURATION + 200);
     }
 
-    // burst start
     for (var i = 0; i < 16; i++) spawnIcon();
     setInterval(spawnIcon, SPAWN_EVERY);
   })();
@@ -146,11 +178,19 @@
   var overlay = $(".page-loader");
   var loaderText = $(".page-loader__text");
 
-  function setLoaderText(t) { if (loaderText) loaderText.textContent = t; }
-  function showLoader() { if (overlay) overlay.classList.add("is-active"); }
-  function hideLoader() { if (overlay) overlay.classList.remove("is-active"); }
+  function setLoaderText(t) {
+    if (loaderText) loaderText.textContent = t;
+  }
+  function showLoader() {
+    if (overlay) overlay.classList.add("is-active");
+  }
+  function hideLoader() {
+    if (overlay) overlay.classList.remove("is-active");
+  }
 
-  window.addEventListener("pageshow", function () { hideLoader(); });
+  window.addEventListener("pageshow", function () {
+    hideLoader();
+  });
 
   document.addEventListener("click", function (e) {
     // Ne jamais intercepter toggle
@@ -164,12 +204,16 @@
     var href = a.getAttribute("href");
     if (!href) return;
 
-    var isExternal = /^https?:\/\//i.test(href) || href.indexOf("mailto:") === 0 || href.indexOf("tel:") === 0;
+    var isExternal =
+      /^https?:\/\//i.test(href) ||
+      href.indexOf("mailto:") === 0 ||
+      href.indexOf("tel:") === 0;
+
     var isAnchor = href.indexOf("#") === 0;
     var newTab = a.target && a.target !== "";
     var isDownload = a.hasAttribute("download");
-    if (isExternal || isAnchor || newTab || isDownload) return;
 
+    if (isExternal || isAnchor || newTab || isDownload) return;
     if (reduceMotion) return;
 
     if (href.indexOf("index.html") !== -1) setLoaderText("Retour à l’accueil...");
@@ -178,7 +222,9 @@
     e.preventDefault();
     showLoader();
 
-    setTimeout(function () { window.location.href = href; }, 650);
+    setTimeout(function () {
+      window.location.href = href;
+    }, 650);
   });
 
   /* ===============================
@@ -196,20 +242,20 @@
     modal.innerHTML =
       '<div class="modal__backdrop" data-modal-close></div>' +
       '<div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">' +
-        '<div class="modal__header">' +
-          '<h3 class="modal__title" id="modalTitle">Détails</h3>' +
-          '<button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>' +
-        '</div>' +
-        '<div class="modal__viewport">' +
-          '<button class="modal__nav modal__nav--prev" type="button" aria-label="Précédent">‹</button>' +
-          '<button class="modal__nav modal__nav--next" type="button" aria-label="Suivant">›</button>' +
-          '<div class="modal__track"></div>' +
-        '</div>' +
-        '<div class="modal__footer">' +
-          '<span class="modal__counter">1 / 1</span>' +
-          '<div class="modal__dots" aria-hidden="true"></div>' +
-        '</div>' +
-      '</div>';
+      '<div class="modal__header">' +
+      '<h3 class="modal__title" id="modalTitle">Détails</h3>' +
+      '<button class="modal__close" type="button" aria-label="Fermer" data-modal-close>✕</button>' +
+      "</div>" +
+      '<div class="modal__viewport">' +
+      '<button class="modal__nav modal__nav--prev" type="button" aria-label="Précédent">‹</button>' +
+      '<button class="modal__nav modal__nav--next" type="button" aria-label="Suivant">›</button>' +
+      '<div class="modal__track"></div>' +
+      "</div>" +
+      '<div class="modal__footer">' +
+      '<span class="modal__counter">1 / 1</span>' +
+      '<div class="modal__dots" aria-hidden="true"></div>' +
+      "</div>" +
+      "</div>";
 
     document.body.appendChild(modal);
     return modal;
@@ -222,7 +268,11 @@
     modalState.items.forEach(function (item) {
       var slide = document.createElement("div");
       slide.className = "modal__slide";
-      slide.innerHTML = "<h4>" + (item.title || "Mission") + "</h4>" + (item.html || "<p>Contenu à venir.</p>");
+      slide.innerHTML =
+        "<h4>" +
+        (item.title || "Mission") +
+        "</h4>" +
+        (item.html || "<p>Contenu à venir.</p>");
       track.appendChild(slide);
     });
   }
@@ -235,7 +285,8 @@
     for (var i = 0; i < modalState.items.length; i++) {
       (function (idx) {
         var d = document.createElement("span");
-        d.className = "modal__dot" + (idx === modalState.index ? " is-active" : "");
+        d.className =
+          "modal__dot" + (idx === modalState.index ? " is-active" : "");
         d.addEventListener("click", function () {
           modalState.index = idx;
           updateSlider(modal, true);
@@ -247,7 +298,9 @@
 
   function snap(modal) {
     modal.classList.add("is-snapping");
-    setTimeout(function () { modal.classList.remove("is-snapping"); }, 160);
+    setTimeout(function () {
+      modal.classList.remove("is-snapping");
+    }, 160);
   }
 
   function updateSlider(modal, doSnap) {
@@ -257,11 +310,12 @@
     var counter = $(".modal__counter", modal);
     var dots = $all(".modal__dot", modal);
 
-    track.style.transform = "translateX(-" + (modalState.index * 100) + "%)";
+    track.style.transform = "translateX(-" + modalState.index * 100 + "%)";
 
-    if (counter) counter.textContent = (modalState.index + 1) + " / " + modalState.items.length;
+    if (counter)
+      counter.textContent = modalState.index + 1 + " / " + modalState.items.length;
     if (prev) prev.disabled = modalState.index <= 0;
-    if (next) next.disabled = modalState.index >= (modalState.items.length - 1);
+    if (next) next.disabled = modalState.index >= modalState.items.length - 1;
 
     dots.forEach(function (d, i) {
       if (i === modalState.index) d.classList.add("is-active");
@@ -275,7 +329,10 @@
     var modal = ensureModal();
 
     buildSlides(modal);
-    modalState.index = Math.max(0, Math.min(startIndex || 0, modalState.items.length - 1));
+    modalState.index = Math.max(
+      0,
+      Math.min(startIndex || 0, modalState.items.length - 1)
+    );
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
@@ -305,9 +362,9 @@
     updateSlider(modal, true);
   }
 
-  // Open / Close / Nav
   document.addEventListener("click", function (e) {
-    if (e.target.closest && e.target.closest("[data-modal-close]")) return closeModal();
+    if (e.target.closest && e.target.closest("[data-modal-close]"))
+      return closeModal();
     if (e.target.closest && e.target.closest(".modal__nav--prev")) return go(-1);
     if (e.target.closest && e.target.closest(".modal__nav--next")) return go(+1);
 
@@ -318,7 +375,9 @@
 
     var all = $all("[data-modal]");
     modalState.items = all.map(function (el) {
-      var title = el.getAttribute("data-modal-title") || (el.querySelector("h3") ? el.querySelector("h3").textContent : "Mission");
+      var title =
+        el.getAttribute("data-modal-title") ||
+        (el.querySelector("h3") ? el.querySelector("h3").textContent : "Mission");
       var content = el.getAttribute("data-modal-content") || "<p>Contenu à venir.</p>";
       return { title: title, html: content };
     });
@@ -327,7 +386,6 @@
     openModalAt(idx >= 0 ? idx : 0);
   });
 
-  // Keyboard
   document.addEventListener("keydown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -337,7 +395,6 @@
     if (e.key === "ArrowRight") go(+1);
   });
 
-  // Swipe
   document.addEventListener("pointerdown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -362,5 +419,4 @@
     if (dx > 0) go(-1);
     else go(+1);
   });
-
 })();
