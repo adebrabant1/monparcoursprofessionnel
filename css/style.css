@@ -1,50 +1,76 @@
 /* ======================================================
    Portfolio pro — Arthur DEBRABANT
    Clean + Pro + Sexy
-   (Sombre/Clair + BG IT + Loader + Reveal + Modal slider)
+   Dark/Light + Particles IT + Loader + Reveal + Modal Slider
+   (BOOT PS5 retiré)
    ====================================================== */
 
 /* =========================
-   RESET
+   RESET / BASE
    ========================= */
-*{ margin:0; padding:0; box-sizing:border-box; }
-html{ font-size:16px; -webkit-text-size-adjust:100%; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid rgba(43,107,255,0.65); outline-offset: 3px; }
 
 /* =========================
-   THEME VARIABLES (default = dark)
+   THEME TOKENS (default = DARK)
    ========================= */
 :root{
+  /* Backgrounds */
   --bg: #0b1220;
-  --bg2: #0e1a33;
+  --bg2:#0e1a33;
 
+  /* Text */
   --text: #eef4ff;
   --muted: rgba(238,244,255,0.72);
 
+  /* Surfaces */
+  --surface: rgba(255,255,255,0.07);
+  --surface2: rgba(255,255,255,0.03);
   --card: rgba(255,255,255,0.06);
+
+  /* Borders / shadows */
   --border: rgba(255,255,255,0.14);
-
-  --blue: #2b6bff;
-  --blue2: #00b7ff;
-
   --shadow: 0 18px 45px rgba(0,0,0,0.35);
-}
 
-/* Light mode (body.theme--light) */
-body.theme--light{
-  --bg: #f4f7ff;
-  --bg2: #ffffff;
+  /* Brand */
+  --blue: #2b6bff;
+  --blue2:#00b7ff;
 
-  --text: #0b1220;
-  --muted: rgba(11,18,32,0.65);
-
-  --card: rgba(11,18,32,0.04);
-  --border: rgba(11,18,32,0.12);
-
-  --shadow: 0 18px 45px rgba(11,18,32,0.14);
+  /* Modal */
+  --modal-backdrop: rgba(10, 14, 24, 0.55);
+  --modal-panel: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+  --modal-panel-border: var(--border);
 }
 
 /* =========================
-   BASE
+   LIGHT THEME (body.theme--light)
+   ========================= */
+body.theme--light{
+  --bg: #f4f7ff;
+  --bg2:#ffffff;
+
+  --text: #0b1220;
+  --muted: rgba(11,18,32,0.66);
+
+  --surface: rgba(255,255,255,0.92);
+  --surface2: rgba(255,255,255,0.70);
+  --card: rgba(11,18,32,0.04);
+
+  --border: rgba(11,18,32,0.12);
+  --shadow: 0 18px 55px rgba(11,18,32,0.10);
+
+  /* ✅ Backdrop clair (tu voulais pas “sale/sombre” en light) */
+  --modal-backdrop: rgba(245,247,255,0.78);
+  --modal-panel: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.80));
+  --modal-panel-border: rgba(11,18,32,0.10);
+}
+
+/* =========================
+   BODY / GLOBAL BACKGROUND
    ========================= */
 body{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -60,7 +86,6 @@ body{
   transition: background 520ms ease, color 520ms ease;
 }
 
-/* Mode clair : fond plus "Apple-like" */
 body.theme--light{
   background:
     radial-gradient(900px 520px at 12% 15%, rgba(43,107,255,0.14), transparent 60%),
@@ -75,8 +100,8 @@ body.theme--light{
   position: fixed;
   inset: 0;
   z-index: 0;
-  pointer-events:none;
-  overflow:hidden;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .hero, .container, .footer{
@@ -85,7 +110,7 @@ body.theme--light{
 }
 
 /* =========================
-   THEME SWITCH (animation full page)
+   THEME SWITCH FLASH (full-page)
    ========================= */
 body.theme-animating::before{
   content:"";
@@ -103,7 +128,7 @@ body.theme-animating::before{
   100%{ opacity: 0; }
 }
 
-/* Transition douce sur les composants (important : pas sur tout sinon reveal bug) */
+/* Transition douce sur éléments clés */
 .hero__inner,
 .card,
 .content-card,
@@ -124,7 +149,6 @@ body.theme-animating::before{
 
 /* =========================
    BACKGROUND IT PARTICLES
-   (évite les grosses bulles/blancs)
    ========================= */
 .bg-it .it-particle{
   position: absolute;
@@ -144,22 +168,15 @@ body.theme-animating::before{
 
   filter: grayscale(1) saturate(0) brightness(1.15)
           drop-shadow(0 14px 30px rgba(0,0,0,0.55));
-  will-change: transform, opacity;
 
+  will-change: transform, opacity;
   animation: it-drift var(--dur) linear forwards;
 }
 
 @keyframes it-drift{
-  0%{
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.60);
-  }
-  12%{
-    opacity: var(--op);
-  }
-  75%{
-    opacity: calc(var(--op) - 0.08);
-  }
+  0%{ opacity: 0; transform: translate(-50%, -50%) scale(0.60); }
+  12%{ opacity: var(--op); }
+  75%{ opacity: calc(var(--op) - 0.08); }
   100%{
     opacity: 0;
     transform:
@@ -169,10 +186,8 @@ body.theme-animating::before{
   }
 }
 
-/* Particules en clair : plus discrètes */
 body.theme--light .bg-it .it-particle{
   filter: drop-shadow(0 10px 26px rgba(11,18,32,0.12));
-  opacity: 0.14;
 }
 
 /* =========================
@@ -191,7 +206,7 @@ body.theme--light .bg-it .it-particle{
   border-radius: 18px;
   border: 1px solid var(--border);
 
-  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  background: linear-gradient(180deg, var(--surface), var(--surface2));
   box-shadow: var(--shadow);
   overflow: hidden;
 
@@ -205,9 +220,9 @@ body.theme--light .bg-it .it-particle{
   content:"";
   position:absolute;
   inset:-1px;
-  border-radius:18px;
+  border-radius: 18px;
   background: linear-gradient(135deg, rgba(43,107,255,.40), rgba(0,183,255,.20), transparent 60%);
-  opacity:.35;
+  opacity: .35;
   pointer-events:none;
 }
 
@@ -218,11 +233,10 @@ body.theme--light .bg-it .it-particle{
   border-radius: 18px;
   background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.10), transparent 65%);
   transform: translateX(-120%);
-  opacity: .7;
-  pointer-events: none;
+  opacity: .75;
+  pointer-events:none;
 }
 
-/* Badge (BTS SIO • SISR) */
 .hero__badge{
   display: inline-flex;
   align-items: center;
@@ -238,7 +252,6 @@ body.theme--light .bg-it .it-particle{
   justify-self: start;
 }
 
-/* Titre */
 .hero__title{
   margin-top: 8px;
   font-size: clamp(2.1rem, 4.2vw, 3.1rem);
@@ -247,23 +260,11 @@ body.theme--light .bg-it .it-particle{
   text-shadow: 0 10px 35px rgba(43,107,255,.25);
 }
 
-/* Le span (ex: UFASIO2) */
 .hero__title span{
   color: rgba(238,244,255,0.60);
   font-weight: 800;
 }
 
-/* Mode clair : UFASIO2 lisible */
-body.theme--light .hero__title{
-  color: #0b1220;
-  text-shadow: 0 10px 28px rgba(11,18,32,0.10);
-}
-body.theme--light .hero__title span{
-  color: rgba(11,18,32,0.42);
-  text-shadow: none;
-}
-
-/* Sous-titre */
 .hero__subtitle{
   margin-top: 4px;
   color: var(--muted);
@@ -271,11 +272,12 @@ body.theme--light .hero__title span{
   font-size: clamp(0.98rem, 1.6vw, 1.08rem);
 }
 
-/* HERO light : panel plus premium */
-body.theme--light .hero__inner{
-  background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.62));
-  border-color: rgba(11,18,32,0.10);
-  box-shadow: 0 18px 55px rgba(11,18,32,0.10);
+body.theme--light .hero__title{
+  text-shadow: 0 10px 28px rgba(11,18,32,0.10);
+}
+body.theme--light .hero__title span{
+  color: rgba(11,18,32,0.42);
+  text-shadow: none;
 }
 body.theme--light .hero__badge{
   background: rgba(255,255,255,0.72);
@@ -291,16 +293,16 @@ body.theme--light .hero__badge{
   top: 18px;
   right: 18px;
   margin: 0;
-
   cursor: pointer;
   user-select: none;
-
   transition: transform .15s ease, background .15s ease;
 }
+
 .theme-toggle.hero__badge:hover{
   transform: translateY(-1px);
   background: rgba(255,255,255,0.06);
 }
+
 .theme-toggle__icon{ font-size: 14px; line-height: 1; }
 .theme-toggle__text{ font-weight: 850; }
 
@@ -344,11 +346,10 @@ body.theme--light .hero__badge{
 @keyframes btnShine{ to { transform: translateX(110%); } }
 
 .btn--primary{
-  color: white;
+  color: #fff;
   border: none;
   background: linear-gradient(135deg, var(--blue), var(--blue2));
 }
-
 .btn--ghost{
   background: rgba(255,255,255,0.05);
 }
@@ -370,7 +371,7 @@ body.theme--light .btn--primary{
 .container{
   max-width: 1050px;
   margin: 18px auto 0;
-  padding: 26px 18px 50px; /* top padding pour rubriques */
+  padding: 26px 18px 50px;
 }
 
 /* =========================
@@ -407,7 +408,6 @@ body.theme--light .btn--primary{
   justify-content: space-between;
 
   backdrop-filter: blur(10px);
-
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 
@@ -470,9 +470,8 @@ body.theme--light .btn--primary{
   color: rgba(238,244,255,0.92);
 }
 
-/* Cards en clair */
 body.theme--light .card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.78));
   border-color: rgba(11,18,32,0.10);
   box-shadow: 0 14px 40px rgba(11,18,32,0.10);
 }
@@ -509,7 +508,7 @@ body.theme--light .card__cta{ color: rgba(11,18,32,0.82); }
 }
 
 body.theme--light .info{
-  background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.70));
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
   border-color: rgba(11,18,32,0.10);
   color: rgba(11,18,32,0.65);
 }
@@ -526,7 +525,7 @@ body.theme--light .info{
 body.theme--light .footer{ color: rgba(11,18,32,0.55); }
 
 /* =========================
-   RUBRIQUES (structure propre)
+   RUBRIQUES (cards pages)
    ========================= */
 .content-card,
 .about-section{
@@ -546,7 +545,7 @@ body.theme--light .footer{ color: rgba(11,18,32,0.55); }
 
 body.theme--light .content-card,
 body.theme--light .about-section{
-  background: linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.70));
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.78));
   border-color: rgba(11,18,32,0.10);
   box-shadow: 0 18px 55px rgba(11,18,32,0.10);
 }
@@ -573,7 +572,9 @@ body.theme--light .about-section{
 }
 .mission-list li{ margin-bottom: 8px; }
 
-/* Grid missions */
+/* =========================
+   MISSIONS GRID
+   ========================= */
 .mission-grid{
   margin-top: 14px;
   display: grid;
@@ -581,7 +582,7 @@ body.theme--light .about-section{
   gap: 14px;
 }
 
-/* Item mission cliquable */
+/* ✅ Mission item (Dark) */
 .mission-item{
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -611,12 +612,21 @@ body.theme--light .about-section{
 }
 .mission-item p{ color: var(--muted); }
 
-/* =========================
-   MEDIA (images optionnelles)
-   ========================= */
-.media{
-  margin-top: 14px;
+/* ✅ Mission item (Light) — FIX “trop sombre” */
+body.theme--light .mission-item{
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.84));
+  border-color: rgba(11,18,32,0.10);
+  box-shadow: 0 14px 36px rgba(11,18,32,0.10);
 }
+body.theme--light .mission-item:hover{
+  border-color: rgba(43,107,255,0.30);
+  box-shadow: 0 22px 50px rgba(11,18,32,0.14), 0 0 0 1px rgba(43,107,255,0.12);
+}
+
+/* =========================
+   MEDIA (optional)
+   ========================= */
+.media{ margin-top: 14px; }
 .media img{
   width: 100%;
   height: auto;
@@ -663,6 +673,11 @@ body.theme--light .about-section{
   background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
   box-shadow: var(--shadow);
   text-align: center;
+}
+
+body.theme--light .page-loader__panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
+  border-color: rgba(11,18,32,0.10);
 }
 
 .page-loader__brand{
@@ -759,7 +774,7 @@ body.js-anim.is-ready .card[data-stagger="2"]{ transition-delay: 280ms; }
 body.js-anim.is-ready .card[data-stagger="3"]{ transition-delay: 380ms; }
 
 /* =========================
-   MODAL (popup + slider) — VERSION UNIQUE
+   MODAL (popup + slider)
    ========================= */
 body.modal-open{ overflow: hidden; }
 
@@ -782,7 +797,7 @@ body.modal-open{ overflow: hidden; }
 .modal__backdrop{
   position: absolute;
   inset: 0;
-  background: rgba(10, 14, 24, 0.55);
+  background: var(--modal-backdrop);
   backdrop-filter: blur(10px);
 }
 
@@ -793,8 +808,8 @@ body.modal-open{ overflow: hidden; }
   overflow: hidden;
 
   border-radius: 18px;
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+  border: 1px solid var(--modal-panel-border);
+  background: var(--modal-panel);
   box-shadow: var(--shadow);
 
   transform: translateY(10px) scale(0.96);
@@ -836,13 +851,13 @@ body.modal-open{ overflow: hidden; }
   background: rgba(255,255,255,0.10);
   transform: translateY(-1px);
 }
-
-/* Slider */
-.modal__viewport{
-  position: relative;
-  overflow: hidden;
+body.theme--light .modal__close{
+  background: rgba(11,18,32,0.04);
+  border-color: rgba(11,18,32,0.10);
 }
 
+/* Slider */
+.modal__viewport{ position: relative; overflow: hidden; }
 .modal__track{
   display: flex;
   width: 100%;
@@ -851,14 +866,13 @@ body.modal-open{ overflow: hidden; }
   will-change: transform;
 }
 
-/* ✅ réserve de la place pour les flèches */
+/* ✅ espace pour flèches */
 .modal__slide{
   flex: 0 0 100%;
   padding: 18px 74px;
   color: var(--muted);
   line-height: 1.75;
 }
-
 .modal__slide h4{
   color: var(--text);
   margin-bottom: 8px;
@@ -886,19 +900,21 @@ body.modal-open{ overflow: hidden; }
   cursor: pointer;
   user-select:none;
   backdrop-filter: blur(8px);
-
   transition: transform .15s ease, background .15s ease, opacity .15s ease;
 }
 .modal__nav:hover{
   background: rgba(255,255,255,0.14);
   transform: translateY(-50%) scale(1.06);
 }
-.modal__nav[disabled]{
-  opacity: 0.25;
-  cursor: not-allowed;
-}
+.modal__nav[disabled]{ opacity: 0.25; cursor: not-allowed; }
+
 .modal__nav--prev{ left: 16px; }
 .modal__nav--next{ right: 16px; }
+
+body.theme--light .modal__nav{
+  background: rgba(255,255,255,0.75);
+  border-color: rgba(11,18,32,0.10);
+}
 
 /* Footer */
 .modal__footer{
@@ -912,8 +928,11 @@ body.modal-open{ overflow: hidden; }
   color: rgba(238,244,255,0.70);
   font-size: 0.92rem;
 }
+body.theme--light .modal__footer{
+  color: rgba(11,18,32,0.62);
+}
 
-/* Dots */
+/* Dots ✅ (FIX complet) */
 .modal__dots{
   display: inline-flex;
   align-items: center;
@@ -923,136 +942,35 @@ body.modal-open{ overflow: hidden; }
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  border: 1px solid var(--
-/* =========================
-   BOOT OVERLAY (PS5-like)
-   ========================= */
-:root{
-  --boot-bg: rgba(5, 8, 16, 0.92);
-  --boot-text: rgba(255,255,255,0.92);
-  --boot-text-soft: rgba(255,255,255,0.65);
-  --boot-glow: rgba(120, 170, 255, 0.35);
+  border: 1px solid rgba(255,255,255,0.30);
+  background: rgba(255,255,255,0.10);
+  cursor: pointer;
+  transition: transform .15s ease, opacity .15s ease, background .15s ease, border-color .15s ease;
+  opacity: 0.75;
 }
-
-[data-theme="light"]{
-  --boot-bg: rgba(245, 247, 255, 0.92);
-  --boot-text: rgba(10, 14, 24, 0.92);
-  --boot-text-soft: rgba(10, 14, 24, 0.55);
-  --boot-glow: rgba(80, 130, 255, 0.28);
-}
-
-.boot-overlay{
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: grid;
-  place-items: center;
-  background: var(--boot-bg);
-  overflow: hidden;
-
-  /* état */
+.modal__dot:hover{ transform: scale(1.15); opacity: 1; }
+.modal__dot.is-active{
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  border-color: rgba(43,107,255,0.55);
   opacity: 1;
-  pointer-events: all;
 }
 
-.boot-canvas{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+body.theme--light .modal__dot{
+  border-color: rgba(11,18,32,0.18);
+  background: rgba(11,18,32,0.06);
+}
+body.theme--light .modal__dot.is-active{
+  border-color: rgba(43,107,255,0.40);
 }
 
-.boot-center{
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: 18px;
-  place-items: center;
-  transform: translateY(6px);
-  animation: bootFloat 1800ms ease-in-out infinite;
-}
+/* Optional snapping micro-effect (JS utilise is-snapping) */
+.modal.is-snapping .modal__panel{ transform: translateY(0) scale(0.995); }
 
-@keyframes bootFloat{
-  0%,100%{ transform: translateY(6px); }
-  50%{ transform: translateY(-2px); }
-}
-
-.boot-mark{
-  display: flex;
-  gap: 10px;
-}
-
-.boot-dot{
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--boot-text);
-  opacity: 0.2;
-  transform: scale(0.9);
-  animation: bootPulse 1200ms ease-in-out infinite;
-}
-
-.boot-dot:nth-child(2){ animation-delay: 120ms; }
-.boot-dot:nth-child(3){ animation-delay: 240ms; }
-.boot-dot:nth-child(4){ animation-delay: 360ms; }
-
-@keyframes bootPulse{
-  0%{ opacity: 0.18; transform: scale(0.9); }
-  40%{ opacity: 0.95; transform: scale(1.15); }
-  100%{ opacity: 0.18; transform: scale(0.9); }
-}
-
-.boot-title{
-  text-align: center;
-  line-height: 1.05;
-  letter-spacing: 0.4px;
-  user-select: none;
-}
-
-.boot-title-line{
-  display: block;
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  color: var(--boot-text);
-}
-
-.boot-title-sub{
-  display: block;
-  margin-top: 6px;
-  font-size: clamp(12px, 1.6vw, 16px);
-  font-weight: 500;
-  color: var(--boot-text-soft);
-}
-
-.boot-glow{
-  position: absolute;
-  inset: -30%;
-  background: radial-gradient(circle at 50% 45%, var(--boot-glow), transparent 60%);
-  filter: blur(20px);
-  opacity: 0.9;
-  transform: scale(1.1);
-  animation: bootGlow 2400ms ease-in-out infinite;
-}
-
-@keyframes bootGlow{
-  0%,100%{ opacity: 0.55; transform: scale(1.05); }
-  50%{ opacity: 1; transform: scale(1.15); }
-}
-
-/* Transition de sortie */
-.boot-overlay.is-hiding{
-  animation: bootOut 700ms cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-@keyframes bootOut{
-  to{
-    opacity: 0;
-    transform: scale(1.02);
-    pointer-events: none;
-  }
-}
-
-.boot-overlay.is-gone{
-  display: none;
+/* =========================
+   RESPONSIVE TOUCHES
+   ========================= */
+@media (max-width: 520px){
+  .theme-toggle.hero__badge{ top: 14px; right: 14px; }
+  .modal__slide{ padding: 16px 58px; }
+  .modal__nav{ width: 40px; height: 40px; }
 }
