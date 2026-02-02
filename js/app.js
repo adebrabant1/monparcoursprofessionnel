@@ -382,6 +382,11 @@
     window.location.href = href;
   }, 320);
 });
+/* ... ton JS existant (toggle, loader, modales, etc.) */
 
-
+/* =========================
+   BOOT PS5 + PARTICULES
+   ========================= */
+(function(){
+  // 👉 TOUT le code du point 3 ici
 })();
