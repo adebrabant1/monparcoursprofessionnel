@@ -2,9 +2,6 @@
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var STORAGE_KEY = "portfolio-theme";
 
-  /* ===============================
-     HELPERS (compat)
-     =============================== */
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function onReady(fn) {
@@ -21,7 +18,7 @@
   }, 900);
 
   onReady(function () {
-    // Auto-stagger (si besoin)
+    // auto-stagger (home cards only)
     $all(".card").forEach(function (card, i) {
       if (!card.getAttribute("data-stagger")) card.setAttribute("data-stagger", String(i + 1));
     });
@@ -29,14 +26,14 @@
     document.body.classList.add("is-ready");
     clearTimeout(safety);
 
-    // Theme init (toutes pages)
+    // Theme init
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "light") document.body.classList.add("theme--light");
     syncToggleUI();
   });
 
   /* ===============================
-     THEME TOGGLE (dark/light) — anim + persist
+     THEME TOGGLE
      =============================== */
   function syncToggleUI() {
     var btn = $(".theme-toggle");
@@ -53,7 +50,6 @@
   }
 
   function applyTheme(theme) {
-    // animation douce sur toute la page
     document.body.classList.add("theme-animating");
 
     if (theme === "light") document.body.classList.add("theme--light");
@@ -79,7 +75,8 @@
   }, true);
 
   /* ===============================
-     BACKGROUND IT (icônes) — seulement si .bg-it existe
+     BACKGROUND IT PARTICLES
+     (runs if .bg-it exists)
      =============================== */
   (function bgIT() {
     if (reduceMotion) return;
@@ -87,7 +84,6 @@
     if (!container) return;
 
     var ICONS = ["🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰","📶","📦","🗂️","🧩","🔧","⚙️","☁︎"];
-
     var MAX_ICONS = 46;
     var SPAWN_EVERY = 650;
     var DURATION = 24000;
@@ -137,7 +133,7 @@
   })();
 
   /* ===============================
-     LOADER NAV (ne casse pas theme-toggle et modals)
+     LOADER NAV (internal links only)
      =============================== */
   var overlay = $(".page-loader");
   var loaderText = $(".page-loader__text");
@@ -149,7 +145,9 @@
   window.addEventListener("pageshow", function () { hideLoader(); });
 
   document.addEventListener("click", function (e) {
+    // do not intercept toggle
     if (e.target.closest && e.target.closest(".theme-toggle")) return;
+    // do not intercept modal triggers
     if (e.target.closest && e.target.closest("[data-modal]")) return;
 
     var a = e.target.closest ? e.target.closest("a") : null;
@@ -166,12 +164,10 @@
 
     if (reduceMotion) return;
 
-    if (href.indexOf("index.html") !== -1) setLoaderText("Retour à l’accueil...");
-    else setLoaderText("Préparation de l’expérience…");
+    setLoaderText(href.indexOf("index.html") !== -1 ? "Retour à l’accueil..." : "Préparation de l’expérience…");
 
     e.preventDefault();
     showLoader();
-
     setTimeout(function () { window.location.href = href; }, 650);
   });
 
@@ -239,11 +235,6 @@
     }
   }
 
-  function snap(modal) {
-    modal.classList.add("is-snapping");
-    setTimeout(function () { modal.classList.remove("is-snapping"); }, 160);
-  }
-
   function updateSlider(modal, doSnap) {
     var track = $(".modal__track", modal);
     var prev = $(".modal__nav--prev", modal);
@@ -262,7 +253,10 @@
       else d.classList.remove("is-active");
     });
 
-    if (doSnap) snap(modal);
+    if (doSnap) {
+      modal.classList.add("is-snapping");
+      setTimeout(function(){ modal.classList.remove("is-snapping"); }, 160);
+    }
   }
 
   function openModalAt(startIndex) {
@@ -277,7 +271,6 @@
 
     buildDots(modal);
     updateSlider(modal, false);
-    snap(modal);
   }
 
   function closeModal() {
@@ -343,7 +336,6 @@
   document.addEventListener("pointerup", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
-
     if (modalState.startX === null) return;
 
     var dx = e.clientX - modalState.startX;
@@ -353,4 +345,5 @@
     if (dx > 0) go(-1);
     else go(+1);
   });
+
 })();
