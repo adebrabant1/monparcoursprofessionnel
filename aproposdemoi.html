@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ======================================================
+       META / SEO
+       ====================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>À propos de moi – Arthur DEBRABANT</title>
   <meta name="description" content="Présentation personnelle – BTS SIO SISR – Arthur DEBRABANT" />
-  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- ======================================================
+       CSS GLOBAL (même fichier que l’accueil)
+       ====================================================== -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-  <div class="bg-it" aria-hidden="true"></div>
 
+  <!-- Loader overlay (global) -->
   <div class="page-loader" aria-hidden="true">
     <div class="page-loader__panel">
       <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
@@ -20,6 +27,9 @@
     </div>
   </div>
 
+  <!-- ======================================================
+       HERO (identique aux autres pages)
+       ====================================================== -->
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
@@ -30,16 +40,23 @@
       </button>
 
       <h1 class="hero__title">À propos de moi</h1>
-      <p class="hero__subtitle">Présentation personnelle, parcours et objectifs professionnels</p>
+
+      <p class="hero__subtitle">
+        Présentation personnelle, parcours et objectifs professionnels
+      </p>
 
       <div class="hero__actions">
-        <a class="btn btn--ghost" href="/index.html">⬅ Retour à l’accueil</a>
+        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
         <a class="btn btn--primary" href="#profil">Découvrir</a>
       </div>
     </div>
   </header>
 
-  <main id="profil" class="container">
+  <!-- ======================================================
+       CONTENU PRINCIPAL
+       ====================================================== -->
+  <main class="container" id="profil">
+
     <section class="about-section">
       <h2>Profil</h2>
       <p>
@@ -53,9 +70,10 @@
     <section class="content-card">
       <h2>Parcours</h2>
       <p>
-        J’ai choisi le BTS SIO afin d’acquérir des compétences solides en
-        administration systèmes et réseaux, tout en bénéficiant d’une
-        expérience professionnelle concrète grâce à l’alternance.
+        Après un intérêt marqué pour les technologies numériques,
+        j’ai choisi de suivre un BTS SIO afin d’acquérir des compétences
+        solides en administration systèmes et réseaux, tout en bénéficiant
+        d’une expérience professionnelle concrète grâce à l’alternance.
       </p>
     </section>
 
@@ -64,36 +82,36 @@
       <ul class="mission-list">
         <li>Administration systèmes (Windows, Linux)</li>
         <li>Réseaux (adressage IP, services, diagnostic)</li>
-        <li>Sécurité (bonnes pratiques, gestion des accès)</li>
-        <li>Virtualisation / environnements de test</li>
-        <li>Support utilisateurs + communication pro</li>
+        <li>Sécurité informatique (bonnes pratiques, gestion des accès)</li>
+        <li>Virtualisation et environnements de test</li>
+        <li>Support utilisateurs et communication professionnelle</li>
       </ul>
     </section>
 
     <section class="content-card">
       <h2>Objectifs professionnels</h2>
       <p>
-        Continuer à progresser en administration systèmes et réseaux, et évoluer
-        vers davantage de responsabilités, notamment sur la gestion d’infrastructure
-        et la cybersécurité.
+        Mon objectif est de poursuivre dans le domaine de l’administration
+        systèmes et réseaux, en renforçant mes compétences techniques et
+        en évoluant vers des responsabilités plus avancées, notamment
+        dans la gestion d’infrastructures informatiques et la cybersécurité.
       </p>
     </section>
 
     <section class="content-card">
       <h2>Curriculum Vitae</h2>
-      <p>Vous pourrez consulter ou télécharger mon CV pour plus de détails.</p>
-      <!--
-      <a class="btn btn--primary" href="/docs/cv-arthur-debrabant.pdf" target="_blank" rel="noopener">
-        📄 Télécharger mon CV
-      </a>
-      -->
+      <p>
+        Vous pouvez consulter ou télécharger mon CV pour plus de détails
+        sur mon parcours et mes compétences.
+      </p>
     </section>
+
   </main>
 
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
 
-  <script src="/js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
