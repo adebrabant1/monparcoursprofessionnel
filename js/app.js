@@ -2,6 +2,9 @@
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var STORAGE_KEY = "portfolio-theme";
 
+  /* ===============================
+     HELPERS (compat)
+     =============================== */
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function onReady(fn) {
@@ -18,7 +21,7 @@
   }, 900);
 
   onReady(function () {
-    // auto-stagger (home cards only)
+    // Auto-stagger (si besoin)
     $all(".card").forEach(function (card, i) {
       if (!card.getAttribute("data-stagger")) card.setAttribute("data-stagger", String(i + 1));
     });
@@ -26,14 +29,14 @@
     document.body.classList.add("is-ready");
     clearTimeout(safety);
 
-    // Theme init
+    // Theme init (toutes pages)
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "light") document.body.classList.add("theme--light");
     syncToggleUI();
   });
 
   /* ===============================
-     THEME TOGGLE
+     THEME TOGGLE (dark/light) — anim + persist
      =============================== */
   function syncToggleUI() {
     var btn = $(".theme-toggle");
@@ -50,6 +53,7 @@
   }
 
   function applyTheme(theme) {
+    // animation douce sur toute la page
     document.body.classList.add("theme-animating");
 
     if (theme === "light") document.body.classList.add("theme--light");
@@ -75,15 +79,16 @@
   }, true);
 
   /* ===============================
-     BACKGROUND IT PARTICLES
-     (runs if .bg-it exists)
+     BACKGROUND IT (icônes) — seulement si .bg-it existe (accueil)
      =============================== */
   (function bgIT() {
     if (reduceMotion) return;
     var container = $(".bg-it");
     if (!container) return;
 
+    // Icônes "safe" (évite gros aplats blancs)
     var ICONS = ["🖥️","🗄️","🖧","📡","🛰️","🌐","🔐","🛠️","🧪","🧰","📶","📦","🗂️","🧩","🔧","⚙️","☁︎"];
+
     var MAX_ICONS = 46;
     var SPAWN_EVERY = 650;
     var DURATION = 24000;
@@ -102,9 +107,11 @@
       el.className = "it-particle";
       el.textContent = pick(ICONS);
 
+      // Spawn partout (0..100%)
       var sx = rand(0, 100);
       var sy = rand(0, 100);
 
+      // Direction 360°
       var angle = rand(0, Math.PI * 2);
       var dist = rand(MIN_DIST, MAX_DIST);
       var dx = Math.cos(angle) * dist;
@@ -128,12 +135,13 @@
       }, DURATION + 200);
     }
 
+    // burst start
     for (var i = 0; i < 16; i++) spawnIcon();
     setInterval(spawnIcon, SPAWN_EVERY);
   })();
 
   /* ===============================
-     LOADER NAV (internal links only)
+     LOADER NAV (ne casse pas theme-toggle et modals)
      =============================== */
   var overlay = $(".page-loader");
   var loaderText = $(".page-loader__text");
@@ -145,9 +153,9 @@
   window.addEventListener("pageshow", function () { hideLoader(); });
 
   document.addEventListener("click", function (e) {
-    // do not intercept toggle
+    // Ne jamais intercepter toggle
     if (e.target.closest && e.target.closest(".theme-toggle")) return;
-    // do not intercept modal triggers
+    // Ne jamais intercepter un trigger modal
     if (e.target.closest && e.target.closest("[data-modal]")) return;
 
     var a = e.target.closest ? e.target.closest("a") : null;
@@ -164,10 +172,12 @@
 
     if (reduceMotion) return;
 
-    setLoaderText(href.indexOf("index.html") !== -1 ? "Retour à l’accueil..." : "Préparation de l’expérience…");
+    if (href.indexOf("index.html") !== -1) setLoaderText("Retour à l’accueil...");
+    else setLoaderText("Préparation de l’expérience…");
 
     e.preventDefault();
     showLoader();
+
     setTimeout(function () { window.location.href = href; }, 650);
   });
 
@@ -235,6 +245,11 @@
     }
   }
 
+  function snap(modal) {
+    modal.classList.add("is-snapping");
+    setTimeout(function () { modal.classList.remove("is-snapping"); }, 160);
+  }
+
   function updateSlider(modal, doSnap) {
     var track = $(".modal__track", modal);
     var prev = $(".modal__nav--prev", modal);
@@ -253,10 +268,7 @@
       else d.classList.remove("is-active");
     });
 
-    if (doSnap) {
-      modal.classList.add("is-snapping");
-      setTimeout(function(){ modal.classList.remove("is-snapping"); }, 160);
-    }
+    if (doSnap) snap(modal);
   }
 
   function openModalAt(startIndex) {
@@ -271,6 +283,7 @@
 
     buildDots(modal);
     updateSlider(modal, false);
+    snap(modal);
   }
 
   function closeModal() {
@@ -292,6 +305,7 @@
     updateSlider(modal, true);
   }
 
+  // Open / Close / Nav
   document.addEventListener("click", function (e) {
     if (e.target.closest && e.target.closest("[data-modal-close]")) return closeModal();
     if (e.target.closest && e.target.closest(".modal__nav--prev")) return go(-1);
@@ -313,6 +327,7 @@
     openModalAt(idx >= 0 ? idx : 0);
   });
 
+  // Keyboard
   document.addEventListener("keydown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -322,6 +337,7 @@
     if (e.key === "ArrowRight") go(+1);
   });
 
+  // Swipe
   document.addEventListener("pointerdown", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
@@ -336,6 +352,7 @@
   document.addEventListener("pointerup", function (e) {
     var modal = $(".modal");
     if (!modal || !modal.classList.contains("is-open")) return;
+
     if (modalState.startX === null) return;
 
     var dx = e.clientX - modalState.startX;
