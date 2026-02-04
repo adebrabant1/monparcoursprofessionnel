@@ -6,11 +6,17 @@
   <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
   <meta name="description" content="Portfolio BTS SIO SISR – Arthur DEBRABANT UFASIO2" />
   <link rel="stylesheet" href="css/style.css" />
-  <!-- JS (animations + loader) -->
-  <script src="js/app.js" defer></script>
 </head>
 
 <body>
+  <!-- Theme transition overlay (global) -->
+<div class="theme-wash" aria-hidden="true"></div>
+
+  <!-- =========================
+       Background IT (behind)
+       ========================= -->
+  <div class="bg-it" aria-hidden="true"></div>
+
   <!-- =========================
        Loader overlay (global)
        ========================= -->
@@ -24,28 +30,18 @@
   </div>
 
   <!-- =========================
-       Ambient glow (HOME ONLY)
-       ========================= -->
-  <div class="ambient ambient--home" aria-hidden="true">
-    <span class="ambient__blob ambient__blob--1"></span>
-    <span class="ambient__blob ambient__blob--2"></span>
-    <span class="ambient__grid"></span>
-  </div>
-
-  <!-- IT icons background (animated) -->
-  <div class="bg-it" aria-hidden="true"></div>
-
-  <!-- =========================
        HERO
        ========================= -->
   <header class="hero">
     <div class="hero__inner">
-      <button class="hero__badge theme-toggle" type="button" aria-label="Basculer thème" aria-pressed="true">
+      <!-- Badge gauche -->
+      <p class="hero__badge">BTS SIO • SISR</p>
+
+      <!-- Toggle droite (même style que badge) -->
+      <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
         <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
         <span class="theme-toggle__text">Sombre</span>
       </button>
-
-      <p class="hero__badge">BTS SIO • SISR</p>
 
       <h1 class="hero__title">
         Arthur DEBRABANT <span>UFASIO2</span>
@@ -115,5 +111,7 @@
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
