@@ -38,45 +38,48 @@
   /* ===============================
      THEME TOGGLE (dark/light) — anim + persist
      =============================== */
-  function syncToggleUI() {
-    var btn = $(".theme-toggle");
-    if (!btn) return;
+  (() => {
+  const STORAGE_KEY = "portfolio-theme";
+  const btn = document.querySelector(".theme-toggle");
+  const wash = document.querySelector(".theme-wash");
+  const root = document.documentElement;
 
-    var isLight = document.body.classList.contains("theme--light");
-    btn.setAttribute("aria-pressed", String(!isLight));
+  if (!btn) return;
 
-    var icon = $(".theme-toggle__icon", btn);
-    var text = $(".theme-toggle__text", btn);
+  const setTheme = (theme, withAnim = true) => {
+    // theme: "dark" | "light"
+    root.setAttribute("data-theme", theme);
 
-    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
-    if (text) text.textContent = isLight ? "Clair" : "Sombre";
-  }
+    // bouton (texte + aria)
+    const isDark = theme === "dark";
+    btn.setAttribute("aria-pressed", String(isDark));
+    const icon = btn.querySelector(".theme-toggle__icon");
+    const text = btn.querySelector(".theme-toggle__text");
+    if (icon) icon.textContent = isDark ? "🌙" : "☀️";
+    if (text) text.textContent = isDark ? "Sombre" : "Clair";
 
-  function applyTheme(theme) {
-    // animation douce sur toute la page
-    document.body.classList.add("theme-animating");
-
-    if (theme === "light") document.body.classList.add("theme--light");
-    else document.body.classList.remove("theme--light");
+    // petite transition overlay
+    if (withAnim && wash) {
+      wash.classList.remove("is-on");
+      // relance animation
+      void wash.offsetWidth; 
+      wash.classList.add("is-on");
+      setTimeout(() => wash.classList.remove("is-on"), 520);
+    }
 
     localStorage.setItem(STORAGE_KEY, theme);
-    syncToggleUI();
+  };
 
-    setTimeout(function () {
-      document.body.classList.remove("theme-animating");
-    }, 650);
-  }
+  // init
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const initial = saved === "light" || saved === "dark" ? saved : "dark";
+  setTheme(initial, false);
 
-  document.addEventListener("click", function (e) {
-    var toggle = e.target.closest ? e.target.closest(".theme-toggle") : null;
-    if (!toggle) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    var isLight = document.body.classList.contains("theme--light");
-    applyTheme(isLight ? "dark" : "light");
-  }, true);
+  btn.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || "dark";
+    setTheme(current === "dark" ? "light" : "dark");
+  });
+})();
 
   /* ===============================
      BACKGROUND IT (icônes) — seulement si .bg-it existe (accueil)
