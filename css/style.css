@@ -915,3 +915,39 @@ body.theme--light .modal__backdrop{
  background: linear-gradient(135deg, var(--blue), var(--blue2));
  border-color: rgba(255,255,255,0.25);
 }
+/* Boutons : même comportement partout (accueil + rubriques) */
+.btn{
+  transform: translateY(0);
+  will-change: transform;
+}
+
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.26);
+}
+
+/* Shine rapide comme sur l'accueil */
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(120deg,
+    transparent 30%,
+    rgba(255,255,255,.22),
+    transparent 60%
+  );
+  transform: translateX(-110%);
+}
+
+.btn:hover::before{
+  animation: btnShine .55s ease;
+}
+
+@keyframes btnShine{
+  to { transform: translateX(110%); }
+}
+
+/* Clic plus "pro" */
+.btn:active{
+  transform: translateY(-1px) scale(0.98);
+}
