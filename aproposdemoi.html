@@ -3,46 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>À propos – Portfolio</title>
+  <title>À propos de moi – Arthur DEBRABANT</title>
+  <meta name="description" content="Présentation personnelle – BTS SIO SISR – Arthur DEBRABANT" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/app.js" defer></script>
 </head>
+
 <body>
   <div class="page-loader" aria-hidden="true">
-    <div class="page-loader__box">
+    <div class="page-loader__panel">
+      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
       <div class="page-loader__spinner"></div>
-      <div class="page-loader__text">Chargement…</div>
+      <div class="page-loader__bar"><div></div></div>
+      <div class="page-loader__text">Préparation de l’expérience…</div>
     </div>
   </div>
 
-  <header class="topbar">
-    <a class="pill linkpill" href="index.html">← Accueil</a>
-    <button class="theme-toggle" type="button" aria-pressed="true">
-      <span class="theme-toggle__icon">🌙</span>
-      <span class="theme-toggle__text">Sombre</span>
-    </button>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="hero__badge">BTS SIO • SISR</p>
+
+      <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
+        <span class="theme-toggle__icon">🌙</span>
+        <span class="theme-toggle__text">Sombre</span>
+      </button>
+
+      <h1 class="hero__title">À propos de moi</h1>
+
+      <p class="hero__subtitle">
+        Présentation personnelle, parcours et objectifs professionnels
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
+        <a class="btn btn--primary" href="#profil">Découvrir</a>
+      </div>
+    </div>
   </header>
 
-  <main class="wrap">
-    <section class="card">
-      <h1>À propos de moi</h1>
-      <p class="lead">Ajoute ici ton profil, ton parcours BTS, tes objectifs.</p>
+  <main class="container">
+    <section class="about-section" id="profil">
+      <h2>Profil</h2>
+      <p>
+        Je m’appelle <strong>Arthur DEBRABANT</strong>, étudiant en
+        <strong>BTS SIO option SISR</strong>. Passionné par l’informatique,
+        les systèmes, les réseaux et la cybersécurité, je m’oriente vers
+        un métier d’administrateur systèmes et réseaux.
+      </p>
+    </section>
 
-      <div class="split">
-        <div class="card inner">
-          <h3>Profil</h3>
-          <p>Étudiant BTS SIO SISR, alternance, appétence infra/réseaux.</p>
-        </div>
-        <div class="card inner">
-          <h3>Objectifs</h3>
-          <p>Administration systèmes & réseaux, amélioration continue, sécurité.</p>
-        </div>
-      </div>
+    <section class="content-card">
+      <h2>Parcours</h2>
+      <p>
+        Après un intérêt marqué pour les technologies numériques,
+        j’ai choisi de suivre un BTS SIO afin d’acquérir des compétences
+        solides en administration systèmes et réseaux, tout en bénéficiant
+        d’une expérience professionnelle concrète grâce à l’alternance.
+      </p>
+    </section>
+
+    <section class="content-card">
+      <h2>Compétences</h2>
+      <ul class="mission-list">
+        <li>Administration systèmes (Windows, Linux)</li>
+        <li>Réseaux (adressage IP, services, diagnostic)</li>
+        <li>Sécurité informatique (bonnes pratiques, gestion des accès)</li>
+        <li>Virtualisation et environnements de test</li>
+        <li>Support utilisateurs et communication professionnelle</li>
+      </ul>
+    </section>
+
+    <section class="content-card">
+      <h2>Objectifs professionnels</h2>
+      <p>
+        Mon objectif est de poursuivre dans le domaine de l’administration
+        systèmes et réseaux, en renforçant mes compétences techniques et
+        en évoluant vers des responsabilités plus avancées, notamment
+        dans la gestion d’infrastructures informatiques et la cybersécurité.
+      </p>
+    </section>
+
+    <section class="content-card">
+      <h2>Curriculum Vitae</h2>
+      <p>
+        Vous pouvez consulter ou télécharger mon CV pour plus de détails
+        sur mon parcours et mes compétences.
+      </p>
     </section>
   </main>
 
   <footer class="footer">
-    <span>© Arthur DEBRABANT</span>
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
 </body>
 </html>
