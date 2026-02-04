@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon entreprise – Arthur DEBRABANT</title>
   <meta name="description" content="Présentation de mon entreprise d'accueil – BTS SIO SISR" />
+
+  <!-- CSS (chez toi c'est bien css/style.css) -->
   <link rel="stylesheet" href="css/style.css" />
-  <script src="js/app.js" defer></script>
 </head>
 
 <body>
+
+  <!-- Loader overlay (global) -->
   <div class="page-loader" aria-hidden="true">
     <div class="page-loader__panel">
       <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
@@ -22,11 +25,10 @@
   <header class="hero">
     <div class="hero__inner">
       <p class="hero__badge">BTS SIO • SISR</p>
-
       <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
-        <span class="theme-toggle__icon">🌙</span>
-        <span class="theme-toggle__text">Sombre</span>
-      </button>
+  <span class="theme-toggle__icon">🌙</span>
+  <span class="theme-toggle__text">Sombre</span>
+</button>
 
       <h1 class="hero__title">Mon entreprise</h1>
       <p class="hero__subtitle">
@@ -41,6 +43,7 @@
   </header>
 
   <main id="contenu" class="container">
+
     <section class="content-card">
       <h2>Présentation de l’entreprise</h2>
       <p>
@@ -49,6 +52,13 @@
         <strong>[taille/nb de salariés]</strong>. Elle dispose d’un environnement informatique structuré
         garantissant la continuité de service et la sécurité des données.
       </p>
+
+      <!--
+      <div class="media">
+        <img src="images/entreprise/logo.png" alt="Logo de l'entreprise" loading="lazy" />
+        <p class="media__caption">Logo / identité de l’entreprise</p>
+      </div>
+      -->
     </section>
 
     <section class="content-card">
@@ -57,6 +67,13 @@
         Le service informatique assure le support utilisateurs, l’administration des serveurs,
         la gestion du réseau, ainsi que la mise en place de bonnes pratiques de sécurité.
       </p>
+
+      <!--
+      <div class="media">
+        <img src="images/entreprise/organigramme.png" alt="Organigramme du service informatique" loading="lazy" />
+        <p class="media__caption">Organigramme (exemple)</p>
+      </div>
+      -->
     </section>
 
     <section class="content-card">
@@ -70,6 +87,13 @@
         <li>Services : <strong>[AD, DNS, DHCP, M365, sauvegardes…]</strong></li>
         <li>Sécurité : <strong>[MFA, antivirus, supervision, règles firewall…]</strong></li>
       </ul>
+
+      <!--
+      <div class="media">
+        <img src="images/entreprise/baie-reseau.jpg" alt="Baie réseau / infrastructure" loading="lazy" />
+        <p class="media__caption">Infrastructure (exemple)</p>
+      </div>
+      -->
     </section>
 
     <section class="content-card">
@@ -77,6 +101,21 @@
       <p>
         Schéma simplifié de l’infrastructure pour comprendre l’organisation des équipements et des services.
       </p>
+
+      <!--
+      <div class="media">
+        <img src="images/entreprise/schema-reseau.png" alt="Schéma réseau simplifié" loading="lazy" />
+        <p class="media__caption">Schéma réseau (simplifié)</p>
+      </div>
+      -->
+
+      <!--
+      <p style="margin-top:14px;">
+        <a class="btn btn--primary" href="docs/schema-reseau.pdf" target="_blank" rel="noopener">
+          📄 Télécharger le schéma réseau (PDF)
+        </a>
+      </p>
+      -->
     </section>
 
     <section class="content-card">
@@ -94,10 +133,14 @@
         <li>Documentation : procédures, fiches, comptes rendus</li>
       </ul>
     </section>
+
   </main>
 
   <footer class="footer">
     <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
+
+  <!-- JS (animations + loader) -->
+  <script src="js/app.js"></script>
 </body>
 </html>
