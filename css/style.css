@@ -994,3 +994,36 @@ body.modal-open{ overflow: hidden; }
   display: block;
 }
 
+/* FORCE dans le HERO : photo + titre sur une ligne */
+header.hero .hero__inner .hero__title-wrapper{
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  margin: 0 !important;
+}
+
+/* Rond garanti */
+header.hero .hero__inner .hero__title-wrapper .hero__avatar{
+  width: 84px !important;
+  height: 84px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  flex: 0 0 84px !important;
+  display: block !important;
+}
+
+/* Image ronde + cadrée */
+header.hero .hero__inner .hero__title-wrapper .hero__avatar img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+
+/* Le texte du titre */
+header.hero .hero__inner .hero__title-wrapper .hero__title-text{
+  display: inline-block !important;
+}
