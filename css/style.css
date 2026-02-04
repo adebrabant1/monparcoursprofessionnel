@@ -951,3 +951,62 @@ body.theme--light .modal__backdrop{
 .btn:active{
   transform: translateY(-1px) scale(0.98);
 }
+/* ===============================
+   HOVER PRO SUR LES RUBRIQUES (CARDS)
+   Lift + flash diagonal rapide
+   =============================== */
+
+/* Assure le bon comportement */
+.card{
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* Flash diagonal (comme un shine) */
+.card::after{
+  content:"";
+  position:absolute;
+  top:-35%;
+  left:-70%;
+  width: 55%;
+  height: 190%;
+  transform: skewX(-20deg) translateX(-140%);
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0)
+  );
+  opacity: 0;
+  pointer-events:none;
+}
+
+/* Hover : ça se lève + flash */
+.card:hover{
+  transform: translateY(-10px);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,0.40),
+    0 0 0 1px rgba(43,107,255,0.22);
+  border-color: rgba(43,107,255,0.45);
+}
+
+.card:hover::after{
+  opacity: 1;
+  animation: cardShine 520ms ease;
+}
+
+@keyframes cardShine{
+  to { transform: skewX(-20deg) translateX(220%); }
+}
+
+/* Petit “rebond” quand tu quittes (pro) */
+.card{
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+/* Accessibilité : si animation réduite */
+@media (prefers-reduced-motion: reduce){
+  .card, .card::after{ transition:none; animation:none; }
+  .card:hover{ transform:none; }
+}
