@@ -3,150 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mes missions réalisées – Arthur DEBRABANT</title>
-  <meta name="description" content="Missions réalisées en alternance – BTS SIO SISR" />
+  <title>Missions – Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-
 <body>
-  <!-- Loader overlay (global) -->
   <div class="page-loader" aria-hidden="true">
-    <div class="page-loader__panel">
-      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
+    <div class="page-loader__box">
       <div class="page-loader__spinner"></div>
-      <div class="page-loader__bar"><div></div></div>
-      <div class="page-loader__text">Préparation de l’expérience…</div>
+      <div class="page-loader__text">Chargement…</div>
     </div>
   </div>
 
-  <header class="hero">
-    <div class="hero__inner">
-      <p class="hero__badge">BTS SIO • SISR</p>
-
-      <!-- ✅ Toggle (comme accueil) -->
-      <button class="hero__badge theme-toggle" type="button" aria-pressed="true">
-        <span class="theme-toggle__icon">🌙</span>
-        <span class="theme-toggle__text">Sombre</span>
-      </button>
-
-      <h1 class="hero__title">Mes missions réalisées</h1>
-      <p class="hero__subtitle">Interventions, projets, outils utilisés et résultats obtenus en entreprise</p>
-
-      <div class="hero__actions">
-        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
-        <a class="btn btn--primary" href="#liste">Voir la liste</a>
-      </div>
-    </div>
+  <header class="topbar">
+    <a class="pill linkpill" href="index.html">← Accueil</a>
+    <button class="theme-toggle" type="button" aria-pressed="true">
+      <span class="theme-toggle__icon">🌙</span>
+      <span class="theme-toggle__text">Sombre</span>
+    </button>
   </header>
 
-  <main class="container">
+  <main class="wrap">
+    <section class="card">
+      <h1>Missions réalisées</h1>
+      <p class="lead">Clique sur une carte pour ouvrir le détail (modal).</p>
 
-    <section class="content-card">
-      <h2>Présentation générale</h2>
-      <p>
-        Dans le cadre de mon alternance en <strong>BTS SIO option SISR</strong>, j’ai réalisé plusieurs missions
-        liées à l’administration systèmes et réseaux. Ces missions m’ont permis de développer mes compétences
-        techniques, mon autonomie et ma communication professionnelle.
-      </p>
-    </section>
-
-    <section id="liste" class="content-card">
-      <h2>Exemples de missions réalisées</h2>
-
-      <div class="mission-grid">
-
-        <!-- 1) Support -->
-        <article class="mission-item"
-          data-modal="1"
-          data-modal-title="Support & dépannage"
-          data-modal-content='
-            <p><strong>Objectif :</strong> assurer la continuité de service et aider les utilisateurs (N1/N2).</p>
-            <ul>
-              <li>Diagnostic (pannes, lenteurs, erreurs applicatives)</li>
-              <li>Résolution (drivers, sessions, profils, logiciels)</li>
-              <li>Escalade si besoin + suivi du ticket</li>
-              <li>Compte rendu / procédure (à ajouter)</li>
-            </ul>
-            <p><em>À compléter :</em> captures, outils utilisés, temps, résultat.</p>
-          '>
-          <h3>Support & dépannage</h3>
-          <p>Diagnostic, résolution d’incidents, assistance utilisateurs (N1/N2).</p>
-        </article>
-
-        <!-- 2) AD -->
-        <article class="mission-item"
+      <div class="grid">
+        <article class="card mission-item"
           data-modal="1"
           data-modal-title="Active Directory"
-          data-modal-content='
-            <p><strong>Objectif :</strong> gérer les identités, les droits et l’organisation (OU, groupes).</p>
-            <ul>
-              <li>Création / désactivation comptes</li>
-              <li>Groupes de sécurité + droits partages</li>
-              <li>Organisation en OU</li>
-              <li>GPO (à venir) : déploiement / restrictions</li>
-            </ul>
-            <p><em>À compléter :</em> procédure interne + captures.</p>
-          '>
+          data-modal-content="<p>Création / gestion utilisateurs, groupes, GPO, droits.</p>">
           <h3>Active Directory</h3>
-          <p>Création de comptes, gestion des droits, groupes, organisation.</p>
+          <p>Gestion comptes / groupes / stratégie.</p>
+          <span class="mini">Ouvrir</span>
         </article>
 
-        <!-- 3) Réseau -->
-        <article class="mission-item"
-          data-modal="1"
-          data-modal-title="Réseau & serveurs"
-          data-modal-content='
-            <p><strong>Objectif :</strong> participer à l’exploitation et au maintien des services réseau.</p>
-            <ul>
-              <li>Diagnostic réseau (IP, DNS, DHCP, accès)</li>
-              <li>Vérifications équipements (switch/AP)</li>
-              <li>Suivi services (AD/DNS/DHCP, etc.)</li>
-              <li>Actions correctives + tests</li>
-            </ul>
-            <p><em>À compléter :</em> schéma réseau + captures.</p>
-          '>
-          <h3>Réseau & serveurs</h3>
-          <p>Participation à la gestion réseau, services, maintenance et suivi.</p>
+        <article class="card mission-item"
+          data-modal="2"
+          data-modal-title="GLPI"
+          data-modal-content="<p>Tickets, inventaire, suivi, procédures.</p>">
+          <h3>GLPI</h3>
+          <p>Support + traçabilité.</p>
+          <span class="mini">Ouvrir</span>
         </article>
 
-        <!-- 4) Doc -->
-        <article class="mission-item"
-          data-modal="1"
-          data-modal-title="Documentation"
-          data-modal-content='
-            <p><strong>Objectif :</strong> formaliser les procédures pour standardiser et gagner du temps.</p>
-            <ul>
-              <li>Rédaction de procédures (pas à pas)</li>
-              <li>Checklists + bonnes pratiques</li>
-              <li>Compte rendu d’intervention</li>
-              <li>Mises à jour / versions</li>
-            </ul>
-            <p><em>À compléter :</em> lien vers docs / annexes.</p>
-          '>
-          <h3>Documentation</h3>
-          <p>Rédaction de procédures et comptes rendus techniques (méthodique).</p>
+        <article class="card mission-item"
+          data-modal="3"
+          data-modal-title="Réseau"
+          data-modal-content="<p>Dépannage, VLAN, switch, routage, pare-feu.</p>">
+          <h3>Réseau</h3>
+          <p>Diagnostic + résolution.</p>
+          <span class="mini">Ouvrir</span>
         </article>
-
       </div>
     </section>
-
-    <section class="content-card">
-      <h2>Compétences mobilisées</h2>
-      <ul class="mission-list">
-        <li>Administration systèmes (Windows / Linux)</li>
-        <li>Réseaux (adressage, services, diagnostic)</li>
-        <li>Sécurité (bonnes pratiques, gestion des accès)</li>
-        <li>Méthodologie (procédures, rigueur)</li>
-        <li>Communication (support, échanges pro)</li>
-      </ul>
-    </section>
-
   </main>
 
   <footer class="footer">
-    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
+    <span>© Arthur DEBRABANT</span>
   </footer>
-
-  <script src="js/app.js"></script>
 </body>
 </html>
