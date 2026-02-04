@@ -1,187 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- ======================================================
-       META / SEO
-       ====================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>À propos de moi – Arthur DEBRABANT</title>
-  <meta name="description" content="Présentation personnelle – BTS SIO SISR – Arthur DEBRABANT" />
-
-  <!-- ======================================================
-       CSS GLOBAL (même fichier que l’accueil)
-       ====================================================== -->
+  <title>À propos – Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-
 <body>
   <div class="page-loader" aria-hidden="true">
-  <div class="page-loader__panel">
-    <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
-    <div class="page-loader__spinner"></div>
-    <div class="page-loader__bar"><div></div></div>
-    <div class="page-loader__text">Préparation de l’expérience…</div>
-  </div>
-</div>
-
-  <!-- ======================================================
-       HERO (identique aux autres pages)
-       ====================================================== -->
-  <header class="hero">
-    <div class="hero__inner">
-      <p class="hero__badge">BTS SIO • SISR</p>
-<button class="hero__badge theme-toggle" type="button" aria-pressed="true">
-  <span class="theme-toggle__icon">🌙</span>
-  <span class="theme-toggle__text">Sombre</span>
-</button>
-
-      <h1 class="hero__title">À propos de moi</h1>
-
-      <p class="hero__subtitle">
-        Présentation personnelle, parcours et objectifs professionnels
-      </p>
-
-      <div class="hero__actions">
-        <!-- Bouton retour -->
-        <a class="btn btn--ghost" href="index.html">⬅ Retour à l’accueil</a>
-
-        <!-- Scroll vers le contenu -->
-        <a class="btn btn--primary" href="#profil">Découvrir</a>
-      </div>
+    <div class="page-loader__box">
+      <div class="page-loader__spinner"></div>
+      <div class="page-loader__text">Chargement…</div>
     </div>
+  </div>
+
+  <header class="topbar">
+    <a class="pill linkpill" href="index.html">← Accueil</a>
+    <button class="theme-toggle" type="button" aria-pressed="true">
+      <span class="theme-toggle__icon">🌙</span>
+      <span class="theme-toggle__text">Sombre</span>
+    </button>
   </header>
 
-  <!-- ======================================================
-       CONTENU PRINCIPAL
-       ====================================================== -->
-  <main class="container">
+  <main class="wrap">
+    <section class="card">
+      <h1>À propos de moi</h1>
+      <p class="lead">Ajoute ici ton profil, ton parcours BTS, tes objectifs.</p>
 
-    <!-- ======================================================
-         SECTION 1 : Profil
-         ====================================================== -->
-    <section class="about-section">
-      <h2>Profil</h2>
-      <p>
-        Je m’appelle <strong>Arthur DEBRABANT</strong>, étudiant en
-        <strong>BTS SIO option SISR</strong>. Passionné par l’informatique,
-        les systèmes, les réseaux et la cybersécurité, je m’oriente vers
-        un métier d’administrateur systèmes et réseaux.
-      </p>
-
-      <!-- ======================================================
-           PLACEHOLDER PHOTO PROFIL
-           ➜ Photo professionnelle recommandée (sobre)
-           Exemple : images/profil/arthur.jpg
-           ====================================================== -->
-      <!--
-      <div class="media">
-        <img src="images/profil/arthur.jpg" alt="Photo de profil Arthur Debrabant" loading="lazy" />
-        <p class="media__caption">Photo professionnelle</p>
+      <div class="split">
+        <div class="card inner">
+          <h3>Profil</h3>
+          <p>Étudiant BTS SIO SISR, alternance, appétence infra/réseaux.</p>
+        </div>
+        <div class="card inner">
+          <h3>Objectifs</h3>
+          <p>Administration systèmes & réseaux, amélioration continue, sécurité.</p>
+        </div>
       </div>
-      -->
     </section>
-
-    <!-- ======================================================
-         SECTION 2 : Parcours
-         ====================================================== -->
-    <section class="content-card">
-      <h2>Parcours</h2>
-      <p>
-        Après un intérêt marqué pour les technologies numériques,
-        j’ai choisi de suivre un BTS SIO afin d’acquérir des compétences
-        solides en administration systèmes et réseaux, tout en bénéficiant
-        d’une expérience professionnelle concrète grâce à l’alternance.
-      </p>
-
-      <!-- ======================================================
-           PLACEHOLDER CHRONOLOGIE (OPTIONNEL)
-           Tu peux remplacer par une timeline plus tard
-           ====================================================== -->
-      <!--
-      <ul class="mission-list">
-        <li>2024 – Entrée en BTS SIO SISR</li>
-        <li>2024 – Début de l’alternance</li>
-        <li>2026 – Obtention du BTS (objectif)</li>
-      </ul>
-      -->
-    </section>
-
-    <!-- ======================================================
-         SECTION 3 : Compétences
-         ====================================================== -->
-    <section class="content-card">
-      <h2>Compétences</h2>
-
-      <ul class="mission-list">
-        <li>Administration systèmes (Windows, Linux)</li>
-        <li>Réseaux (adressage IP, services, diagnostic)</li>
-        <li>Sécurité informatique (bonnes pratiques, gestion des accès)</li>
-        <li>Virtualisation et environnements de test</li>
-        <li>Support utilisateurs et communication professionnelle</li>
-      </ul>
-
-      <!-- ======================================================
-           PLACEHOLDER ILLUSTRATION COMPÉTENCES
-           Exemple : schéma réseau, capture VM, etc.
-           ====================================================== -->
-      <!--
-      <div class="media">
-        <img src="images/competences/schema-reseau.png" alt="Schéma réseau" loading="lazy" />
-        <p class="media__caption">Exemple de compétences techniques</p>
-      </div>
-      -->
-    </section>
-
-    <!-- ======================================================
-         SECTION 4 : Objectifs
-         ====================================================== -->
-    <section class="content-card">
-      <h2>Objectifs professionnels</h2>
-      <p>
-        Mon objectif est de poursuivre dans le domaine de l’administration
-        systèmes et réseaux, en renforçant mes compétences techniques et
-        en évoluant vers des responsabilités plus avancées, notamment
-        dans la gestion d’infrastructures informatiques et la cybersécurité.
-      </p>
-    </section>
-
-    <!-- ======================================================
-         SECTION 5 : CV (OPTIONNEL)
-         ====================================================== -->
-    <section class="content-card">
-      <h2>Curriculum Vitae</h2>
-      <p>
-        Vous pouvez consulter ou télécharger mon CV pour plus de détails
-        sur mon parcours et mes compétences.
-      </p>
-
-      <!-- ======================================================
-           PLACEHOLDER CV PDF
-           1) Met ton CV dans docs/
-           2) Décommente le lien
-           ====================================================== -->
-      <!--
-      <a class="btn btn--primary" href="docs/cv-arthur-debrabant.pdf" target="_blank" rel="noopener">
-        📄 Télécharger mon CV
-      </a>
-      -->
-    </section>
-
   </main>
 
-  <!-- ======================================================
-       FOOTER
-       ====================================================== -->
   <footer class="footer">
-    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
+    <span>© Arthur DEBRABANT</span>
   </footer>
-<script src="js/app.js"></script>
-
 </body>
-  <!-- =========================
-     Loader overlay (global)
-     ========================= -->
-
-
 </html>
