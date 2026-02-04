@@ -924,18 +924,20 @@ body.modal-open{ overflow: hidden; }
   height: 8px;
   border-radius: 999px;
   border: 1px solid var(--
+.about-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .profile-photo {
-  width: 180px;
-  height: 180px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;
 
-  background: rgba(0, 0, 0, 0.25); /* ton rond noir */
-  backdrop-filter: blur(6px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 .profile-photo img {
@@ -943,3 +945,4 @@ body.modal-open{ overflow: hidden; }
   height: 100%;
   object-fit: cover;
 }
+
