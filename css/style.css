@@ -929,4 +929,44 @@ body.modal-open{ overflow: hidden; }
   align-items: center;
   gap: 24px;
 }
+:root{
+  --bg: #081423;
+  --card: rgba(255,255,255,0.06);
+  --text: rgba(255,255,255,0.92);
+  --border: rgba(255,255,255,0.12);
+}
+
+:root[data-theme="light"]{
+  --bg: #f6f8ff;
+  --card: rgba(0,0,0,0.04);
+  --text: rgba(10,16,28,0.92);
+  --border: rgba(0,0,0,0.10);
+}
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  transition: background 420ms ease, color 420ms ease;
+}
+
+/* overlay “wash” */
+.theme-wash{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), rgba(255,255,255,0));
+  transform: scale(1.02);
+}
+
+.theme-wash.is-on{
+  animation: wash 520ms ease;
+}
+
+@keyframes wash{
+  0%{opacity:0}
+  35%{opacity:1}
+  100%{opacity:0}
+}
 
