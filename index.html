@@ -6,64 +6,114 @@
   <title>Portfolio – Arthur DEBRABANT UFASIO2</title>
   <meta name="description" content="Portfolio BTS SIO SISR – Arthur DEBRABANT UFASIO2" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- JS (animations + loader) -->
   <script src="js/app.js" defer></script>
 </head>
 
 <body>
-  <!-- Loader -->
+  <!-- =========================
+       Loader overlay (global)
+       ========================= -->
   <div class="page-loader" aria-hidden="true">
-    <div class="page-loader__box">
+    <div class="page-loader__panel">
+      <div class="page-loader__brand">Arthur DEBRABANT • Portfolio</div>
       <div class="page-loader__spinner"></div>
-      <div class="page-loader__text">Chargement…</div>
+      <div class="page-loader__bar"><div></div></div>
+      <div class="page-loader__text">Préparation de l’expérience…</div>
     </div>
   </div>
 
-  <!-- Particules IT (uniquement accueil) -->
+  <!-- =========================
+       Ambient glow (HOME ONLY)
+       ========================= -->
+  <div class="ambient ambient--home" aria-hidden="true">
+    <span class="ambient__blob ambient__blob--1"></span>
+    <span class="ambient__blob ambient__blob--2"></span>
+    <span class="ambient__grid"></span>
+  </div>
+
+  <!-- IT icons background (animated) -->
   <div class="bg-it" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <div class="pill">BTS SIO • SISR</div>
+  <!-- =========================
+       HERO
+       ========================= -->
+  <header class="hero">
+    <div class="hero__inner">
+      <button class="hero__badge theme-toggle" type="button" aria-label="Basculer thème" aria-pressed="true">
+        <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        <span class="theme-toggle__text">Sombre</span>
+      </button>
 
-    <button class="theme-toggle" type="button" aria-pressed="true">
-      <span class="theme-toggle__icon">🌙</span>
-      <span class="theme-toggle__text">Sombre</span>
-    </button>
+      <p class="hero__badge">BTS SIO • SISR</p>
+
+      <h1 class="hero__title">
+        Arthur DEBRABANT <span>UFASIO2</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Portfolio professionnel – alternance, projets et compétences
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="mesmissionsrealisees.html">Voir mes missions</a>
+        <a class="btn btn--ghost" href="aproposdemoi.html">Me découvrir</a>
+      </div>
+    </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero card">
-      <h1>Arthur DEBRABANT <span class="muted">UFASIO2</span></h1>
-      <p class="lead">Portfolio professionnel – alternance, projets et compétences</p>
+  <!-- =========================
+       CONTENT
+       ========================= -->
+  <main class="container">
+    <section class="grid">
 
-      <div class="actions">
-        <a class="btn primary" href="mesmissionsrealisees.html">Voir mes missions</a>
-        <a class="btn" href="aproposdemoi.html">Découvrir</a>
-      </div>
+      <a class="card" data-stagger="1" href="aproposdemoi.html">
+        <div class="card__top">
+          <div class="card__icon">👤</div>
+          <div class="card__tag">Rubrique 1</div>
+        </div>
+        <div>
+          <h2 class="card__title">1. À propos de moi</h2>
+          <p class="card__text">Profil, parcours, objectifs et compétences clés.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
+      <a class="card" data-stagger="2" href="monentreprise.html">
+        <div class="card__top">
+          <div class="card__icon">🏢</div>
+          <div class="card__tag">Rubrique 2</div>
+        </div>
+        <div>
+          <h2 class="card__title">2. Mon entreprise</h2>
+          <p class="card__text">Présentation, organisation et environnement informatique.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
+      <a class="card" data-stagger="3" href="mesmissionsrealisees.html">
+        <div class="card__top">
+          <div class="card__icon">🛠️</div>
+          <div class="card__tag">Rubrique 3</div>
+        </div>
+        <div>
+          <h2 class="card__title">3. Mes missions réalisées</h2>
+          <p class="card__text">Interventions, projets, outils utilisés et résultats.</p>
+        </div>
+        <div class="card__cta">Accéder →</div>
+      </a>
+
     </section>
 
-    <section class="grid">
-      <a class="card link" href="aproposdemoi.html">
-        <div class="tag">1</div>
-        <h3>À propos de moi</h3>
-        <p>Profil, parcours, objectifs.</p>
-      </a>
-
-      <a class="card link" href="monentreprise.html">
-        <div class="tag">2</div>
-        <h3>Mon entreprise</h3>
-        <p>Contexte, missions, environnement.</p>
-      </a>
-
-      <a class="card link" href="mesmissionsrealisees.html">
-        <div class="tag">3</div>
-        <h3>Missions réalisées</h3>
-        <p>Détails + popups.</p>
-      </a>
+    <section class="info">
+      <div class="info__dot"></div>
+      <p><strong>À venir :</strong> schémas réseau, comptes rendus, documents techniques, annexes.</p>
     </section>
   </main>
 
   <footer class="footer">
-    <span>© Arthur DEBRABANT – Portfolio BTS SIO</span>
+    <p>© 2026 — Arthur DEBRABANT • GitHub Pages</p>
   </footer>
 </body>
 </html>
