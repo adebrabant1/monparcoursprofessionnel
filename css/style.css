@@ -924,3 +924,22 @@ body.modal-open{ overflow: hidden; }
   height: 8px;
   border-radius: 999px;
   border: 1px solid var(--
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.25); /* ton rond noir */
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
