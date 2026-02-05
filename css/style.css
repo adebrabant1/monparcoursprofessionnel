@@ -1076,7 +1076,7 @@ body.theme--light .modal__backdrop{
 .media--bg-logo{
   background-size: contain;
   position: relative;
-  height: 340px;
+  height: 800px;
   margin-top: 1.5rem;
   border-radius: 16px;
   overflow: hidden;
