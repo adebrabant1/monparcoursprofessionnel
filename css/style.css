@@ -1045,3 +1045,48 @@ body.theme--light .modal__backdrop{
   font-size: 0.85rem;
   opacity: 0.8;
 }
+/* ===============================
+   LOGO ENTREPRISE EN ARRIÈRE-PLAN (BÉTON)
+   =============================== */
+
+.media.media--bg-logo{
+  position: relative;
+  height: 280px;
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* couche logo (indépendante du background de .media) */
+.media.media--bg-logo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url("../images/entreprise/logoindelec.png") center / contain no-repeat;
+  opacity: .22;              /* visibilité */
+  filter: grayscale(1) blur(0.5px);
+  z-index: 0;
+  pointer-events:none;
+}
+
+/* petit voile pour lisibilité */
+.media.media--bg-logo::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.18);
+  z-index: 1;
+  pointer-events:none;
+}
+
+/* texte au-dessus */
+.media.media--bg-logo .media__caption{
+  position:absolute;
+  right:16px;
+  bottom:12px;
+  z-index: 2;
+  font-size: .85rem;
+  opacity: .8;
+}
+.media.media--bg-logo::after{ opacity: 1 !important; filter:none !important; }
+.media.media--bg-logo::before{ background: rgba(255,0,0,0.10) !important; }
