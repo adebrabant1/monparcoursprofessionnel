@@ -1077,7 +1077,7 @@ body.theme--light .modal__backdrop{
   position: relative;
 
   /* 🔧 taille du cadre */
-  height: 500px;           /* ajuste ici si tu veux plus / moins haut */
+  height: 200px;           /* ajuste ici si tu veux plus / moins haut */
   max-width: 100%;         /* reste responsive */
   margin: 2rem auto;       /* espace autour */
 
