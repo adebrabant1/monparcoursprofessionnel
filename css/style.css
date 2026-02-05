@@ -1056,7 +1056,7 @@ body.theme--light .modal__backdrop{
   border-radius: 16px;
   overflow: hidden;
 
-  background-image: url("../images/entreprise/logoindelec.png");
+  background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1071,4 +1071,18 @@ body.theme--light .modal__backdrop{
   right: 16px;
   font-size: .85rem;
   opacity: .8;
+}
+.media--bg-logo{
+  position: relative;
+  height: 280px;
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  background-color: rgba(255,255,255,0.03);
 }
