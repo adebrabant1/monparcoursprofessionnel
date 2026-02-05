@@ -1022,7 +1022,7 @@ body.theme--light .modal__backdrop{
   overflow: hidden;
 
   /* LOGO */
-  background-image: url("../images/logoindelec.png");
+  background-image: url("/images/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
