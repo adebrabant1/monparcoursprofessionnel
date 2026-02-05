@@ -1074,18 +1074,23 @@ body.theme--light .modal__backdrop{
 }
 
 .media--bg-logo{
-  background-size: contain;
   position: relative;
-  height: 800px;
-  margin-top: 1.5rem;
-  border-radius: 16px;
-  overflow: hidden;
-  background-size: 60%;
 
+  /* 🔧 taille du cadre */
+  height: 420px;           /* ajuste ici si tu veux plus / moins haut */
+  max-width: 100%;         /* reste responsive */
+  margin: 2rem auto;       /* espace autour */
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  /* 🎨 logo */
   background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 800px;  /* TA taille validée */
 
+  /* look */
   background-color: rgba(255,255,255,0.03);
 }
+
