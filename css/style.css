@@ -1021,45 +1021,27 @@ body.theme--light .modal__backdrop{
   border-radius: 16px;
   overflow: hidden;
 
-  /* LOGO */
-  background-image: url("/images/logoindelec.png");
+  background-image: url("../images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
-  /* Sécurité visuelle */
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255,255,255,0.04);
 }
 
-/* FILTRE DISCRET (flou + N&B) */
+/* voile léger pour lisibilité */
 .media--bg-logo::before {
   content: "";
   position: absolute;
   inset: 0;
-
-  backdrop-filter: blur(2px);
-  background: rgba(0, 0, 0, 0.05);
-
-  pointer-events: none;
+  background: rgba(0,0,0,0.05);
 }
 
-/* TEXTE AU-DESSUS */
+/* légende */
 .media--bg-logo .media__caption {
   position: absolute;
   bottom: 12px;
   right: 16px;
-  z-index: 2;
   font-size: 0.85rem;
-  opacity: 0.75;
-}
-
-/* MODE CLAIR */
-body[data-theme="light"] .media--bg-logo {
-  background-color: rgba(0, 0, 0, 0.03);
-  filter: grayscale(100%) opacity(0.8);
-}
-
-/* MODE SOMBRE */
-body[data-theme="dark"] .media--bg-logo {
-  filter: grayscale(100%) opacity(0.9);
+  opacity: 0.8;
 }
