@@ -1104,3 +1104,10 @@ body.theme--light .modal__backdrop{
   overflow:hidden;
   background: url("../images/entreprise/logoindelec.png") center/contain no-repeat;
 }
+.media--bg-logo{
+  position:relative;
+  height:280px;
+  border-radius:16px;
+  overflow:hidden;
+  background: url("../images/entreprise/logoindelec.png") center/contain no-repeat;
+}
