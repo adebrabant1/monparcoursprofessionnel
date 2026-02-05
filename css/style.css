@@ -1090,3 +1090,10 @@ body.theme--light .modal__backdrop{
 }
 .media.media--bg-logo::after{ opacity: 1 !important; filter:none !important; }
 .media.media--bg-logo::before{ background: rgba(255,0,0,0.10) !important; }
+.media--bg-logo{
+  position:relative;
+  height:280px;
+  border-radius:16px;
+  overflow:hidden;
+  background: url("../images/entreprise/logoindelec.png") center/contain no-repeat;
+}
