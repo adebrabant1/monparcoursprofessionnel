@@ -1010,3 +1010,41 @@ body.theme--light .modal__backdrop{
   .card, .card::after{ transition:none; animation:none; }
   .card:hover{ transform:none; }
 }
+/* ===============================
+   LOGO EN ARRIÈRE-PLAN (ENTREPRISE)
+   =============================== */
+
+.media--bg-logo {
+  position: relative;
+  min-height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  /* Le logo devient le décor */
+  background-image: url("../images/logoindelec.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  /* Effet discret et pro */
+  background-color: var(--card-bg, rgba(255,255,255,0.02));
+}
+
+/* Voile léger pour lisibilité */
+.media--bg-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+}
+
+/* Texte au-dessus du décor */
+.media--bg-logo .media__caption {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  z-index: 1;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
