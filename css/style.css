@@ -1072,12 +1072,15 @@ body.theme--light .modal__backdrop{
   font-size: .85rem;
   opacity: .8;
 }
+
 .media--bg-logo{
+  background-size: contain;
   position: relative;
-  height: 280px;
+  height: 340px;
   margin-top: 1.5rem;
   border-radius: 16px;
   overflow: hidden;
+  background-size: 60%;
 
   background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
