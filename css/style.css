@@ -1113,3 +1113,18 @@ body.theme--light .modal__backdrop{
   text-decoration: underline;
 }
 
+/* ===============================
+   Présence en ligne entreprise
+   =============================== */
+.company-online {
+  margin-top: 2.5rem;
+}
+
+.company-online h3 {
+  margin-bottom: 1rem;
+}
+
+.company-links a {
+  color: inherit;
+  text-decoration: underline;
+}
