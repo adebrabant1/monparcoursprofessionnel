@@ -1173,3 +1173,7 @@ body.theme--light .modal__backdrop{
   color: inherit;
   text-decoration: underline;
 }
+.content-card a {
+  font-weight: 500;
+  text-decoration: underline;
+}
