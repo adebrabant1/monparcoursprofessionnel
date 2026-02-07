@@ -1114,17 +1114,22 @@ body.theme--light .modal__backdrop{
 }
 
 /* ===============================
-   Présence en ligne entreprise
+   Présence en ligne – entreprise
    =============================== */
 .company-online {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 }
 
-.company-online h3 {
-  margin-bottom: 1rem;
+.company-online-links {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
 }
 
-.company-links a {
+.company-online-links li {
+  margin-bottom: 0.6rem;
+}
+
+.company-online-links a {
   color: inherit;
   text-decoration: underline;
 }
