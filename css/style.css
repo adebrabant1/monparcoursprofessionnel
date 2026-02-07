@@ -1093,4 +1093,23 @@ body.theme--light .modal__backdrop{
   /* look */
   background-color: rgba(255,255,255,0.03);
 }
+.social-links {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.social-links li {
+  margin-bottom: 0.6rem;
+}
+
+.social-links a {
+  color: var(--accent-color, #4da3ff);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
 
