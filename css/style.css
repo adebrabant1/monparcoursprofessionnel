@@ -1177,3 +1177,14 @@ body.theme--light .modal__backdrop{
   font-weight: 500;
   text-decoration: underline;
 }
+/* ===============================
+   Organigramme – ajustement taille
+   =============================== */
+.media .organigramme {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  margin: 1.5rem auto;
+  border-radius: 14px;
+}
