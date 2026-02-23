@@ -1501,3 +1501,93 @@ body.theme--light .modal__backdrop{
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.3) transparent;
 }
+/* ======================================================
+   MODAL FINAL FIX — CENTRAGE + SCROLL PROPRE
+   ====================================================== */
+
+/* 1️⃣ Panel centré parfaitement */
+.modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2️⃣ Panel responsive et stable */
+.modal__panel{
+  display: flex;
+  flex-direction: column;
+  width: min(1000px, calc(100vw - 40px));
+  max-height: 85vh;
+  margin: auto;
+}
+
+/* 3️⃣ Le viewport prend la hauteur dispo */
+.modal__viewport{
+  flex: 1 1 auto;
+  min-height: 0; /* IMPORTANT */
+}
+
+/* 4️⃣ Slide scrollable */
+.modal__slide{
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 26px;
+  padding-right: 18px; /* espace pour scrollbar */
+}
+
+/* 5️⃣ Images centrées */
+.modal__slide img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 12px;
+}
+
+/* 6️⃣ Scrollbar visible (Chrome / Edge) */
+.modal__slide::-webkit-scrollbar{
+  width: 10px;
+}
+.modal__slide::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.28);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.40);
+}
+
+/* 7️⃣ Firefox */
+.modal__slide{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.35) rgba(255,255,255,0.08);
+}
+
+/* ======================================================
+   RESPONSIVE MOBILE
+   ====================================================== */
+@media (max-width: 720px){
+  .modal__panel{
+    width: calc(100vw - 16px);
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .modal__slide{
+    padding: 16px;
+    padding-right: 14px;
+  }
+}
+
+/* ======================================================
+   Très grands écrans / projecteurs
+   ====================================================== */
+@media (min-width: 1600px){
+  .modal__panel{
+    width: 1100px;
+  }
+}
