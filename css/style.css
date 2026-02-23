@@ -1517,7 +1517,7 @@ body.theme--light .modal__backdrop{
   display: flex;
   flex-direction: column;
   width: min(1000px, calc(100vw - 40px));
-  max-height: 85vh;
+  max-height: 75vh;
   margin: auto;
 }
 
