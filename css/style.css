@@ -1361,3 +1361,101 @@ body.theme--light .modal__backdrop{
     width: min(980px, calc(100vw - 40px));
   }
 }
+/* ======================================================
+   FIX MODAL (slider) : SCROLL + contenu complet
+   Colle tout en bas du css/style.css
+   ====================================================== */
+
+/* 1) Le panel devient une colonne : Header / Viewport / Footer */
+.modal__panel{
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2) Le viewport prend la hauteur restante (sinon pas de scroll) */
+.modal__viewport{
+  flex: 1 1 auto;
+  min-height: 0;              /* IMPORTANT */
+  overflow: hidden;           /* on garde le clip du slider */
+}
+
+/* 3) Le track et les slides doivent occuper toute la hauteur du viewport */
+.modal__track{
+  height: 100%;
+}
+
+.modal__slide{
+  height: 100%;
+  overflow-y: auto;           /* ✅ scroll ici (et pas sur le panel) */
+  overflow-x: hidden;
+}
+
+/* 4) Confort lecture + garde place pour scrollbar */
+.modal__slide{
+  padding-right: 14px;
+}
+
+/* 5) Images centrées + responsive */
+.modal__slide img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px auto;
+  border-radius: 12px;
+}
+
+/* 6) Scrollbar à droite (Chrome/Edge) */
+.modal__slide::-webkit-scrollbar{ width: 10px; }
+.modal__slide::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.22);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.32);
+}
+
+/* 7) Scrollbar (Firefox) */
+.modal__slide{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) rgba(255,255,255,0.06);
+}
+
+/* ======================================================
+   RESPONSIVE : téléphone / petits écrans
+   ====================================================== */
+
+@media (max-width: 720px){
+  .modal__panel{
+    width: calc(100vw - 16px);
+    max-height: 88vh;
+    border-radius: 16px;
+  }
+
+  /* padding plus petit sur mobile (sinon ça mange la place) */
+  .modal__slide{
+    padding: 14px 16px;
+    padding-right: 14px;
+  }
+
+  /* flèches plus petites */
+  .modal__nav{
+    width: 38px;
+    height: 38px;
+  }
+
+  .modal__nav--prev{ left: 10px; }
+  .modal__nav--next{ right: 10px; }
+}
+
+/* ======================================================
+   Très grands écrans / projecteur : stable
+   ====================================================== */
+@media (min-width: 1400px){
+  .modal__panel{
+    width: min(980px, calc(100vw - 40px));
+  }
+}
