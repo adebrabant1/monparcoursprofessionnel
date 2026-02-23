@@ -1188,3 +1188,73 @@ body.theme--light .modal__backdrop{
   margin: 1.5rem auto;
   border-radius: 14px;
 }
+/* ===== Modal : centrage + scroll propre ===== */
+
+/* 1) Le contenu du modal : largeur + centrage */
+.modal__panel,
+.modal__content,
+.modal .modal__panel,
+.modal .modal__content {
+  width: min(980px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+
+/* 2) Zone scroll : barre à droite + hauteur max */
+.modal__body,
+.modal__content,
+.modal .modal__body,
+.modal .modal__content {
+  max-height: min(78vh, 720px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* un peu d'air */
+  padding-right: 12px;
+}
+
+/* 3) Images dans le modal : centrées + responsive */
+.modal__body img,
+.modal__content img,
+.modal .modal__body img,
+.modal .modal__content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px auto;
+  border-radius: 12px;
+}
+
+/* 4) Optionnel : si tu utilises .mission-image */
+.mission-image {
+  text-align: center;
+}
+.mission-image img {
+  display: inline-block;
+}
+
+/* 5) Scrollbar (Chrome/Edge) : propre */
+.modal__body::-webkit-scrollbar,
+.modal__content::-webkit-scrollbar {
+  width: 10px;
+}
+.modal__body::-webkit-scrollbar-track,
+.modal__content::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+.modal__body::-webkit-scrollbar-thumb,
+.modal__content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.20);
+  border-radius: 999px;
+}
+.modal__body::-webkit-scrollbar-thumb:hover,
+.modal__content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.30);
+}
+
+/* 6) Scrollbar (Firefox) */
+.modal__body,
+.modal__content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) rgba(255,255,255,0.06);
+}
