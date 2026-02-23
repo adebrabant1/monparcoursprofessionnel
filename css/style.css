@@ -1497,10 +1497,6 @@ body.theme--light .modal__backdrop{
   background: rgba(255,255,255,0.25);
   border-radius: 999px;
 }
-.modal__slide{
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.3) transparent;
-}
 /* ======================================================
    MODAL FINAL FIX — CENTRAGE + SCROLL PROPRE
    ====================================================== */
@@ -1521,11 +1517,6 @@ body.theme--light .modal__backdrop{
   margin: auto;
 }
 
-/* 3️⃣ Le viewport prend la hauteur dispo */
-.modal__viewport{
-  flex: 1 1 auto;
-  min-height: 0; /* IMPORTANT */
-}
 
 /* 4️⃣ Slide scrollable */
 .modal__slide{
@@ -1589,5 +1580,65 @@ body.theme--light .modal__backdrop{
 @media (min-width: 1600px){
   .modal__panel{
     width: 1100px;
+  }
+}
+/* ======================================================
+   MODAL SCROLL FIX DEFINITIF
+   ====================================================== */
+
+/* Le panel principal */
+.modal__panel{
+  width: min(1000px, 95vw);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+/* IMPORTANT : ne PAS bloquer le viewport */
+.modal__viewport{
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Le vrai conteneur scrollable */
+.modal__slide{
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 30px;
+  min-height: 0;
+}
+
+/* Scrollbar visible */
+.modal__slide::-webkit-scrollbar{
+  width: 8px;
+}
+.modal__slide::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.35);
+  border-radius: 999px;
+}
+.modal__slide{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.4) transparent;
+}
+
+/* Images propres */
+.modal__slide img{
+  display: block;
+  max-width: 100%;
+  margin: 25px auto;
+  border-radius: 14px;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px){
+  .modal__panel{
+    width: 95vw;
+    max-height: 90vh;
+  }
+  .modal__slide{
+    padding: 16px;
   }
 }
