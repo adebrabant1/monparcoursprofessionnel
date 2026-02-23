@@ -1645,3 +1645,82 @@ body.theme--light .modal__backdrop{
 .modal__panel{
   max-height: 70vh;
 }
+/* ======================================================
+   MODAL — SCROLL GARANTI (scroll sur le viewport)
+   ====================================================== */
+
+/* Modal bien centré (tu l’as déjà, je le laisse safe) */
+.modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Panel responsive */
+.modal__panel{
+  width: min(1000px, calc(100vw - 40px)) !important;
+  max-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* ✅ LE TRUC IMPORTANT : c’est le viewport qui scrolle */
+.modal__viewport{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;                  /* indispensable en flex */
+  overflow-y: auto !important;               /* ✅ scroll ici */
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;         /* iOS */
+  padding-right: 14px !important;            /* place scrollbar */
+}
+
+/* On ne force plus le slider à prendre 100% hauteur (ça casse souvent le scroll) */
+.modal__track{
+  height: auto !important;
+}
+
+/* Les slides ne doivent pas bloquer le scroll du viewport */
+.modal__slide{
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Images centrées */
+.modal__viewport img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 18px auto;
+  border-radius: 12px;
+}
+
+/* Scrollbar visible */
+.modal__viewport::-webkit-scrollbar{ width: 10px; }
+.modal__viewport::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+}
+.modal__viewport::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.28);
+  border-radius: 999px;
+}
+.modal__viewport::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.40);
+}
+.modal__viewport{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.35) rgba(255,255,255,0.08);
+}
+
+/* Responsive mobile */
+@media (max-width: 720px){
+  .modal__panel{
+    width: calc(100vw - 16px) !important;
+    max-height: 90vh !important;
+    border-radius: 16px;
+  }
+  .modal__viewport{
+    padding-right: 12px !important;
+  }
+}
