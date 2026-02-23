@@ -1642,3 +1642,6 @@ body.theme--light .modal__backdrop{
     padding: 16px;
   }
 }
+.modal__panel{
+  max-height: 70vh;
+}
