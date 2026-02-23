@@ -1459,3 +1459,45 @@ body.theme--light .modal__backdrop{
     width: min(980px, calc(100vw - 40px));
   }
 }
+/* =========================================
+   MODAL — SUPPRESSION NAVIGATION SLIDER
+   ========================================= */
+
+/* 1) Supprimer flèches gauche / droite */
+.modal__nav{
+  display: none !important;
+}
+
+/* 2) Supprimer footer (1/1 + dots) */
+.modal__footer{
+  display: none !important;
+}
+
+/* 3) Supprimer les dots si jamais */
+.modal__dots{
+  display: none !important;
+}
+
+/* =========================================
+   MODAL — SCROLL VERTICAL PROPRE
+   ========================================= */
+
+/* Le slide devient scrollable */
+.modal__slide{
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 14px;
+}
+
+/* Scrollbar visible */
+.modal__slide::-webkit-scrollbar{
+  width: 10px;
+}
+.modal__slide::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.25);
+  border-radius: 999px;
+}
+.modal__slide{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.3) transparent;
+}
