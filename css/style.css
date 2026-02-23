@@ -1258,3 +1258,106 @@ body.theme--light .modal__backdrop{
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.25) rgba(255,255,255,0.06);
 }
+/* ======================================================
+   MODAL — FIX SCROLL + CENTRAGE (compatible slider)
+   (à coller tout en bas du style.css)
+   ====================================================== */
+
+/* 1) Panel en colonne : header / viewport / footer */
+.modal__panel{
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2) Le viewport prend la place dispo (sinon le scroll ne "prend" pas) */
+.modal__viewport{
+  flex: 1 1 auto;
+  min-height: 0; /* très important pour autoriser le scroll interne */
+}
+
+/* 3) Le track + slide occupent la hauteur du viewport */
+.modal__track{
+  height: 100%;
+}
+.modal__slide{
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* barre de scroll à droite (garde un peu d'air) */
+  padding-right: 14px;
+}
+
+/* 4) Centrer le contenu du modal + images */
+.modal__slide{
+  text-align: left;
+}
+
+.modal__slide img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px auto;
+  border-radius: 12px;
+}
+
+/* 5) Scrollbar (Chrome/Edge) */
+.modal__slide::-webkit-scrollbar{
+  width: 10px;
+}
+.modal__slide::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.22);
+  border-radius: 999px;
+}
+.modal__slide::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.32);
+}
+
+/* 6) Scrollbar (Firefox) */
+.modal__slide{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) rgba(255,255,255,0.06);
+}
+
+/* ======================================================
+   RESPONSIVE (téléphone / petits écrans / projecteur)
+   ====================================================== */
+
+@media (max-width: 720px){
+  /* le panel prend plus de place, moins de marges */
+  .modal__panel{
+    width: calc(100vw - 18px);
+    max-height: 86vh;
+    border-radius: 16px;
+  }
+
+  /* padding slide réduit (sinon ça déborde à cause des flèches + gros padding) */
+  .modal__slide{
+    padding: 14px 16px;
+    padding-right: 14px; /* garde la place scrollbar */
+  }
+
+  /* flèches plus petites */
+  .modal__nav{
+    width: 38px;
+    height: 38px;
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 420px){
+  /* encore plus compact */
+  .modal__title{ font-size: 1.05rem; }
+  .modal__close{ padding: 10px 12px; }
+}
+
+/* Projecteurs / écrans larges : on garde propre */
+@media (min-width: 1400px){
+  .modal__panel{
+    width: min(980px, calc(100vw - 40px));
+  }
+}
