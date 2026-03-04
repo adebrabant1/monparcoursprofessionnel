@@ -1021,7 +1021,7 @@ body.theme--light .modal__backdrop{
   border-radius: 16px;
   overflow: hidden;
 
-  background-image: url("../images/entreprise/logoindelec.png");
+  background-image: url("images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1056,7 +1056,7 @@ body.theme--light .modal__backdrop{
   border-radius: 16px;
   overflow: hidden;
 
-  background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
+  background-image: url("images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1085,7 +1085,7 @@ body.theme--light .modal__backdrop{
   overflow: hidden;
 
   /* 🎨 logo */
-  background-image: url("/presentationoraux/images/entreprise/logoindelec.png");
+  background-image: url("images/entreprise/logoindelec.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 800px;  /* TA taille validée */
