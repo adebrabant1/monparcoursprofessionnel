@@ -282,59 +282,75 @@
         <article class="mission-item"
           data-modal="5"
           data-modal-title="Mission Atelier Professionnel"
-          data-modal-content="
-          
-            <h3>Contexte :</h3>
-            <p>
-              Dans le cadre de l’atelier professionnel réalisé durant ma formation, j’ai travaillé sur un environnement simulant une infrastructure d’entreprise sous Active Directory. L’objectif était de mettre en place une organisation complète des utilisateurs et des ressources, en appliquant des principes professionnels de gestion des droits et de structuration d’annuaire.
-              Le projet portait sur la gestion des comptes utilisateurs, l’organisation des unités organisationnelles, la mise en place de stratégies de groupe ainsi que la configuration des partages réseau avec des droits adaptés aux différents services
-            </p>
+         data-modal-content="
 
-            <h3>Mission :</h3>
-            <p>
-              Le projet a débuté par la création d’une structure logique dans Active Directory à travers la mise en place d’Unités Organisationnelles (UO). Cette organisation permet de structurer les utilisateurs et les ordinateurs par service ou par fonction, facilitant ainsi l’application de stratégies spécifiques.
-            </p>
+<h3>Contexte :</h3>
+<p>
+  Dans le cadre de l’atelier professionnel réalisé durant ma formation, j’ai travaillé sur un environnement simulant une infrastructure d’entreprise sous Active Directory. L’objectif était de mettre en place une organisation complète des utilisateurs et des ressources, en appliquant des principes professionnels de gestion des droits et de structuration d’annuaire.
+  Le projet portait sur la gestion des comptes utilisateurs, l’organisation des unités organisationnelles, la mise en place de stratégies de groupe ainsi que la configuration des partages réseau avec des droits adaptés aux différents services
+</p>
 
-            <p>Montrer l’Arborescence des UO dans Active Directory.</p>
+<h3>Mission :</h3>
+<p>
+  Le projet a débuté par la création d’une structure logique dans Active Directory à travers la mise en place d’Unités Organisationnelles (UO). Cette organisation permet de structurer les utilisateurs et les ordinateurs par service ou par fonction, facilitant ainsi l’application de stratégies spécifiques.
+</p>
 
-            <p>
-              Une fois la structure mise en place, j’ai procédé à l’intégration des utilisateurs. Pour cela, un fichier Excel préalablement défini regroupait les informations nécessaires telles que le nom, le prénom, le service et les identifiants. Ce fichier a été utilisé comme base pour automatiser la création des comptes via PowerShell, ce qui permet d’optimiser le temps et de réduire les erreurs manuelles.
-            </p>
+<div class='mission-image'>
+  <img src='images/missions/uo-arborescence.png' alt='Arborescence des UO Active Directory' loading='lazy'>
+</div>
 
-            <p>Mettre le fichier que la professeure nous a fourni pour montrer un extrait du fichier Excel structuré pour l’import des utilisateurs.</p>
-            <p>Mettre en image le Script PowerShell utilisé pour la création automatique des comptes.</p>
+<p>
+  Une fois la structure mise en place, j’ai procédé à l’intégration des utilisateurs. Pour cela, un fichier Excel préalablement défini regroupait les informations nécessaires telles que le nom, le prénom, le service et les identifiants. Ce fichier a été utilisé comme base pour automatiser la création des comptes via PowerShell, ce qui permet d’optimiser le temps et de réduire les erreurs manuelles.
+</p>
 
-            <p>
-              Les utilisateurs ont ensuite été intégrés dans des groupes de sécurité afin de gérer les accès aux ressources partagées. J’ai mis en place des dossiers partagés sur le serveur avec des permissions adaptées, en respectant le principe du moindre privilège. Chaque service disposait d’un lecteur réseau attribué selon ses besoins.
-            </p>
+<div class='mission-image'>
+  <img src='images/missions/excel-utilisateurs.png' alt='Fichier Excel utilisateurs' loading='lazy'>
+</div>
 
-            <p>Mettre une image de configuration des droits sur un dossier partagé.</p>
-            <p>Mettre une image d’un lecteur réseau mappé sur un poste client.</p>
+<div class='mission-image'>
+  <img src='images/missions/powershell-import.png' alt='Script PowerShell création utilisateurs' loading='lazy'>
+</div>
 
-            <p>
-              Par ailleurs, j’ai configuré plusieurs stratégies de groupe (GPO) afin d’appliquer automatiquement certains paramètres aux utilisateurs ou aux ordinateurs, comme des restrictions d’accès, des configurations système ou des paramètres de sécurité.
-            </p>
+<p>
+  Les utilisateurs ont ensuite été intégrés dans des groupes de sécurité afin de gérer les accès aux ressources partagées. J’ai mis en place des dossiers partagés sur le serveur avec des permissions adaptées, en respectant le principe du moindre privilège. Chaque service disposait d’un lecteur réseau attribué selon ses besoins.
+</p>
 
-            <p>Mettre une image d’exemple de GPO appliquée à une UO.</p>
+<div class='mission-image'>
+  <img src='images/missions/droits-dossier.png' alt='Configuration des droits dossier partagé' loading='lazy'>
+</div>
 
-            <p>
-              Le projet a été organisé sous forme de gestion de projet avec une planification des différentes étapes à l’aide d’un diagramme de Gantt, permettant de structurer le travail entre la phase de conception, de mise en place, de tests et de validation.
-            </p>
+<div class='mission-image'>
+  <img src='images/missions/lecteur-reseau.png' alt='Lecteur réseau mappé' loading='lazy'>
+</div>
 
-            <p>Mettre un diagramme de Gantt du projet.</p>
+<p>
+  Par ailleurs, j’ai configuré plusieurs stratégies de groupe (GPO) afin d’appliquer automatiquement certains paramètres aux utilisateurs ou aux ordinateurs, comme des restrictions d’accès, des configurations système ou des paramètres de sécurité.
+</p>
 
-            <h3>Apport</h3>
-            <p>Cette mission m’a permis :</p>
-            <ul>
-              <li>D’acquérir une vision complète de l’administration d’un environnement Active Directory en mode projet.</li>
-              <li>Elle m’a apporté des compétences techniques solides en gestion des utilisateurs, automatisation via PowerShell, configuration des partages réseau et application de stratégies de groupe.</li>
-            </ul>
+<div class='mission-image'>
+  <img src='images/missions/gpo-exemple.png' alt='Exemple de GPO appliquée' loading='lazy'>
+</div>
 
-            <p>Au-delà de l’aspect technique :</p>
-            <ul>
-              <li>La planification à l’aide d’un Gantt m’a permis de développer une méthodologie structurée, en découpant le projet en étapes claires avec des objectifs définis.</li>
-              <li>Ce travail m’a donné une approche plus professionnelle de l’administration système, en intégrant à la fois les aspects techniques et organisationnels.</li>
-            </ul>
+<p>
+  Le projet a été organisé sous forme de gestion de projet avec une planification des différentes étapes à l’aide d’un diagramme de Gantt, permettant de structurer le travail entre la phase de conception, de mise en place, de tests et de validation.
+</p>
+
+<div class='mission-image'>
+  <img src='images/missions/gantt-projet.png' alt='Diagramme de Gantt du projet' loading='lazy'>
+</div>
+
+<h3>Apport</h3>
+<p>Cette mission m’a permis :</p>
+<ul>
+  <li>D’acquérir une vision complète de l’administration d’un environnement Active Directory en mode projet.</li>
+  <li>Elle m’a apporté des compétences techniques solides en gestion des utilisateurs, automatisation via PowerShell, configuration des partages réseau et application de stratégies de groupe.</li>
+</ul>
+
+<p>Au-delà de l’aspect technique :</p>
+<ul>
+  <li>La planification à l’aide d’un Gantt m’a permis de développer une méthodologie structurée, en découpant le projet en étapes claires avec des objectifs définis.</li>
+  <li>Ce travail m’a donné une approche plus professionnelle de l’administration système, en intégrant à la fois les aspects techniques et organisationnels.</li>
+</ul>
           ">
           <h3>Mission Atelier Professionnel</h3>
           <p>Atelier BTS : UO, import users, PowerShell, partages, GPO, Gantt.</p>
