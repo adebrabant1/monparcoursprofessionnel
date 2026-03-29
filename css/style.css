@@ -1724,3 +1724,18 @@ body.theme--light .modal__backdrop{
     padding-right: 12px !important;
   }
 }
+/* =========================
+   BOUTON RETOUR ACCUEIL EN BAS DE PAGE
+   ========================= */
+.page-bottom-back{
+  max-width: 1050px;
+  margin: 10px auto 0;
+  padding: 0 18px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.page-bottom-back .btn{
+  min-width: 240px;
+  text-align: center;
+}
